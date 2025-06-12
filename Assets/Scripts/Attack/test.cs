@@ -5,13 +5,29 @@ using UnityEngine;
 public class test : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    private int preChildCount;
+
+    public GameObject background;
+
     void Start()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        float forceX = Random.Range(-1.5f, 1.5f);
-        float forceY = Random.Range(1f, 3f);
-        rb.AddForce(new Vector2(forceX, forceY), ForceMode2D.Impulse);
+        preChildCount = transform.childCount;
+        Debug.Log($"{transform.childCount}dd");
+    }
 
-        Destroy(gameObject, 2f); // 몇 초 후 자동 제거
+    
+    void Update()
+    {
+        int currentChildCount = transform.childCount;
+
+        if(currentChildCount < preChildCount)
+        {
+            background.transform.position += Vector3.up * 0.5f;
+            transform.position += Vector3.up * 0.5f;
+            Debug.Log($"{transform.childCount} dd");
+        }
+
+        preChildCount = currentChildCount;
     }
 }
