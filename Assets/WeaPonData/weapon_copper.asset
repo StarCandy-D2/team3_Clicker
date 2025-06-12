@@ -16,7 +16,7 @@ MonoBehaviour:
   Critical: 5
   Gold: 0
   WeaponName: "\uB3D9\uC0BD"
-  WeaponIcon: {fileID: 21300000, guid: 24add5b4c2e6d4bddb46051a957da111, type: 3}
+  WeaponIcon: {fileID: 21300000, guid: 35822a21ffd494b86bee7b8b09c15b44, type: 3}
   Durability: 10
   AutoAttackDuration: 1
   DurabilityRecovery: 10
