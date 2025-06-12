@@ -12,7 +12,9 @@ public class UserData : ScriptableObject
     public float critRate;
     public int gold;
 
+    //내구도
     public float atkRate;
     public float autoAtktime;
+    //내구도 회복
     public float reviveAtkRate;
 }
