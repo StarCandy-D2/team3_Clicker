@@ -6,11 +6,24 @@ using UnityEngine.UI;
 public class ShopUI : MonoBehaviour
 {
     [Header("Buttons")] 
-    public Button equipButton;
-    public Button nextButton;
-    public Button undoBuoon;
-    public Button upgradeButton;
-    public Button buyButton;
-    public Button backButton;
-    
+    public GameObject weapon;
+    public GameObject weapon2;
+    public GameObject equippanel;
+
+    public void OnClickNextButton()
+    {
+        weapon.SetActive(false);
+        weapon2.SetActive(true);
+    }
+
+    public void OnClickUndoButton()
+    {
+        weapon2.SetActive(false);
+        weapon.SetActive(true);
+    }
+
+    public void EquipButton()
+    {
+        equippanel.SetActive(true);
+    }
 }
