@@ -6,8 +6,21 @@ public class UserDataManager : MonoBehaviour
 {
     private string saveFolder;
 
+    public UserDataManager Instance;
+
     private void Awake()
     {
+        // 싱글톤 생성
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // 씬 전환에도 유지
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
         saveFolder = Application.persistentDataPath;
     }
 
@@ -34,8 +47,8 @@ public class UserDataManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"파일이 존재하지 않습니다: {fileName}");
-            return null;
+            Debug.LogWarning("파일 없음. 새로 생성");
+            return new UserData { userName = fileName }; // 기본값 포함
         }
     }
 

@@ -16,14 +16,15 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
     }
     // 저장할 때
-    void SaveCurrentUser()
+    public void SaveCurrentUser()
     {
         userDataManager.SaveUserData(currentUser, currentUser.userName);
     }
 
     // 불러올 때
-    void LoadUser(string fileName)
+    public void LoadUser(string fileName)
     {
         currentUser = userDataManager.LoadUserData(fileName);
+       // RefreshGameState();
     }
 }
