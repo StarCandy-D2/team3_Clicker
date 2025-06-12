@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class weaponData : MonoBehaviour
+[CreateAssetMenu(fileName = "NewWeaponData", menuName = "Inventory/Weapon Data")]
+public class WeaponData : ScriptableObject
 {
+    //플레이어의 속성과 무기 속성이 달라서 합산해서 진행 할꺼라면 따로 만들어야함.
     
-    //무기의 필요한 속성은 내구도, 공격력. 치명타 정도? 
-    public string Name;
-    public int Durability;
-    public int Attack;
-    public int Critical;
+    public string WeaponName;
+    public Sprite WeaponIcon;
 
-    public weaponData(string name, int durability, int attack, int critical)
-    {
-        Name = name;
-        Durability = durability;
-        Attack = attack;
-        Critical = critical;
-    }
+    [Header("무기 속성")] 
+    
+    //무기의 필요한 속성은 내구도, 공격력, 자동공격지속시간 정도? 
+    public float Durability;
+    public float AutoAttackDuration;
+    public float Attack;
+    public float Critical;
+
+
+
 }
