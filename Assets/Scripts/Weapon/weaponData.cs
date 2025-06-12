@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewWeaponData", menuName = "Inventory/Weapon Data")]
+[CreateAssetMenu(fileName = "NewWeaponData", menuName = "Item/Weapon Data")]
 public class WeaponData : ScriptableObject
 {
     //플레이어의 속성과 무기 속성이 달라서 합산해서 진행 할꺼라면 따로 만들어야함.
