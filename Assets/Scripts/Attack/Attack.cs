@@ -147,7 +147,7 @@ public class Attack : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
-        if (other.gameObject.layer == LayerMask.NameToLayer("enemy"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             if (OnAttack)
             {
