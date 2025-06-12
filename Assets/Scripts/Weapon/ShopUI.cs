@@ -75,6 +75,7 @@ public class ShopUI : MonoBehaviour
         }
         else
         {
+            
             Debug.Log("이미 최대 강화입니다.");
         }
     }
