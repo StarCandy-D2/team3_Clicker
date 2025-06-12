@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "NewUserData", menuName = "User/User Data")]
-public class UserData : ScriptableObject
+[System.Serializable]
+public class UserData
 {
     public string userName;
     public float Oxygen;
