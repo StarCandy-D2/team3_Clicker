@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Attack: 15
   Critical: 16
-  Gold: 0
+  NeedGold: 100000
   WeaponName: "\uAE08\uC0BD"
   WeaponIcon: {fileID: 21300000, guid: feb9090fb8ac74536800042e0111ba47, type: 3}
   Durability: 180

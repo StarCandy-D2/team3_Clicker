@@ -9,7 +9,7 @@ public class WeaponData : ScriptableObject
     [Header("기본 속성")]
     public float Attack;
     public float Critical;
-    public int Gold;
+    public int NeedGold;
     
 
     [Header("무기 속성")] 

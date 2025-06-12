@@ -15,6 +15,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private TMP_Text attackText;
     [SerializeField] private TMP_Text criticalText;
     [SerializeField] private TMP_Text durabilityText;
+    [SerializeField] private TMP_Text costText;
 
     [SerializeField] private WeaponData[] weaponDatas;
     private int weaponDataIndex = 0;
@@ -57,11 +58,33 @@ public class ShopUI : MonoBehaviour
         equippanel.SetActive(true);
     }
 
+    public void UpgradeButton()
+    {
+        WeaponData currentWeapon = weaponDatas[weaponDataIndex];
+
+        if (currentWeapon.Upgrade < currentWeapon.UpgradeStats.Count)
+        {
+            WeaponData.UpgradeData stat = currentWeapon.UpgradeStats[currentWeapon.Upgrade];
+
+            currentWeapon.Attack = stat.Attack;
+            currentWeapon.Critical = stat.Critical;
+            
+            currentWeapon.Upgrade++;
+            
+            UpdateWeaponUI();
+        }
+        else
+        {
+            Debug.Log("이미 최대 강화입니다.");
+        }
+    }
+
     public void UpdateWeaponUI()
     {
         WeaponData currentWeapon = weaponDatas[weaponDataIndex];
         attackText.text = currentWeapon.Attack.ToString();
         criticalText.text = currentWeapon.Critical.ToString();
         durabilityText.text = currentWeapon.Durability.ToString();
+        costText.text = currentWeapon.NeedGold.ToString();
     }
 }
