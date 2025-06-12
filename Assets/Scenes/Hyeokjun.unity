@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 43676756}
   - component: {fileID: 43676757}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 156877709}
   - component: {fileID: 156877710}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 260628062}
   - component: {fileID: 260628063}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,6 +385,7 @@ GameObject:
   m_Component:
   - component: {fileID: 465083474}
   - component: {fileID: 465083475}
+  - component: {fileID: 465083476}
   m_Layer: 0
   m_Name: DummyPlayer
   m_TagString: Untagged
@@ -422,13 +423,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68957023f1e41804e88a890a349d400c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 50
-  gravity: -50
+  IdleSpeed: 5
   attackPower: 10
   isJump: 1
   isAttack: 1
+  OnAttack: 0
   AttackDelay: 0.5
   AttackTimer: 0
+--- !u!61 &465083476
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465083473}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.37}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &471826042
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,7 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 471826043}
   - component: {fileID: 471826044}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 499421987}
   - component: {fileID: 499421988}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 520435620}
   - component: {fileID: 520435621}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +820,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 635875194}
-  m_Layer: 0
+  - component: {fileID: 635875195}
+  - component: {fileID: 635875196}
+  - component: {fileID: 635875197}
+  m_Layer: 6
   m_Name: Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,6 +863,92 @@ Transform:
   - {fileID: 1649181564}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &635875195
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635875193}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &635875196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635875193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6273494911f624d8ae9e4b0ac8fd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileHP: 100
+  currentHP: 0
+--- !u!50 &635875197
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635875193}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &637248612
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,7 +959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 637248613}
   - component: {fileID: 637248614}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -908,7 +1043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 734664471}
   - component: {fileID: 734664472}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -992,7 +1127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 932648647}
   - component: {fileID: 932648648}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1076,7 +1211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1246839205}
   - component: {fileID: 1246839206}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1160,7 +1295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1337414609}
   - component: {fileID: 1337414610}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1244,7 +1379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1344033505}
   - component: {fileID: 1344033506}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1412,7 +1547,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1649181564}
   - component: {fileID: 1649181565}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1496,7 +1631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1652121093}
   - component: {fileID: 1652121094}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1664,7 +1799,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1729542217}
   - component: {fileID: 1729542218}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1748,7 +1883,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1771024606}
   - component: {fileID: 1771024607}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1924,7 +2059,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2009501188}
   - component: {fileID: 2009501189}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2008,7 +2143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2020116252}
   - component: {fileID: 2020116253}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: terrain_grass_block_top (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
