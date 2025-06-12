@@ -10,7 +10,8 @@ public class UserData
     public float Oxygen;
     public float atk;
     public float critRate;
-    public int gold;
+    public float gold;
+    public float goldGain;
 
     public float atkRate;
     public float autoAtktime;
