@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5846c720d6e4bad874f1281caa6907, type: 3}
   m_Name: weapon_gold
   m_EditorClassIdentifier: 
-  Attack: 1
-  Critical: 5
+  Attack: 15
+  Critical: 16
   Gold: 0
   WeaponName: "\uAE08\uC0BD"
   WeaponIcon: {fileID: 21300000, guid: feb9090fb8ac74536800042e0111ba47, type: 3}
-  Durability: 10
+  Durability: 180
   AutoAttackDuration: 1
   DurabilityRecovery: 10
   Upgrade: 0
