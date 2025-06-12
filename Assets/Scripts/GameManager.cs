@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public UserDataManager userDataManager;
     public UserData currentUser;
     public static GameManager Instance;
 
@@ -13,5 +14,17 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+    }
+    // 저장할 때
+    public void SaveCurrentUser()
+    {
+        userDataManager.SaveUserData(currentUser, currentUser.userName);
+    }
+
+    // 불러올 때
+    public void LoadUser(string fileName)
+    {
+        currentUser = userDataManager.LoadUserData(fileName);
+       // RefreshGameState();
     }
 }
