@@ -430,6 +430,9 @@ MonoBehaviour:
   OnAttack: 0
   AttackDelay: 0.5
   AttackTimer: 0
+  autoAttackDuration: 5
+  autoAttackSpeed: 50
+  OnAuto: 0
 --- !u!61 &465083476
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -920,7 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6273494911f624d8ae9e4b0ac8fd08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileHP: 100
+  tileHP: 300
   currentHP: 0
 --- !u!50 &635875197
 Rigidbody2D:
