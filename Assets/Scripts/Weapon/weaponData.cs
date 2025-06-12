@@ -21,6 +21,17 @@ public class WeaponData : ScriptableObject
     public float AutoAttackDuration;
     //내구도 회복
     public float DurabilityRecovery;
+    //강화
+    public int Upgrade;
 
 
+    [System.Serializable]
+    public class UpgradeData
+    {
+        public int UpgradeLevel;
+        public float Attack;
+        public float Critical;
+    }
+
+    public List<UpgradeData> UpgradeStats;
 }

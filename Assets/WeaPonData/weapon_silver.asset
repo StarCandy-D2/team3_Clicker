@@ -20,3 +20,20 @@ MonoBehaviour:
   Durability: 10
   AutoAttackDuration: 1
   DurabilityRecovery: 10
+  Upgrade: 0
+  UpgradeStats:
+  - UpgradeLevel: 1
+    Attack: 10
+    Critical: 11
+  - UpgradeLevel: 2
+    Attack: 11
+    Critical: 12
+  - UpgradeLevel: 3
+    Attack: 12
+    Critical: 13
+  - UpgradeLevel: 4
+    Attack: 13
+    Critical: 14
+  - UpgradeLevel: 5
+    Attack: 14
+    Critical: 15
