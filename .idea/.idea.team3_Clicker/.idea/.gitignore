@@ -1,11 +1,11 @@
-﻿# 디폴트 무시된 파일
+# 디폴트 무시된 파일
 /shelf/
 /workspace.xml
 # Rider에서 무시된 파일
-/.idea.team3_Clicker.iml
-/modules.xml
 /contentModel.xml
 /projectSettingsUpdater.xml
+/modules.xml
+/.idea.team3_Clicker.iml
 # 에디터 기반 HTTP 클라이언트 요청
 /httpRequests/
 # Datasource local storage ignored files
