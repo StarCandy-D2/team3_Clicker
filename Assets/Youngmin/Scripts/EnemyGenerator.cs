@@ -11,7 +11,9 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField] private int preloadLayers = 5;
     [SerializeField] private Transform worldContainer;
     
+
     private List<Enemy> activeLayers = new List<Enemy>(); // GameLayer → Enemy로 변경
+
     private int currentLayerIndex = 0;
     private float currentWorldY = 0f;
     private bool isMovingWorld = false;
@@ -33,12 +35,14 @@ public class EnemyGenerator : MonoBehaviour
     {
         if (activeLayers.Count > 0)
         {
+
             Enemy firstLayer = activeLayers[0];
 
             // Enemy가 파괴되었는지 확인 (null 체크)
             if (firstLayer == null && !isMovingWorld)
             {
                 OnLayerDestroyed();
+
             }
         }
     }
@@ -47,6 +51,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         if (currentStageData == null) return;
         
+
         // 층 생성 - 항상 맨 아래(가장 낮은 위치)에 생성
         GameObject layerObject = Instantiate(currentStageData.layerPrefab, worldContainer);
         
@@ -54,7 +59,7 @@ public class EnemyGenerator : MonoBehaviour
         float newLayerY = -((activeLayers.Count) * currentStageData.layerHeight);
         layerObject.transform.position = new Vector3(0, newLayerY, 0);
         
-        // Enemy 컴포넌트 가져오기 (CrustLayer에 붙어있음)
+        // Enemy 컴포넌트 가져오기
         Enemy layerEnemy = layerObject.GetComponent<Enemy>();
         if (layerEnemy != null)
         {
@@ -76,22 +81,27 @@ public class EnemyGenerator : MonoBehaviour
         
         MoveWorldUp(); // 위로 이동
         GenerateLayer(); // 새 층 생성
+
     }
 
     private void MoveWorldUp()
     {
         currentWorldY += currentStageData.layerHeight;
+
         StartCoroutine(SmoothMoveWorld()); // 부드러운 이동
+
     }
 
     private System.Collections.IEnumerator SmoothMoveWorld()
     {
         isMovingWorld = true;
 
+
         Vector3 startPos = worldContainer.position; // 시작
         Vector3 targetPos = new Vector3(0, currentWorldY, 0); // 타겟
 
         float duration = 0.2f; // 이동 시간
+
         float elapsed = 0f;
 
         while (elapsed < duration)
@@ -99,14 +109,17 @@ public class EnemyGenerator : MonoBehaviour
             elapsed += Time.deltaTime;
             float progress = elapsed / duration;
 
+
             // 부드러운 이동
             worldContainer.position = Vector3.Lerp(startPos, targetPos, progress);
             yield return null;
+
         }
 
         worldContainer.position = targetPos;
         isMovingWorld = false;
     }
+
 
     public void ChangeStage(StageData newStageData)
     {
@@ -114,3 +127,4 @@ public class EnemyGenerator : MonoBehaviour
         // 스테이지 변경 로직
     }
 }
+
