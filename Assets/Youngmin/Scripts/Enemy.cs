@@ -1,4 +1,4 @@
-
+﻿
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,7 +14,9 @@ public class Enemy : MonoBehaviour
     [Header("Layer 정보")]
     public int layerIndex; // 층 번호
     public EnemyGenerator enemyGenerator; // EnemyGenerator 참조
-    
+
+    [Header("파편 프리팹")]
+    [SerializeField] GameObject RubblePrefab;
     void Start()
     {
         currentHP = maxHP;
@@ -29,6 +31,7 @@ public class Enemy : MonoBehaviour
         
         if (currentHP <= 0)
         {
+
             Die();
         }
     }
