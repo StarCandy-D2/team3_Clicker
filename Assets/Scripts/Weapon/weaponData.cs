@@ -40,4 +40,5 @@ public class WeaponData : ScriptableObject
     
     [Header("장착")]
     public bool IsEquipped;
+    public bool IsUnlocked = false;
 }
