@@ -15,9 +15,8 @@ MonoBehaviour:
   stageName: Crust_StageData
   stageLevel: 0
   totalLayers: 100
-  baseLayerHP: 1
+  baseLayerHP: 3
   hpMultiplier: 1
-  stageColor: {r: 1, g: 1, b: 1, a: 1}
-  layerSprite: {fileID: 0}
-  layerMaterial: {fileID: 0}
+  layerHeight: 0.6
+  layerPrefab: {fileID: 40838679031997793, guid: 3efc87d73f6f2e845972bae1c5744da3, type: 3}
   bossPrefab: {fileID: 0}

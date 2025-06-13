@@ -12,12 +12,11 @@ public class StageData : ScriptableObject
    [Header("층 설정")]
    public int totalLayers = 100;           //스테이지별 층 개수
    public float baseLayerHP = 1f;          // 층 기본 체력
-   public float hpMultiplier = 1f;         //스테이지별 체력 배수
-    
-   [Header("스프라이트 설정")]
-   public Color stageColor = Color.white;
-   public Sprite layerSprite;              // 층 스프라이트
-   public Material layerMaterial;
+   public float hpMultiplier = 1f;  //스테이지별 체력 배수
+   public float layerHeight = 1f; // 층 높이
+
+   [Header("프리팹")] 
+   public GameObject layerPrefab;
     
    [Header("보스")]
    public GameObject bossPrefab;
