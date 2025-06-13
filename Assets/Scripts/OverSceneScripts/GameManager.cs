@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
             playerData.gold = loaded.gold;
             playerData.goldGain = loaded.goldGain;
 
-            UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("UFOScene");
         }
     }
 }
