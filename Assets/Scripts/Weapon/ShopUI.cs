@@ -188,16 +188,16 @@ public class ShopUI : MonoBehaviour
 
     public void OnClickBuyButton()
     {
-        if (_playerData.gold >= _weaponDatas[_weaponDataIndex].NeedGold)
+        if (_playerData.gold >= _weaponDatas[_currentIndex-1].NeedGold)
         {
             //골드 차감
-            _playerData.gold -= _weaponDatas[_weaponDataIndex].NeedGold;
+            _playerData.gold -= _weaponDatas[_currentIndex-1].NeedGold;
             
             //구매처리
-            _weaponDatas[_weaponDataIndex].IsUnlocked = true;
+            _weaponDatas[_currentIndex-1].IsUnlocked = true;
             
-            _closePanels[_weaponDataIndex].SetActive(false);
-            _openPanels[_weaponDataIndex].SetActive(true);
+            _closePanels[_currentIndex-1].SetActive(false);
+            _openPanels[_currentIndex-1].SetActive(true);
             
             UpdateGoldUI();
         }
