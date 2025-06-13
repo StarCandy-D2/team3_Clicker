@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Data.Common;
 using UnityEngine;
 
@@ -24,6 +25,14 @@ public class Attack : MonoBehaviour
     public bool OnAuto;
 
     //0.5 -0.5
+
+
+    public CinemachineImpulseSource impulseSource;
+
+    public void TriggerImpulse()
+    {
+        impulseSource.GenerateImpulse();
+    }
     void Start()
     {
         currentHeight = transform.position.y;
@@ -149,6 +158,7 @@ public class Attack : MonoBehaviour
         DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+            GetComponent<Attack>().TriggerImpulse();
             if (OnAttack)
             {
 
