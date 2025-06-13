@@ -14,7 +14,7 @@ public class Rubble : MonoBehaviour
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         float forceX = Random.Range(-1.5f, 1.5f);
-        float forceY = Random.Range(2f, 3f);
+        float forceY = Random.Range(4f, 7f);
         rb.AddForce(new Vector2(forceX, forceY), ForceMode2D.Impulse);
 
         Destroy(gameObject, 2f); // 2초후 제거

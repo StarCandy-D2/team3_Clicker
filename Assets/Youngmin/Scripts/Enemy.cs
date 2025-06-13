@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -18,7 +18,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHP -= damage;
-        
+        Debug.Log($"데미지 {damage}\n땅 체력{maxHP}/{currentHP}");
+
         if (currentHP <= 0)
         {
             DestroyEnemy();

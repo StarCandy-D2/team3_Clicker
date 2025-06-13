@@ -27,11 +27,23 @@ public class Attack : MonoBehaviour
     //0.5 -0.5
 
 
-    public CinemachineImpulseSource impulseSource;
+    public CinemachineImpulseSource idleimpulseSource;
+    public CinemachineImpulseSource attackimpulseSource;
+    public CinemachineImpulseSource autoattackimpulseSource;
 
-    public void TriggerImpulse()
+    public void IdleTriggerImpulse()
     {
-        impulseSource.GenerateImpulse();
+        idleimpulseSource.GenerateImpulse();
+    }
+    public void AttackTriggerImpulse()
+    {
+
+        attackimpulseSource.GenerateImpulse();
+    }
+    public void AutoAttackTriggerImpulse()
+    {
+
+        autoattackimpulseSource.GenerateImpulse();
     }
     void Start()
     {
@@ -155,25 +167,29 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //Enemy dmg = other.gameObject.GetComponent<Enemy>();
         DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
+        
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            GetComponent<Attack>().TriggerImpulse();
-            if (OnAttack)
+            Debug.Log("충돌함");
+            
+            if (OnAttack) // 클릭했을때 공격
             {
-
+                GetComponent<Attack>().AttackTriggerImpulse();
                 dmg.TakeDamage(attackPower);
                 OnAttack = false;
             }
-            else if(!OnAttack && !OnAuto)
+            else if(!OnAttack && !OnAuto) //가만히 있을때
             {
-
+                GetComponent<Attack>().IdleTriggerImpulse();
                 dmg.TakeDamage(IdleAttackPower);
             }
 
 
-            if (OnAuto)
+            if (OnAuto) //자동공격
             {
+                GetComponent<Attack>().AutoAttackTriggerImpulse();
                 dmg.TakeDamage(attackPower*1.2f);
             }
 
