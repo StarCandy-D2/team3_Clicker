@@ -27,10 +27,10 @@ public class BGMManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.loop = true;
 
-        float savedVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f); // 볼륨 높이기
+        float savedVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
         audioSource.volume = savedVolume;
 
-        SceneManager.sceneLoaded += OnSceneLoaded; // 중복 제거
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -62,6 +62,7 @@ public class BGMManager : MonoBehaviour
     //}
     public void PlayMusic(AudioClip clip)
     {
+        Debug.Log($"{clip.name}");
         if (audioSource.clip == clip) return;
 
         audioSource.clip = clip;
