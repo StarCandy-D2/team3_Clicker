@@ -167,8 +167,8 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Enemy dmg = other.gameObject.GetComponent<Enemy>();
-        DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
+        Enemy dmg = other.gameObject.GetComponent<Enemy>();
+        //DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
         
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {

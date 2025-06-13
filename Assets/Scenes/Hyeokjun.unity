@@ -37814,7 +37814,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -50
   m_Sprite: {fileID: 21300000, guid: 60c78cef3453d4747a523be5cb50268f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -59137,7 +59137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1154075603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60582,6 +60582,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1165989389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1165989390}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1165989390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165989389}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -810.22943, y: 782.03754, z: -9.022248}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1167026129
 GameObject:
   m_ObjectHideFlags: 0
@@ -99096,7 +99127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1905609731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99111,7 +99142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStageData: {fileID: 11400000, guid: fed27bcf4f4fd994f84c0eec7a165686, type: 2}
   preloadLayers: 10
-  worldContainer: {fileID: 0}
+  worldContainer: {fileID: 1165989390}
 --- !u!4 &1905609732
 Transform:
   m_ObjectHideFlags: 0
@@ -113830,3 +113861,4 @@ SceneRoots:
   - {fileID: 465083474}
   - {fileID: 1154075604}
   - {fileID: 1905609732}
+  - {fileID: 1165989390}
