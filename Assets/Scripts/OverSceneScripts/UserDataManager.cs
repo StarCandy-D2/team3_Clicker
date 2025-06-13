@@ -6,7 +6,7 @@ public class UserDataManager : MonoBehaviour
 {
     private string saveFolder;
 
-    public UserDataManager Instance;
+    public static UserDataManager Instance;
 
     private void Awake()
     {
