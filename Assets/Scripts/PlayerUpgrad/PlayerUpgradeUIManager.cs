@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PlayerUpgrad;
 using TMPro;
 using UnityEngine;
 
@@ -21,10 +22,12 @@ public class PlayerUpgradeUIManager : MonoBehaviour
 
     public void UpdateAllTexts()
     {
-        oxygencostText.text = $"Cost: {GetCost("Oxygen")}";
-        atkcostText.text = $"Cost: {GetCost("atk")}";
-        criratecostText.text = $"Cost: {GetCost("critRate")}";
-        goldgaincostText.text = $"Cost: {GetCost("goldGain")}";
+        oxygencostText.text = GetCost("Oxygen");
+        atkcostText.text =GetCost("atk");
+        criratecostText.text = GetCost("critRate");
+        goldgaincostText.text =GetCost("goldGain");
+        Setgold();
+        
     }
 
     private string GetCost(string statName)
@@ -34,9 +37,9 @@ public class PlayerUpgradeUIManager : MonoBehaviour
         return costText;
     }
 
-    public void Setgold(float gold, float goldGain)
+    public void Setgold()
     {
-        goldgainText.text = goldGain.ToString();
-        goldText.text = gold.ToString();
+        goldgainText.text =  upgradeManager.playerData.goldGain.ToString();
+        goldText.text = upgradeManager.playerData.gold.ToString();
     }
 }
