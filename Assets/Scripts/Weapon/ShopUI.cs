@@ -68,6 +68,8 @@ public class ShopUI : MonoBehaviour
 
             currentWeapon.Attack = stat.Attack;
             currentWeapon.Critical = stat.Critical;
+            currentWeapon.Durability = stat.Durability;
+            currentWeapon.NeedGold = stat.cost;
             
             currentWeapon.Upgrade++;
             

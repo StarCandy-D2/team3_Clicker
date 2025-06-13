@@ -24,13 +24,15 @@ public class WeaponData : ScriptableObject
     //강화
     public int Upgrade;
 
-
+   
     [System.Serializable]
     public class UpgradeData
     {
         public int UpgradeLevel;
         public float Attack;
         public float Critical;
+        public int cost;
+        public float Durability;
     }
 
     public List<UpgradeData> UpgradeStats;
