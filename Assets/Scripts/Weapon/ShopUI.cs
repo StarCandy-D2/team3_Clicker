@@ -8,24 +8,25 @@ using TMPro;
 public class ShopUI : MonoBehaviour
 {
     [Header("무기선택 창")] 
-    [SerializeField] private GameObject[] uiPanels;
-    private int currentIndex = 0;
+    [SerializeField] private GameObject[] _uiPanels;
+    private int _currentIndex = 0;
 
     [Header("스텟창 & cost")] 
-    [SerializeField] private TMP_Text attackText;
-    [SerializeField] private TMP_Text criticalText;
-    [SerializeField] private TMP_Text durabilityText;
-    [SerializeField] private TMP_Text costText;
+    [SerializeField] private TMP_Text _attackText;
+    [SerializeField] private TMP_Text _criticalText;
+    [SerializeField] private TMP_Text _durabilityText;
+    [SerializeField] private TMP_Text _costText;
 
     
     [Header("WeaponDateList")]
-    [SerializeField] private WeaponData[] weaponDatas;
-    private int weaponDataIndex = 0;
+    [SerializeField] private WeaponData[] _weaponDatas;
+    private int _weaponDataIndex = 0;
     
     [Header("기타")]
     public GameObject equippanel;
-    [SerializeField] private TMP_Text GoldText;
-    [SerializeField] private PlayerData playerData;
+    [SerializeField] private TMP_Text _GoldText;
+    [SerializeField] private PlayerData _playerData;
+    [SerializeField] private TMP_Text _sendErrorText;
     
 
     private void Awake()
@@ -35,11 +36,11 @@ public class ShopUI : MonoBehaviour
     }
     public void UpdateWeaponUI()
     {
-        WeaponData currentWeapon = weaponDatas[weaponDataIndex];
-        attackText.text = currentWeapon.Attack.ToString();
-        criticalText.text = currentWeapon.Critical.ToString();
-        durabilityText.text = currentWeapon.Durability.ToString();
-        costText.text = currentWeapon.NeedGold.ToString();
+        WeaponData currentWeapon = _weaponDatas[_weaponDataIndex];
+        _attackText.text = currentWeapon.Attack.ToString();
+        _criticalText.text = currentWeapon.Critical.ToString();
+        _durabilityText.text = currentWeapon.Durability.ToString();
+        _costText.text = currentWeapon.NeedGold.ToString();
 
         if (currentWeapon.IsEquipped)
         {
@@ -53,45 +54,45 @@ public class ShopUI : MonoBehaviour
 
     public void UpdateGoldUI()
     {
-        GoldText.text = playerData.gold.ToString("N0") + "G";
+        _GoldText.text = _playerData.gold.ToString("N0") + "G";
     }
 
     public void OnClickNextButton()
     {
-        if (currentIndex >= uiPanels.Length - 1 || weaponDataIndex >= weaponDatas.Length - 1) return;
+        if (_currentIndex >= _uiPanels.Length - 1 || _weaponDataIndex >= _weaponDatas.Length - 1) return;
         
         //현재 UI 비활성화
-        uiPanels[currentIndex].SetActive(false);
+        _uiPanels[_currentIndex].SetActive(false);
         HideEquipMarker();
         //인덱스 증가
-        currentIndex++;
-        weaponDataIndex++;
+        _currentIndex++;
+        _weaponDataIndex++;
         //다음 UI활성화
-        uiPanels[currentIndex].SetActive(true);
+        _uiPanels[_currentIndex].SetActive(true);
         UpdateWeaponUI();
     }
     
     public void OnClickUndoButton()
     {
-        if (currentIndex <= 0 || weaponDataIndex <= 0) return;
+        if (_currentIndex <= 0 || _weaponDataIndex <= 0) return;
         //현재 UI 비활성화
-        uiPanels[currentIndex].SetActive(false);
+        _uiPanels[_currentIndex].SetActive(false);
         //인덱스 감소
-        currentIndex--;
-        weaponDataIndex--;
+        _currentIndex--;
+        _weaponDataIndex--;
         //표출
-        uiPanels[currentIndex].SetActive(true);
+        _uiPanels[_currentIndex].SetActive(true);
         UpdateWeaponUI();
     }
 
     public void EquipButton()
     {
         equippanel.SetActive(true);
-        foreach (WeaponData weapon in weaponDatas)
+        foreach (WeaponData weapon in _weaponDatas)
         {
             weapon.IsEquipped = false;
         }
-        weaponDatas[weaponDataIndex].IsEquipped = true;
+        _weaponDatas[_weaponDataIndex].IsEquipped = true;
     }
 
     public void HideEquipMarker()
@@ -101,8 +102,14 @@ public class ShopUI : MonoBehaviour
 
     public void UpgradeButton()
     {
-        WeaponData currentWeapon = weaponDatas[weaponDataIndex];
+        WeaponData currentWeapon = _weaponDatas[_weaponDataIndex];
 
+        if (_playerData.gold < currentWeapon.NeedGold)
+        {
+            ShowSendError($"골드가 부족합니다.");
+            return;
+        }
+        
         if (currentWeapon.Upgrade < currentWeapon.UpgradeStats.Count)
         {
             WeaponData.UpgradeData stat = currentWeapon.UpgradeStats[currentWeapon.Upgrade];
@@ -119,15 +126,14 @@ public class ShopUI : MonoBehaviour
         }
         else
         {
-            
-            Debug.Log("이미 최대 강화입니다.");
+            ShowSendError("이미 최대 강화입니다.");
         }
     }
 
     public void PayGold()
     {
-        float upgradeCost = weaponDatas[weaponDataIndex].NeedGold;
-        float playerGold = playerData.gold;
+        float upgradeCost = _weaponDatas[_weaponDataIndex].NeedGold;
+        float playerGold = _playerData.gold;
 
         if (playerGold >= upgradeCost)
         {
@@ -138,9 +144,13 @@ public class ShopUI : MonoBehaviour
             Debug.Log("골드 부족이요");
         }
         
-        playerData.gold -= upgradeCost;
+        _playerData.gold -= upgradeCost;
         
         UpdateGoldUI();
     }
 
+    public void ShowSendError(string error)
+    {
+        _sendErrorText.text = error;
+    }
 }
