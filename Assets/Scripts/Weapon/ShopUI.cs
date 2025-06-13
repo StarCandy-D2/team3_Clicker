@@ -7,24 +7,53 @@ using TMPro;
 
 public class ShopUI : MonoBehaviour
 {
-    [Header("선택창")] 
+    [Header("무기선택 창")] 
     [SerializeField] private GameObject[] uiPanels;
     private int currentIndex = 0;
 
-    [Header("스텟창")] 
+    [Header("스텟창 & cost")] 
     [SerializeField] private TMP_Text attackText;
     [SerializeField] private TMP_Text criticalText;
     [SerializeField] private TMP_Text durabilityText;
     [SerializeField] private TMP_Text costText;
 
+    
+    [Header("WeaponDateList")]
     [SerializeField] private WeaponData[] weaponDatas;
     private int weaponDataIndex = 0;
     
+    [Header("기타")]
     public GameObject equippanel;
+    [SerializeField] private TMP_Text GoldText;
+    [SerializeField] private PlayerData playerData;
+    
 
     private void Awake()
     {
         UpdateWeaponUI();
+        UpdateGoldUI();
+    }
+    public void UpdateWeaponUI()
+    {
+        WeaponData currentWeapon = weaponDatas[weaponDataIndex];
+        attackText.text = currentWeapon.Attack.ToString();
+        criticalText.text = currentWeapon.Critical.ToString();
+        durabilityText.text = currentWeapon.Durability.ToString();
+        costText.text = currentWeapon.NeedGold.ToString();
+
+        if (currentWeapon.IsEquipped)
+        {
+            equippanel.SetActive(true);
+        }
+        else
+        {
+            equippanel.SetActive(false);
+        }
+    }
+
+    public void UpdateGoldUI()
+    {
+        GoldText.text = playerData.gold.ToString("N0") + "G";
     }
 
     public void OnClickNextButton()
@@ -85,6 +114,7 @@ public class ShopUI : MonoBehaviour
             
             currentWeapon.Upgrade++;
             
+            PayGold();
             UpdateWeaponUI();
         }
         else
@@ -94,21 +124,23 @@ public class ShopUI : MonoBehaviour
         }
     }
 
-    public void UpdateWeaponUI()
+    public void PayGold()
     {
-        WeaponData currentWeapon = weaponDatas[weaponDataIndex];
-        attackText.text = currentWeapon.Attack.ToString();
-        criticalText.text = currentWeapon.Critical.ToString();
-        durabilityText.text = currentWeapon.Durability.ToString();
-        costText.text = currentWeapon.NeedGold.ToString();
+        float upgradeCost = weaponDatas[weaponDataIndex].NeedGold;
+        float playerGold = playerData.gold;
 
-        if (currentWeapon.IsEquipped)
+        if (playerGold >= upgradeCost)
         {
-            equippanel.SetActive(true);
+            Debug.Log("골드 충분이요~ 바로 계산갑니데이.");
         }
         else
         {
-            equippanel.SetActive(false);
+            Debug.Log("골드 부족이요");
         }
+        
+        playerData.gold -= upgradeCost;
+        
+        UpdateGoldUI();
     }
+
 }

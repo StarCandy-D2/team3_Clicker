@@ -9,7 +9,7 @@ public class WeaponData : ScriptableObject
     [Header("기본 속성")]
     public float Attack;
     public float Critical;
-    public int NeedGold;
+    public float NeedGold;
     public string WeaponName;
     public Sprite WeaponIcon;
     

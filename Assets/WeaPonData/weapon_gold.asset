@@ -17,8 +17,8 @@ MonoBehaviour:
   NeedGold: 100000
   WeaponName: "\uAE08\uC0BD"
   WeaponIcon: {fileID: 21300000, guid: feb9090fb8ac74536800042e0111ba47, type: 3}
-  Durability: 180
   AutoAttackDuration: 1
+  Durability: 180
   DurabilityRecovery: 10
   Upgrade: 0
   UpgradeStats:
@@ -47,3 +47,4 @@ MonoBehaviour:
     Critical: 20
     cost: 20000
     Durability: 600
+  IsEquipped: 0
