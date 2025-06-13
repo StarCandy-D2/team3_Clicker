@@ -12,7 +12,6 @@ namespace PlayerUpgrad
 
         void Start()
         {
-            GetGold();
             instance = this;
         }
 
