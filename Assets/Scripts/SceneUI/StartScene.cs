@@ -38,20 +38,17 @@ public class StartScene : MonoBehaviour
             return;
         }
 
-        // PlayerData ScriptableObject 인스턴스 생성
-        playerData = ScriptableObject.CreateInstance<PlayerData>();
+        PlayerData playerData = GameManager.Instance.playerData;
 
-        // 데이터 설정
         playerData.userName = enteredName;
-        playerData.name = enteredName; // ScriptableObject 자체 이름
+        playerData.Oxygen = 100f;
+        playerData.atk = 10f;
+        playerData.gold = 0f;
+        // 초기값 설정 등...
 
-#if UNITY_EDITOR
-        //에디터 상에서 Asset 저장 (테스트용)
-        UnityEditor.AssetDatabase.CreateAsset(playerData, $"Assets/UserData/{enteredName}_PlayerData.asset");
-        UnityEditor.AssetDatabase.SaveAssets();
-        Debug.Log($"PlayerData ScriptableObject 생성됨: {enteredName}");
-#endif
-
+        // 저장도 가능하다면
+        UserData initialData = PlayerDataConverter.ToUserData(playerData);
+        UserDataManager.Instance.SaveUserData(initialData, enteredName);
         // 이후 GameManager 또는 다음 씬에서 playerData 사용 가능
         SceneManager.LoadScene("TutorialScene");
     }

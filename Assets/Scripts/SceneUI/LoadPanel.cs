@@ -32,7 +32,9 @@ public class LoadPanel : MonoBehaviour
             btn.GetComponent<Button>().onClick.AddListener(() =>
             {
                 gameManager.LoadPlayerDataFromJson(fileName);
+             
             });
         }
+        UnityEngine.SceneManagement.SceneManager.LoadScene("UFOScene");
     }
 }

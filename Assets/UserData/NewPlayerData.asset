@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: NewPlayerData
   m_EditorClassIdentifier: 
   userName: 
-  Oxygen: 0
-  atk: 0
-  critRate: 0
-  gold: 0
-  goldGain: 0
+  Oxygen: 42
+  atk: 36
+  critRate: 9
+  gold: 320
+  goldGain: 370
