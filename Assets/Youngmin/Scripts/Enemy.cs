@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float maxHP;
     [SerializeField] private float currentHP;
-    [SerializeField] private int enemyIndex; //몇번째  
+    [SerializeField] private int enemyIndex;
     
-    public System.Action<Enemy> OnEnemyDestroyed;
+    public GameLayer parentLayer; // 부모 레이어 참조
     
     public void Initialize(float hp, int index)
     {
@@ -21,8 +19,6 @@ public class Enemy : MonoBehaviour
     {
         currentHP -= damage;
         
-        // 체력바 업데이트,이펙트 등
-        
         if (currentHP <= 0)
         {
             DestroyEnemy();
@@ -31,12 +27,16 @@ public class Enemy : MonoBehaviour
     
     private void DestroyEnemy()
     {
-        OnEnemyDestroyed?.Invoke(this);
-        // 파괴 이펙트, 사운드 등
+        // 파괴 신호
+        if (parentLayer != null)
+        {
+            parentLayer.OnEnemyDestroyed();
+        }
+        //이펙트 등
         Destroy(gameObject);
     }
     
-    public float GetHPPercentage() // 체력바에 필요하면?
+    public float GetHPPercentage()
     {
         return currentHP / maxHP;
     }
