@@ -1,12 +1,9 @@
-
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
     [Header("체력")]
     public float maxHP = 100f;
     private float currentHP;
@@ -18,14 +15,12 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentHP = maxHP;
-
     }
     
     public void TakeDamage(float damage)
     {
         currentHP -= damage;
-
-        Debug.Log($"Enemy damaged! HP: {currentHP}/{maxHP}");
+       
         
         if (currentHP <= 0)
         {
@@ -33,9 +28,20 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    void Die()
+    void Die()  //여기부터 재작업 - 스테이지별 골드 획득, StageUIMamager에서 추가 코딩
     {
-        Debug.Log("Enemy destroyed!");
+ 
+        // if (GameManager.Instance != null && GameManager.Instance.playerData != null)
+        // {
+        //     int goldReward = 10;
+        //     if (StageUIManager.Instance != null)
+        //     {
+        //         goldReward = StageUIManager.Instance.GetCurrentStageGoldReward();
+        //     }
+        //     GameManager.Instance.playerData.gold += goldReward;
+        //     
+        //     if
+        // }
         
         // 파괴 이펙트 실행
         StartCoroutine(DestroyEffect());
@@ -65,11 +71,11 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
     
-   // // 테스트용 클릭 함수
-   //  void OnMouseDown()
-   //  {
-   //      Debug.Log("층 클릭됨!");
-   //      TakeDamage(maxHP); // 한 번에 파괴
-   //  }
-
+   // 테스트용 클릭 함수
+    void OnMouseDown()
+    {
+        Debug.Log("층 클릭됨!");
+        TakeDamage(maxHP); // 한 번에 파괴
+        
+    }
 }
