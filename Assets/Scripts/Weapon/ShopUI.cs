@@ -27,6 +27,8 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private TMP_Text _GoldText;
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private TMP_Text _sendErrorText;
+    [SerializeField] private Button _resetButton;
+    
     
 
     private void Awake()
@@ -152,5 +154,26 @@ public class ShopUI : MonoBehaviour
     public void ShowSendError(string error)
     {
         _sendErrorText.text = error;
+    }
+    
+    public void ResetUpgradeButton()
+    {
+        WeaponData currentWeapon = _weaponDatas[_weaponDataIndex];
+
+        // 업그레이드 수치를 0으로 초기화
+        currentWeapon.Upgrade = 0;
+
+        // 초기 능력치 설정 (UpgradeStats의 첫 번째 항목으로 되돌리기)
+        if (currentWeapon.UpgradeStats.Count > 0)
+        {
+            WeaponData.UpgradeData baseStat = currentWeapon.UpgradeStats[0];
+            currentWeapon.Attack = baseStat.Attack;
+            currentWeapon.Critical = baseStat.Critical;
+            currentWeapon.Durability = baseStat.Durability;
+            currentWeapon.NeedGold = baseStat.cost;
+        }
+
+        // UI 갱신
+        UpdateWeaponUI();
     }
 }
