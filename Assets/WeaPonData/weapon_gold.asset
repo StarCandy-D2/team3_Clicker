@@ -12,11 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5846c720d6e4bad874f1281caa6907, type: 3}
   m_Name: weapon_gold
   m_EditorClassIdentifier: 
-  Attack: 1
-  Critical: 5
-  Gold: 0
+  Attack: 19
+  Critical: 20
+  NeedGold: 100000
   WeaponName: "\uAE08\uC0BD"
   WeaponIcon: {fileID: 21300000, guid: feb9090fb8ac74536800042e0111ba47, type: 3}
-  Durability: 10
   AutoAttackDuration: 1
+  Durability: 180
   DurabilityRecovery: 10
+  Upgrade: 0
+  UpgradeStats:
+  - UpgradeLevel: 1
+    Attack: 15
+    Critical: 16
+    cost: 5000
+    Durability: 200
+  - UpgradeLevel: 2
+    Attack: 16
+    Critical: 17
+    cost: 5500
+    Durability: 300
+  - UpgradeLevel: 3
+    Attack: 17
+    Critical: 18
+    cost: 10000
+    Durability: 400
+  - UpgradeLevel: 4
+    Attack: 18
+    Critical: 19
+    cost: 15000
+    Durability: 500
+  - UpgradeLevel: 5
+    Attack: 19
+    Critical: 20
+    cost: 20000
+    Durability: 600
+  IsEquipped: 0
