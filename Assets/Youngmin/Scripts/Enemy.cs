@@ -1,9 +1,12 @@
+
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
     [Header("체력")]
     public float maxHP = 100f;
     private float currentHP;
@@ -15,11 +18,13 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentHP = maxHP;
+
     }
     
     public void TakeDamage(float damage)
     {
         currentHP -= damage;
+
         Debug.Log($"Enemy damaged! HP: {currentHP}/{maxHP}");
         
         if (currentHP <= 0)
@@ -66,4 +71,5 @@ public class Enemy : MonoBehaviour
    //      Debug.Log("층 클릭됨!");
    //      TakeDamage(maxHP); // 한 번에 파괴
    //  }
+
 }

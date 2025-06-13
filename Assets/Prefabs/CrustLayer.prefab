@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 4231135866180431458}
   - component: {fileID: 1455830363595910794}
   - component: {fileID: 6990470069452946241}
+
   - component: {fileID: 2774791845541063878}
   m_Layer: 6
+
   m_Name: CrustLayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,6 +115,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+
 --- !u!61 &2774791845541063878
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -158,6 +161,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.7, y: 0.6}
   m_EdgeRadius: 0
+
 --- !u!1 &220412157456144805
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +172,9 @@ GameObject:
   m_Component:
   - component: {fileID: 376338332803289709}
   - component: {fileID: 4112814578494391655}
+
   m_Layer: 6
+
   m_Name: CursteTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,6 +248,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+
+
 --- !u!1 &1182781984870672952
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +260,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3046189459115209635}
   - component: {fileID: 3863170901163668118}
+
   m_Layer: 6
+
   m_Name: CursteTile (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,6 +336,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+
 --- !u!1 &1449719099732627713
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +347,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9160831997234599842}
   - component: {fileID: 3869976248595924170}
+
   m_Layer: 6
+
   m_Name: CursteTile (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,6 +423,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+
 --- !u!1 &3209273065773740148
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +434,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1236313425320039035}
   - component: {fileID: 8273578351978808851}
+
   m_Layer: 6
+
   m_Name: CursteTile (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,6 +510,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+
 --- !u!1 &3596834208067358974
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +521,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3031620354987028357}
   - component: {fileID: 8501115510447847973}
+
   m_Layer: 6
+
   m_Name: CursteTile (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,12 +597,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+
 --- !u!1 &4268369320981854290
 GameObject:
+
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5815462418974284745}
@@ -593,6 +615,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
+
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5815462418974284745
@@ -662,6 +685,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+
 --- !u!1 &4867961899589430785
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,7 +696,9 @@ GameObject:
   m_Component:
   - component: {fileID: 903086015819062625}
   - component: {fileID: 7419359562584387343}
+
   m_Layer: 6
+
   m_Name: CursteTile (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -746,6 +772,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+
 --- !u!1 &5234224766773857329
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,7 +783,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5400038388721768620}
   - component: {fileID: 1788145113584417198}
+
   m_Layer: 6
+
   m_Name: CursteTile (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -830,6 +859,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+
 --- !u!1 &8115598210603509375
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,7 +870,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3171954722549949204}
   - component: {fileID: 4812382471274520804}
+
   m_Layer: 6
+
   m_Name: CursteTile (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -914,6 +946,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+
 --- !u!1 &8589963082795171666
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,7 +957,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6343740655903141465}
   - component: {fileID: 5498846337116321384}
+
   m_Layer: 6
+
   m_Name: CursteTile (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -998,6 +1033,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+
 --- !u!1 &9169003351869771658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,7 +1044,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1621314904386872424}
   - component: {fileID: 5228163115764727843}
+
   m_Layer: 6
+
   m_Name: CursteTile (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1082,3 +1120,4 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+
