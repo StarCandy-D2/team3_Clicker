@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5846c720d6e4bad874f1281caa6907, type: 3}
   m_Name: weapon_copper
   m_EditorClassIdentifier: 
-  Attack: 9
-  Critical: 10
-  NeedGold: 1000
+  Attack: 5
+  Critical: 6
+  NeedGold: 500
   WeaponName: "\uB3D9\uC0BD"
   WeaponIcon: {fileID: 21300000, guid: 35822a21ffd494b86bee7b8b09c15b44, type: 3}
-  Durability: 60
   AutoAttackDuration: 1
+  Durability: 50
   DurabilityRecovery: 10
   Upgrade: 0
   UpgradeStats:
@@ -47,3 +47,4 @@ MonoBehaviour:
     Critical: 10
     cost: 750
     Durability: 70
+  IsEquipped: 0

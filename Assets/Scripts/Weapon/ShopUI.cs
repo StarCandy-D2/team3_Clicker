@@ -12,10 +12,10 @@ public class ShopUI : MonoBehaviour
     private int _currentIndex = 0;
 
     [Header("스텟창 & cost")] 
-    [SerializeField] private TMP_Text _attackText;
-    [SerializeField] private TMP_Text _criticalText;
-    [SerializeField] private TMP_Text _durabilityText;
-    [SerializeField] private TMP_Text _costText;
+    [SerializeField] private TMP_Text[] _attackText;
+    [SerializeField] private TMP_Text[] _criticalText;
+    [SerializeField] private TMP_Text[] _durabilityText;
+    [SerializeField] private TMP_Text[] _costText;
 
     
     [Header("WeaponDateList")]
@@ -27,7 +27,6 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private TMP_Text _GoldText;
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private TMP_Text _sendErrorText;
-    [SerializeField] private Button _resetButton;
     
     
 
@@ -38,11 +37,18 @@ public class ShopUI : MonoBehaviour
     }
     public void UpdateWeaponUI()
     {
+        for (int i = 0; i < _weaponDatas.Length; i++)
+        {
+            if (i == _weaponDataIndex)
+            {
+                _attackText[i].text = _weaponDatas[i].Attack.ToString();
+                _criticalText[i].text = _weaponDatas[i].Critical.ToString();
+                _durabilityText[i].text = _weaponDatas[i].Durability.ToString();
+                _costText[i].text = _weaponDatas[i].NeedGold.ToString();
+            }
+            
+        }
         WeaponData currentWeapon = _weaponDatas[_weaponDataIndex];
-        _attackText.text = currentWeapon.Attack.ToString();
-        _criticalText.text = currentWeapon.Critical.ToString();
-        _durabilityText.text = currentWeapon.Durability.ToString();
-        _costText.text = currentWeapon.NeedGold.ToString();
 
         if (currentWeapon.IsEquipped)
         {
