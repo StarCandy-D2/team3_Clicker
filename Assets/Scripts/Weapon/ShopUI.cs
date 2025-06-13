@@ -148,17 +148,17 @@ public class ShopUI : MonoBehaviour
     {
         float upgradeCost = _weaponDatas[_weaponDataIndex].NeedGold;
         float playerGold = _playerData.gold;
-
+    
         if (playerGold >= upgradeCost)
         {
             Debug.Log("골드 충분이요~ 바로 계산갑니데이.");
+            _playerData.gold -= upgradeCost;
         }
         else
         {
             Debug.Log("골드 부족이요");
         }
         
-        _playerData.gold -= upgradeCost;
         
         UpdateGoldUI();
     }
