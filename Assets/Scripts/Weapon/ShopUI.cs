@@ -30,8 +30,10 @@ public class ShopUI : MonoBehaviour
     public void OnClickNextButton()
     {
         if (currentIndex >= uiPanels.Length - 1 || weaponDataIndex >= weaponDatas.Length - 1) return;
+        
         //현재 UI 비활성화
         uiPanels[currentIndex].SetActive(false);
+        HideEquipMarker();
         //인덱스 증가
         currentIndex++;
         weaponDataIndex++;
@@ -56,6 +58,16 @@ public class ShopUI : MonoBehaviour
     public void EquipButton()
     {
         equippanel.SetActive(true);
+        foreach (WeaponData weapon in weaponDatas)
+        {
+            weapon.IsEquipped = false;
+        }
+        weaponDatas[weaponDataIndex].IsEquipped = true;
+    }
+
+    public void HideEquipMarker()
+    {
+        equippanel.SetActive(false);
     }
 
     public void UpgradeButton()
@@ -89,5 +101,14 @@ public class ShopUI : MonoBehaviour
         criticalText.text = currentWeapon.Critical.ToString();
         durabilityText.text = currentWeapon.Durability.ToString();
         costText.text = currentWeapon.NeedGold.ToString();
+
+        if (currentWeapon.IsEquipped)
+        {
+            equippanel.SetActive(true);
+        }
+        else
+        {
+            equippanel.SetActive(false);
+        }
     }
 }

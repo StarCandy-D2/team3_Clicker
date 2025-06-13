@@ -10,21 +10,23 @@ public class WeaponData : ScriptableObject
     public float Attack;
     public float Critical;
     public int NeedGold;
-    
-
-    [Header("무기 속성")] 
     public string WeaponName;
     public Sprite WeaponIcon;
-    //내구도
-    public float Durability;
+    
+
+    [Header("기타 속성")] 
     //자동공격지속시간
     public float AutoAttackDuration;
+    //내구도
+    public float Durability;
     //내구도 회복
     public float DurabilityRecovery;
+    
+    [Header("강화 속성")]
     //강화
     public int Upgrade;
-
-   
+    public List<UpgradeData> UpgradeStats;
+    
     [System.Serializable]
     public class UpgradeData
     {
@@ -35,5 +37,7 @@ public class WeaponData : ScriptableObject
         public float Durability;
     }
 
-    public List<UpgradeData> UpgradeStats;
+    
+    [Header("장착")]
+    public bool IsEquipped;
 }

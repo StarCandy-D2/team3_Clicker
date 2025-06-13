@@ -25,15 +25,25 @@ MonoBehaviour:
   - UpgradeLevel: 1
     Attack: 5
     Critical: 6
+    cost: 550
+    Durability: 50
   - UpgradeLevel: 2
     Attack: 6
     Critical: 7
+    cost: 600
+    Durability: 55
   - UpgradeLevel: 3
     Attack: 7
     Critical: 8
+    cost: 650
+    Durability: 60
   - UpgradeLevel: 4
     Attack: 8
     Critical: 9
+    cost: 700
+    Durability: 65
   - UpgradeLevel: 5
     Attack: 9
     Critical: 10
+    cost: 750
+    Durability: 70
