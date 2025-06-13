@@ -10,6 +10,7 @@ public class WeaponData : ScriptableObject
     public float Attack;
     public float Critical;
     public float NeedGold;
+    public float Level;
     public string WeaponName;
     public Sprite WeaponIcon;
     

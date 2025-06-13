@@ -22,30 +22,30 @@ MonoBehaviour:
   DurabilityRecovery: 10
   Upgrade: 0
   UpgradeStats:
-  - UpgradeLevel: 1
+  - UpgradeLevel: 0
     Attack: 10
     Critical: 11
     cost: 1000
     Durability: 100
-  - UpgradeLevel: 2
+  - UpgradeLevel: 1
     Attack: 11
     Critical: 12
     cost: 1100
     Durability: 150
-  - UpgradeLevel: 3
+  - UpgradeLevel: 2
     Attack: 12
     Critical: 13
     cost: 1200
     Durability: 200
-  - UpgradeLevel: 4
+  - UpgradeLevel: 3
     Attack: 13
     Critical: 14
     cost: 1300
     Durability: 250
-  - UpgradeLevel: 5
+  - UpgradeLevel: 4
     Attack: 14
     Critical: 15
     cost: 1400
     Durability: 300
   IsEquipped: 0
-  IsUnlocked: 0
+  IsUnlocked: 1

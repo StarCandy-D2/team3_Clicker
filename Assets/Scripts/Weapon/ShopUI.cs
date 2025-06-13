@@ -19,6 +19,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private TMP_Text[] _durabilityText;
     [SerializeField] private TMP_Text[] _costText;
     [SerializeField] private TMP_Text[] _clostCostText;
+    [SerializeField] private TMP_Text[] _levelText;
 
     
     [Header("WeaponDateList")]
@@ -49,7 +50,8 @@ public class ShopUI : MonoBehaviour
         _attackText[current].text = _weaponDatas[current].Attack.ToString();
         _criticalText[current].text = _weaponDatas[current].Critical.ToString();
         _durabilityText[current].text = _weaponDatas[current].Durability.ToString();
-        _costText[current].text = _weaponDatas[current].NeedGold.ToString();
+        _costText[current].text = _weaponDatas[current].NeedGold.ToString("N0") + "G";
+        _levelText[current].text = $"Lv.{_weaponDatas[current].Level.ToString()}";
                 
         WeaponData currentWeapon = _weaponDatas[_weaponDataIndex];
 
@@ -129,6 +131,7 @@ public class ShopUI : MonoBehaviour
             currentWeapon.Critical = stat.Critical;
             currentWeapon.Durability = stat.Durability;
             currentWeapon.NeedGold = stat.cost;
+            currentWeapon.Level = stat.UpgradeLevel;
             
             currentWeapon.Upgrade++;
             
@@ -180,6 +183,7 @@ public class ShopUI : MonoBehaviour
             currentWeapon.Critical = baseStat.Critical;
             currentWeapon.Durability = baseStat.Durability;
             currentWeapon.NeedGold = baseStat.cost;
+            currentWeapon.Level = baseStat.UpgradeLevel;
         }
 
         // UI 갱신
