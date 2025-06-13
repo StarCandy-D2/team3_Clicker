@@ -4406,7 +4406,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 446d775a68c834c2d86ea72869fd41ff, type: 2}
   equippanel: {fileID: 1801856150}
   _GoldText: {fileID: 1767413306}
-  _playerData: {fileID: 11400000, guid: 4accf49d8f7451c4cafdf3240c110644, type: 2}
+  _playerData: {fileID: 11400000, guid: e42ea320c5e2f7c42b172c050d244067, type: 2}
   _sendErrorText: {fileID: 522064553}
 --- !u!1 &595861581
 GameObject:
