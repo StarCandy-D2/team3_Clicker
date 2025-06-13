@@ -11,7 +11,7 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField] private int preloadLayers = 5;
     [SerializeField] private Transform worldContainer;
     
-    private List<GameLayer> activeLayers = new List<GameLayer>();
+    private List<Enemy> activeLayers = new List<Enemy>(); // GameLayer → Enemy로 변경
     private int currentLayerIndex = 0;
     private float currentWorldY = 0f;
     private bool isMovingWorld = false;
@@ -33,11 +33,12 @@ public class EnemyGenerator : MonoBehaviour
     {
         if (activeLayers.Count > 0)
         {
-            GameLayer firstLayer = activeLayers[0];
+            Enemy firstLayer = activeLayers[0];
 
-            if (firstLayer.IsDestroyed() && !isMovingWorld)
+            // Enemy가 파괴되었는지 확인 (null 체크)
+            if (firstLayer == null && !isMovingWorld)
             {
-                OnLayerDestroyed(firstLayer);
+                OnLayerDestroyed();
             }
         }
     }
@@ -46,51 +47,51 @@ public class EnemyGenerator : MonoBehaviour
     {
         if (currentStageData == null) return;
         
-        //층 생성
+        // 층 생성 - 항상 맨 아래(가장 낮은 위치)에 생성
         GameObject layerObject = Instantiate(currentStageData.layerPrefab, worldContainer);
-        layerObject.transform.position = new Vector3(0, -currentLayerIndex * currentStageData.layerHeight, 0);
         
-        //게임 레이어 컴포넌트 설정
-        GameLayer layer = layerObject.GetComponent<GameLayer>();
-        if (layer == null)
+        // 현재 활성 층들의 개수를 기준으로 위치 계산
+        float newLayerY = -((activeLayers.Count) * currentStageData.layerHeight);
+        layerObject.transform.position = new Vector3(0, newLayerY, 0);
+        
+        // Enemy 컴포넌트 가져오기 (CrustLayer에 붙어있음)
+        Enemy layerEnemy = layerObject.GetComponent<Enemy>();
+        if (layerEnemy != null)
         {
-            layer = layerObject.AddComponent<GameLayer>();
+            layerEnemy.layerIndex = currentLayerIndex; // 층 번호 설정
+            layerEnemy.enemyGenerator = this; // 자기 참조 설정
+            activeLayers.Add(layerEnemy);
         }
 
-        layer.Initialize(currentLayerIndex);
-
-        Enemy[] enemies = layerObject.GetComponentsInChildren<Enemy>();
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            enemies[i].Initialize(currentStageData.GetLayerHP(), currentLayerIndex);
-        }
-        activeLayers.Add(layer);
         currentLayerIndex++;
     }
 
-    private void OnLayerDestroyed(GameLayer destroyedLayer)
+    private void OnLayerDestroyed()
     {
-        MoveWorldUp(); //위로이동
-        activeLayers.Remove(destroyedLayer);
-        GenerateLayer();
-        Destroy(destroyedLayer.gameObject, 1f);
+        // 첫 번째 층 제거 (이미 null이 됨)
+        if (activeLayers.Count > 0)
+        {
+            activeLayers.RemoveAt(0);
+        }
         
+        MoveWorldUp(); // 위로 이동
+        GenerateLayer(); // 새 층 생성
     }
 
     private void MoveWorldUp()
     {
         currentWorldY += currentStageData.layerHeight;
-        StartCoroutine(SmoothMoveWorld()); //부드러운이동
+        StartCoroutine(SmoothMoveWorld()); // 부드러운 이동
     }
 
     private System.Collections.IEnumerator SmoothMoveWorld()
     {
         isMovingWorld = true;
 
-        Vector3 startPos = worldContainer.position; //시작
-        Vector3 targetPos = new Vector3(0, currentWorldY, 0); //타겟
+        Vector3 startPos = worldContainer.position; // 시작
+        Vector3 targetPos = new Vector3(0, currentWorldY, 0); // 타겟
 
-        float duration = 0.3f; //이동 시간
+        float duration = 0.2f; // 이동 시간
         float elapsed = 0f;
 
         while (elapsed < duration)
@@ -98,22 +99,18 @@ public class EnemyGenerator : MonoBehaviour
             elapsed += Time.deltaTime;
             float progress = elapsed / duration;
 
-            //부드러운 이동
+            // 부드러운 이동
             worldContainer.position = Vector3.Lerp(startPos, targetPos, progress);
             yield return null;
-
         }
 
         worldContainer.position = targetPos;
         isMovingWorld = false;
     }
 
-
     public void ChangeStage(StageData newStageData)
     {
         currentStageData = newStageData;
-        //스테이지 변경 로직
+        // 스테이지 변경 로직
     }
-    
-
 }
