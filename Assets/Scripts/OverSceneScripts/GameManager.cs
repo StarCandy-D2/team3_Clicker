@@ -43,8 +43,6 @@ public class GameManager : MonoBehaviour
             playerData.critRate = loaded.critRate;
             playerData.gold = loaded.gold;
             playerData.goldGain = loaded.goldGain;
-
-            UnityEngine.SceneManagement.SceneManager.LoadScene("UFOScene");
         }
     }
 }
