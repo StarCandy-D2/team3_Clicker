@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
+using System.Collections;
 
 public class SettingUI : MonoBehaviour
 {
@@ -10,16 +11,9 @@ public class SettingUI : MonoBehaviour
     public Slider sfxSlider;
     public TMP_InputField bgmInput;
     public TMP_InputField sfxInput;
-
     private void Start()
     {
-        // 초기화
-        float bgm = PlayerPrefs.GetFloat("BGMVolume", 1f);
-        float sfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
-        bgmSlider.value = bgm;
-        sfxSlider.value = sfx;
-        bgmInput.text = Mathf.RoundToInt(bgm * 100).ToString();
-        sfxInput.text = Mathf.RoundToInt(sfx * 100).ToString();
+        StartCoroutine(InitializeUI());
     }
 
     public void OnBGMSliderChanged(float value)
@@ -29,6 +23,20 @@ public class SettingUI : MonoBehaviour
         PlayerPrefs.SetFloat("BGMVolume", value);
     }
 
+    private IEnumerator InitializeUI()
+    {
+        // BGMManager 초기화 대기
+        while (BGMManager.Instance == null)
+            yield return null;
+
+        float bgm = BGMManager.Instance.GetVolume();
+        float sfx = PlayerPrefs.GetFloat("SFXVolume", 0.1f); // SFXManager가 없으므로 직접
+
+        bgmSlider.value = bgm;
+        sfxSlider.value = sfx;
+        bgmInput.text = Mathf.RoundToInt(bgm * 100).ToString();
+        sfxInput.text = Mathf.RoundToInt(sfx * 100).ToString();
+    }
     //public void OnSFXSliderChanged(float value)
     //{
     //    sfxInput.text = Mathf.RoundToInt(value * 100).ToString();
@@ -55,4 +63,5 @@ public class SettingUI : MonoBehaviour
     //        OnSFXSliderChanged(v);
     //    }
     //}
+
 }
