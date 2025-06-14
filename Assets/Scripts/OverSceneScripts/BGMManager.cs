@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BGMManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class BGMManager : MonoBehaviour
     public AudioClip musicB;
     public AudioClip musicC;
 
-    //private bool isInMusicZone = false;
+    private bool isInMusicZone = false;
 
     private AudioSource audioSource;
     //private Transform player;
@@ -21,25 +22,31 @@ public class BGMManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+    }
+
+    
+
+    private void Start()
+    {
         audioSource = GetComponent<AudioSource>();
         audioSource.loop = true;
 
         float savedVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
         audioSource.volume = savedVolume;
-
         SceneManager.sceneLoaded += OnSceneLoaded;
+        Debug.Log(SceneManager.GetActiveScene().name);
     }
-
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("dd");
         switch (scene.name)
         {
             case "StartScene":
                 PlayMusic(musicA);
-                break;       
+                break;
             case "UFOScene":
                 PlayMusic(musicB);
                 break;

@@ -56,9 +56,9 @@ public class EnemyGenerator : MonoBehaviour
         GameObject layerObject = Instantiate(currentStageData.layerPrefab, worldContainer);
         
         // 현재 활성 층들의 개수를 기준으로 위치 계산
-        float newLayerY = -((activeLayers.Count) * currentStageData.layerHeight);
+        float newLayerY = -((activeLayers.Count) * currentStageData.layerHeight)-1.3f;
         layerObject.transform.position = new Vector3(0, newLayerY, 0);
-        
+        Debug.Log($"{newLayerY}2232");
         // Enemy 컴포넌트 가져오기
         Enemy layerEnemy = layerObject.GetComponent<Enemy>();
         if (layerEnemy != null)

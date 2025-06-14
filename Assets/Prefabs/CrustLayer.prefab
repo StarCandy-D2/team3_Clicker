@@ -57,10 +57,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d715d8ba8e43e04196226e2642fc277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 0
-  currentHP: 0
-  enemyIndex: 0
-  parentLayer: {fileID: 0}
+  maxHP: 10
+  layerIndex: 0
+  enemyGenerator: {fileID: 0}
+  RubblePrefab: {fileID: 0}
 --- !u!212 &6990470069452946241
 SpriteRenderer:
   m_ObjectHideFlags: 0

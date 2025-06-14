@@ -19,6 +19,7 @@ public class Attack : MonoBehaviour
     public float AttackDelay = 0.5f; //어택딜레이 임시
     public float AttackTimer = 0;
 
+
     //자동공격
     public float autoAttackDuration = 5f; //자동공격 시간
     public float autoAttackSpeed = 50f; //공격속도
@@ -30,6 +31,8 @@ public class Attack : MonoBehaviour
     public CinemachineImpulseSource idleimpulseSource;
     public CinemachineImpulseSource attackimpulseSource;
     public CinemachineImpulseSource autoattackimpulseSource;
+    public ParticleSystem attackParticle;
+    public TrailRenderer trailRenderer;
 
     public void IdleTriggerImpulse()
     {
@@ -48,13 +51,22 @@ public class Attack : MonoBehaviour
     void Start()
     {
         currentHeight = transform.position.y;
-
+        trailRenderer.emitting = false;
     }
 
     void Update()
     {
         PlayerAttack();
         AttackTimer += Time.deltaTime;
+        if (OnAttack||OnAuto)
+        {
+
+            trailRenderer.emitting = true;
+        }
+        else
+        {
+            trailRenderer.emitting = false;
+        }
     }
     public void PlayerAttack()
     {
@@ -68,6 +80,7 @@ public class Attack : MonoBehaviour
                 OnAttack = true;
                 isJump = false;
                 velocity = -IdleSpeed * 2f; // 빠르게 낙하
+
             }
 
         }
@@ -173,7 +186,9 @@ public class Attack : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             Debug.Log("충돌함");
-            
+            attackParticle.Play();
+
+
             if (OnAttack) // 클릭했을때 공격
             {
                 GetComponent<Attack>().AttackTriggerImpulse();

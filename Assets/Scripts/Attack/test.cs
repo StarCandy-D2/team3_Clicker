@@ -24,14 +24,27 @@ public class test : MonoBehaviour
     void Update()
     {
         int currentChildCount = transform.childCount;
+        int destroyedCound = currentChildCount - preChildCount;
 
-        if(currentChildCount < preChildCount)
+        if(destroyedCound >0 )
         {
-            material.mainTextureOffset = new Vector2(0, material.mainTextureOffset.y-0.01f);
+            material.mainTextureOffset = new Vector2(0, material.mainTextureOffset.y-0.03f);
             //background.transform.position += Vector3.up * 0.5f;
             transform.position += Vector3.up * 0.5f;
             Debug.Log($"{transform.childCount} dd");
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Transform child = transform.GetChild(i);
+                Vector3 childPosition = child.position;
+                if (childPosition.y >= -1.3f)
+                {
+                    childPosition.y = -1.3f;
+                    child.position = childPosition;
+
+                }
+            }
         }
+
 
         preChildCount = currentChildCount;
     }
