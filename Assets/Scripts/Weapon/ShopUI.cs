@@ -116,6 +116,7 @@ public class ShopUI : MonoBehaviour
             weapon.IsEquipped = false;
         }
         _weaponDatas[_weaponDataIndex].IsEquipped = true;
+        ShowSendError("장착을 완료했습니다.", Color.green);
     }
 
     public void HideEquipMarker()
@@ -129,7 +130,7 @@ public class ShopUI : MonoBehaviour
 
         if (_playerData.gold < currentWeapon.NeedGold)
         {
-            ShowSendError($"골드가 부족합니다.");
+            ShowSendError($"골드 부족해요 땅 더 파고 오시죠?",Color.red);
             return;
         }
         
@@ -145,12 +146,14 @@ public class ShopUI : MonoBehaviour
             
             currentWeapon.Upgrade++;
             
+            ShowSendError("업그레이드요~", Color.green);
+            
             PayGold();
             UpdateWeaponUI();
         }
         else
         {
-            ShowSendError("이미 최대 강화입니다.");
+            ShowSendError("최대 강화, 무슨 욕심을 부리시나요 ><",Color.yellow);
         }
     }
 
@@ -173,9 +176,10 @@ public class ShopUI : MonoBehaviour
         UpdateGoldUI();
     }
 
-    public void ShowSendError(string error)
+    public void ShowSendError(string error, Color color)
     {
         _sendErrorText.text = error;
+        _sendErrorText.color = color;
     }
     
     public void ResetUpgradeButton()
@@ -213,11 +217,13 @@ public class ShopUI : MonoBehaviour
             _closePanels[_currentIndex-1].SetActive(false);
             _openPanels[_currentIndex-1].SetActive(true);
             
+            ShowSendError("새로운 삽 등장!", Color.white);
+            
             UpdateGoldUI();
         }
         else
         {
-            ShowSendError("골드 부족해요 땅 더 파고 오시죠?");
+            ShowSendError("골드 부족해요 땅 더 파고 오시죠?",Color.red);
         }
     }
 }
