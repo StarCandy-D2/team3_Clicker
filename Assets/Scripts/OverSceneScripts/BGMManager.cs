@@ -66,9 +66,15 @@ public class BGMManager : MonoBehaviour
             return;
         }
 
-        Debug.Log($"PlayMusic 호출: {clip.name}");
+        if (audioSource == null)
+        {
+            Debug.LogWarning("audioSource가 유효하지 않음 (파괴되었거나 초기화되지 않음)");
+            return;
+        }
 
-        //if (audioSource.clip == clip) return;
+        if (audioSource.clip == clip && audioSource.isPlaying) return;
+
+        Debug.Log($"PlayMusic 호출: {clip.name}");
 
         audioSource.clip = clip;
         audioSource.Play();
