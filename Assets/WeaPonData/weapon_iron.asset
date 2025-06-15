@@ -12,41 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5846c720d6e4bad874f1281caa6907, type: 3}
   m_Name: weapon_iron
   m_EditorClassIdentifier: 
-  Attack: 2
-  Critical: 3
-  NeedGold: 200
-  Level: 1
+  Attack: 0
+  Critical: 0
+  NeedGold: 0
+  Level: 0
   WeaponName: "\uCCA0\uC0BD"
   WeaponIcon: {fileID: 21300000, guid: 24add5b4c2e6d4bddb46051a957da111, type: 3}
   AutoAttackDuration: 1
-  Durability: 15
+  Durability: 0
   DurabilityRecovery: 10
-  Upgrade: 2
+  Upgrade: 0
   UpgradeStats:
-  - UpgradeLevel: 0
+  - UpgradeLevel: 1
     Attack: 1
     Critical: 2
     cost: 100
     Durability: 10
-  - UpgradeLevel: 1
+  - UpgradeLevel: 2
     Attack: 2
     Critical: 3
     cost: 200
     Durability: 15
-  - UpgradeLevel: 2
+  - UpgradeLevel: 3
     Attack: 3
     Critical: 4
     cost: 300
     Durability: 20
-  - UpgradeLevel: 3
+  - UpgradeLevel: 4
     Attack: 4
     Critical: 5
     cost: 400
     Durability: 25
-  - UpgradeLevel: 4
+  - UpgradeLevel: 5
     Attack: 5
     Critical: 6
     cost: 500
     Durability: 30
-  IsEquipped: 0
+  IsEquipped: 1
   IsUnlocked: 1
