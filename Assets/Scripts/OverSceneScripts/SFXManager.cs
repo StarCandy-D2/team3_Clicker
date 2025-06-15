@@ -152,4 +152,3 @@ public class SFXManager : MonoBehaviour
         return audioSource.volume;
     }
 }
-
