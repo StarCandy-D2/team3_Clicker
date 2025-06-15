@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StageUIManager : MonoBehaviour
 {
-    public static StageUIManager instance;
+    public static StageUIManager Instance;
 
     [Header("UI")] public TextMeshProUGUI stageText;
     public TextMeshProUGUI layerText;
@@ -17,11 +17,14 @@ public class StageUIManager : MonoBehaviour
     public int maxLayersPerStage = 100;
     public int sessionGold = 0;
 
+    [Header("스테이지별 골드")] 
+    public int[] stageGoldRewards = { 10, 15, 25, 40, 60 };
+    
     private string[] stageNames = { "지각", "상부맨틀", "하부맨틀", "외핵", "내핵" };
 
     void Awake()
     {
-        if (instance == null) instance = this;
+        if (Instance == null) Instance = this;
 
         else
         {
@@ -91,6 +94,16 @@ public class StageUIManager : MonoBehaviour
         {
             totalGoldText.text = $"보유 골드 : {GameManager.Instance.playerData.gold:N0}";
         }
+    }
+
+    public int GetCurrentStageGoldReward()
+    {
+        if (stageGoldRewards.Length >= currentStage)
+        {
+            return stageGoldRewards[currentStage - 1];
+        }
+
+        return 10;
     }
     public void SetStageInfo(int stage, int layer) // 테스트용
     {
