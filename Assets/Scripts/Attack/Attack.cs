@@ -187,7 +187,7 @@ public class Attack : MonoBehaviour
         
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Debug.Log("충돌함");
+            //Debug.Log("충돌함");
             attackParticle.Play();
 
 
