@@ -15,7 +15,7 @@ MonoBehaviour:
   Attack: 10
   Critical: 11
   NeedGold: 12345
-  Level: 0
+  Level: 1
   WeaponName: "\uC740\uC0BD"
   WeaponIcon: {fileID: 21300000, guid: e7940ac5cca5941c69d6e5ca1d751d07, type: 3}
   AutoAttackDuration: 1
@@ -23,27 +23,27 @@ MonoBehaviour:
   DurabilityRecovery: 10
   Upgrade: 0
   UpgradeStats:
-  - UpgradeLevel: 0
+  - UpgradeLevel: 1
     Attack: 10
     Critical: 11
     cost: 1000
     Durability: 100
-  - UpgradeLevel: 1
+  - UpgradeLevel: 2
     Attack: 11
     Critical: 12
     cost: 1100
     Durability: 150
-  - UpgradeLevel: 2
+  - UpgradeLevel: 3
     Attack: 12
     Critical: 13
     cost: 1200
     Durability: 200
-  - UpgradeLevel: 3
+  - UpgradeLevel: 4
     Attack: 13
     Critical: 14
     cost: 1300
     Durability: 250
-  - UpgradeLevel: 4
+  - UpgradeLevel: 5
     Attack: 14
     Critical: 15
     cost: 1400
