@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    void Die()  //여기부터 재작업 - 스테이지별 골드 획득, StageUIMamager에서 추가 코딩
+    void Die()  
     {
  
         if (GameManager.Instance != null && GameManager.Instance.playerData != null)
