@@ -33,6 +33,11 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private TMP_Text _sendErrorText;
     [SerializeField] private WeaponData[] _closeItemData;
     
+    [SerializeField] private float errorDisplayDuration = 2.5f; // 표시 시간
+    [SerializeField] private float typingSpeed = 0.05f; // 타이핑 속도
+    private Coroutine _errorCoroutine;
+    
+    
 
     private void Awake()
     {
@@ -130,7 +135,7 @@ public class ShopUI : MonoBehaviour
 
         if (_playerData.gold < currentWeapon.NeedGold)
         {
-            ShowSendError($"골드 부족해요 땅 더 파고 오시죠?",Color.red);
+            ShowSendError($"골드가 부족합니다",Color.red);
             return;
         }
         
@@ -146,14 +151,14 @@ public class ShopUI : MonoBehaviour
             
             currentWeapon.Upgrade++;
             
-            ShowSendError("업그레이드요~", Color.green);
+            ShowSendError("업그레이드를 완료하였습니다", Color.green);
             
             PayGold();
             UpdateWeaponUI();
         }
         else
         {
-            ShowSendError("최대 강화, 무슨 욕심을 부리시나요 ><",Color.yellow);
+            ShowSendError("최대 강화입니다",Color.yellow);
         }
     }
 
@@ -178,8 +183,28 @@ public class ShopUI : MonoBehaviour
 
     public void ShowSendError(string error, Color color)
     {
-        _sendErrorText.text = error;
+        if (_errorCoroutine != null)
+        {
+            StopCoroutine(_errorCoroutine);
+        }
+
+        _errorCoroutine = StartCoroutine(TypeErrorMessage(error, color));
+        
+    }
+
+    IEnumerator TypeErrorMessage(string error, Color color)
+    {
+        _sendErrorText.text = "";
         _sendErrorText.color = color;
+
+        for (int i = 0; i < error.Length; i++)
+        {
+            _sendErrorText.text += error[i];
+            yield return new WaitForSeconds(typingSpeed);
+        }
+        
+        yield return new WaitForSeconds(errorDisplayDuration);
+        _sendErrorText.text = "";
     }
     
     public void ResetUpgradeButton()
@@ -217,13 +242,13 @@ public class ShopUI : MonoBehaviour
             _closePanels[_currentIndex-1].SetActive(false);
             _openPanels[_currentIndex-1].SetActive(true);
             
-            ShowSendError("새로운 삽 등장!", Color.white);
+            ShowSendError("새로운 삽이 등장합니다", Color.white);
             
             UpdateGoldUI();
         }
         else
         {
-            ShowSendError("골드 부족해요 땅 더 파고 오시죠?",Color.red);
+            ShowSendError("골드가 부족합니다",Color.red);
         }
     }
 }
