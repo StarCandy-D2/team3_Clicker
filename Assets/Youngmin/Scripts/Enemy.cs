@@ -37,7 +37,9 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    void Die()
+
+    void Die()  
+
     {
         Debug.Log("Enemy destroyed!");
         
