@@ -4408,6 +4408,10 @@ MonoBehaviour:
   _GoldText: {fileID: 1767413306}
   _playerData: {fileID: 11400000, guid: e42ea320c5e2f7c42b172c050d244067, type: 2}
   _sendErrorText: {fileID: 522064553}
+  _closeItemData:
+  - {fileID: 11400000, guid: 623c10b89163a4fbf9f27ad4a15349eb, type: 2}
+  - {fileID: 11400000, guid: 2d1fbbb77772d45dfa4a2d60860b6533, type: 2}
+  - {fileID: 11400000, guid: 446d775a68c834c2d86ea72869fd41ff, type: 2}
 --- !u!1 &595861581
 GameObject:
   m_ObjectHideFlags: 0
@@ -4774,7 +4778,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 500
+  m_text: 000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8edd11eff6d4f0c4892252cdf6cad32d, type: 2}
   m_sharedMaterial: {fileID: -5940349464532141896, guid: 8edd11eff6d4f0c4892252cdf6cad32d, type: 2}
@@ -8975,7 +8979,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10000
+  m_text: 000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8edd11eff6d4f0c4892252cdf6cad32d, type: 2}
   m_sharedMaterial: {fileID: -5940349464532141896, guid: 8edd11eff6d4f0c4892252cdf6cad32d, type: 2}
@@ -9761,7 +9765,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000
+  m_text: 000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8edd11eff6d4f0c4892252cdf6cad32d, type: 2}
   m_sharedMaterial: {fileID: -5940349464532141896, guid: 8edd11eff6d4f0c4892252cdf6cad32d, type: 2}

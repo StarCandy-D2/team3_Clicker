@@ -31,7 +31,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private TMP_Text _GoldText;
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private TMP_Text _sendErrorText;
-    
+    [SerializeField] private WeaponData[] _closeItemData;
     
 
     private void Awake()
@@ -39,9 +39,9 @@ public class ShopUI : MonoBehaviour
         UpdateWeaponUI();
         UpdateGoldUI();
 
-        for (int i = 0; i < _weaponDatas.Length && i<_clostCostText.Length; i++)
+        for (int i = 0; i < _closeItemData.Length && i<_clostCostText.Length; i++)
         {
-            _clostCostText[i].text = _weaponDatas[i].NeedGold.ToString("N0") + "G";
+            _clostCostText[i].text = _closeItemData[i].NeedGold.ToString("N0") + "G";
         }
     }
     public void UpdateWeaponUI()
@@ -59,7 +59,7 @@ public class ShopUI : MonoBehaviour
             _attackText[current].text = preview.Attack.ToString();
             _criticalText[current].text = preview.Critical.ToString();
             _durabilityText[current].text = preview.Durability.ToString();
-            _costText[current].text = preview.cost.ToString();
+            _costText[current].text = $"{preview.cost.ToString()}G";
             _levelText[current].text = $"Lv.{preview.UpgradeLevel.ToString()}";
         }
         else
@@ -202,10 +202,10 @@ public class ShopUI : MonoBehaviour
 
     public void OnClickBuyButton()
     {
-        if (_playerData.gold >= _weaponDatas[_currentIndex-1].NeedGold)
+        if (_playerData.gold >= _closeItemData[_currentIndex-1].NeedGold)
         {
             //골드 차감
-            _playerData.gold -= _weaponDatas[_currentIndex-1].NeedGold;
+            _playerData.gold -= _closeItemData[_currentIndex-1].NeedGold;
             
             //구매처리
             _weaponDatas[_currentIndex-1].IsUnlocked = true;
