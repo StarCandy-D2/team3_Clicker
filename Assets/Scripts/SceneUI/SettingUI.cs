@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
+using System.Collections;
 
 public class SettingUI : MonoBehaviour
 {
@@ -10,16 +11,9 @@ public class SettingUI : MonoBehaviour
     public Slider sfxSlider;
     public TMP_InputField bgmInput;
     public TMP_InputField sfxInput;
-
     private void Start()
     {
-        // 초기화
-        float bgm = PlayerPrefs.GetFloat("BGMVolume", 1f);
-        float sfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
-        bgmSlider.value = bgm;
-        sfxSlider.value = sfx;
-        bgmInput.text = Mathf.RoundToInt(bgm * 100).ToString();
-        sfxInput.text = Mathf.RoundToInt(sfx * 100).ToString();
+        StartCoroutine(InitializeUI());
     }
 
     public void OnBGMSliderChanged(float value)
@@ -29,12 +23,26 @@ public class SettingUI : MonoBehaviour
         PlayerPrefs.SetFloat("BGMVolume", value);
     }
 
-    //public void OnSFXSliderChanged(float value)
-    //{
-    //    sfxInput.text = Mathf.RoundToInt(value * 100).ToString();
-    //    SFXManager.Instance.SetVolume(value);
-    //    PlayerPrefs.SetFloat("SFXVolume", value);
-    //}
+    private IEnumerator InitializeUI()
+    {
+        while (BGMManager.Instance == null || SFXManager.Instance == null)
+            yield return null;
+
+        float bgm = BGMManager.Instance.GetVolume();
+        float sfx = SFXManager.Instance.GetVolume();
+
+        bgmSlider.value = bgm;
+        sfxSlider.value = sfx;
+        bgmInput.text = Mathf.RoundToInt(bgm * 100).ToString();
+        sfxInput.text = Mathf.RoundToInt(sfx * 100).ToString();
+    }
+    public void OnSFXSliderChanged(float value)
+    {
+        sfxInput.text = Mathf.RoundToInt(value * 100).ToString();
+
+        if (SFXManager.Instance != null)
+            SFXManager.Instance.SetVolume(value);
+    }
 
     public void OnBGMInputChanged(string text)
     {
@@ -46,13 +54,14 @@ public class SettingUI : MonoBehaviour
         }
     }
 
-    //public void OnSFXInputChanged(string text)
-    //{
-    //    if (int.TryParse(text, out int percent))
-    //    {
-    //        float v = Mathf.Clamp01(percent / 100f);
-    //        sfxSlider.value = v;
-    //        OnSFXSliderChanged(v);
-    //    }
-    //}
+    public void OnSFXInputChanged(string text)
+    {
+        if (int.TryParse(text, out int percent))
+        {
+            float v = Mathf.Clamp01(percent / 100f);
+            sfxSlider.value = v;
+            OnSFXSliderChanged(v);
+        }
+    }
+
 }

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Attack: 5
   Critical: 6
-  NeedGold: 500
+  NeedGold: 1234
+  Level: 1
   WeaponName: "\uB3D9\uC0BD"
   WeaponIcon: {fileID: 21300000, guid: 35822a21ffd494b86bee7b8b09c15b44, type: 3}
   AutoAttackDuration: 1
@@ -48,3 +49,4 @@ MonoBehaviour:
     cost: 750
     Durability: 70
   IsEquipped: 0
+  IsUnlocked: 1
