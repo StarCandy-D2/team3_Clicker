@@ -84,7 +84,6 @@ public class BGMManager : MonoBehaviour
         audioSource.volume = volume;
         PlayerPrefs.SetFloat("BGMVolume", volume);
     }
-
     public float GetVolume()
     {
         return audioSource.volume;
