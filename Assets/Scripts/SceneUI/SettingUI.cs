@@ -25,24 +25,24 @@ public class SettingUI : MonoBehaviour
 
     private IEnumerator InitializeUI()
     {
-        // BGMManager 초기화 대기
-        while (BGMManager.Instance == null)
+        while (BGMManager.Instance == null || SFXManager.Instance == null)
             yield return null;
 
         float bgm = BGMManager.Instance.GetVolume();
-        float sfx = PlayerPrefs.GetFloat("SFXVolume", 0.1f); // SFXManager가 없으므로 직접
+        float sfx = SFXManager.Instance.GetVolume();
 
         bgmSlider.value = bgm;
         sfxSlider.value = sfx;
         bgmInput.text = Mathf.RoundToInt(bgm * 100).ToString();
         sfxInput.text = Mathf.RoundToInt(sfx * 100).ToString();
     }
-    //public void OnSFXSliderChanged(float value)
-    //{
-    //    sfxInput.text = Mathf.RoundToInt(value * 100).ToString();
-    //    SFXManager.Instance.SetVolume(value);
-    //    PlayerPrefs.SetFloat("SFXVolume", value);
-    //}
+    public void OnSFXSliderChanged(float value)
+    {
+        sfxInput.text = Mathf.RoundToInt(value * 100).ToString();
+
+        if (SFXManager.Instance != null)
+            SFXManager.Instance.SetVolume(value);
+    }
 
     public void OnBGMInputChanged(string text)
     {
@@ -54,14 +54,14 @@ public class SettingUI : MonoBehaviour
         }
     }
 
-    //public void OnSFXInputChanged(string text)
-    //{
-    //    if (int.TryParse(text, out int percent))
-    //    {
-    //        float v = Mathf.Clamp01(percent / 100f);
-    //        sfxSlider.value = v;
-    //        OnSFXSliderChanged(v);
-    //    }
-    //}
+    public void OnSFXInputChanged(string text)
+    {
+        if (int.TryParse(text, out int percent))
+        {
+            float v = Mathf.Clamp01(percent / 100f);
+            sfxSlider.value = v;
+            OnSFXSliderChanged(v);
+        }
+    }
 
 }

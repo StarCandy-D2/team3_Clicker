@@ -31,7 +31,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private TMP_Text _GoldText;
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private TMP_Text _sendErrorText;
-    
+    [SerializeField] private WeaponData[] _closeItemData;
     
 
     private void Awake()
@@ -39,30 +39,40 @@ public class ShopUI : MonoBehaviour
         UpdateWeaponUI();
         UpdateGoldUI();
 
-        for (int i = 0; i < _weaponDatas.Length && i<_clostCostText.Length; i++)
+        for (int i = 0; i < _closeItemData.Length && i<_clostCostText.Length; i++)
         {
-            _clostCostText[i].text = _weaponDatas[i].NeedGold.ToString("N0") + "G";
+            _clostCostText[i].text = _closeItemData[i].NeedGold.ToString("N0") + "G";
         }
     }
     public void UpdateWeaponUI()
     {
-        int current = _weaponDataIndex;
-        _attackText[current].text = _weaponDatas[current].Attack.ToString();
-        _criticalText[current].text = _weaponDatas[current].Critical.ToString();
-        _durabilityText[current].text = _weaponDatas[current].Durability.ToString();
-        _costText[current].text = _weaponDatas[current].NeedGold.ToString("N0") + "G";
-        _levelText[current].text = $"Lv.{_weaponDatas[current].Level.ToString()}";
-                
-        WeaponData currentWeapon = _weaponDatas[_weaponDataIndex];
+        //현재 인덱스 번호.
+        int current = _currentIndex;
+        //현재 강화단계
+        int level = _weaponDatas[current].Upgrade;
 
-        if (currentWeapon.IsEquipped)
+        //아직 최대가 아니면 다음 강화 스텟 미리 보여주기.
+        if (level < _weaponDatas[current].UpgradeStats.Count)
         {
-            equippanel.SetActive(true);
+            //Upgrade가 0이면 UpgradeStat[0]을 가져온다. 결국 1강할 때 스텟이 바큄.
+            WeaponData.UpgradeData preview = _weaponDatas[current].UpgradeStats[level];
+            _attackText[current].text = preview.Attack.ToString();
+            _criticalText[current].text = preview.Critical.ToString();
+            _durabilityText[current].text = preview.Durability.ToString();
+            _costText[current].text = $"{preview.cost.ToString()}G";
+            _levelText[current].text = $"Lv.{preview.UpgradeLevel.ToString()}";
         }
         else
         {
-            equippanel.SetActive(false);
+            _attackText[current].text = _weaponDatas[current].Attack.ToString();
+            _criticalText[current].text = _weaponDatas[current].Critical.ToString();
+            _durabilityText[current].text = _weaponDatas[current].Durability.ToString();
+            _costText[current].text = "MAX";
+            _levelText[current].text = "MAX";
         }
+
+        equippanel.SetActive(_weaponDatas[current].IsEquipped);
+       
     }
 
     public void UpdateGoldUI()
@@ -192,10 +202,10 @@ public class ShopUI : MonoBehaviour
 
     public void OnClickBuyButton()
     {
-        if (_playerData.gold >= _weaponDatas[_currentIndex-1].NeedGold)
+        if (_playerData.gold >= _closeItemData[_currentIndex-1].NeedGold)
         {
             //골드 차감
-            _playerData.gold -= _weaponDatas[_currentIndex-1].NeedGold;
+            _playerData.gold -= _closeItemData[_currentIndex-1].NeedGold;
             
             //구매처리
             _weaponDatas[_currentIndex-1].IsUnlocked = true;
