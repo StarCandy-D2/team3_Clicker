@@ -120,7 +120,24 @@ public class ShopUI : MonoBehaviour
         {
             weapon.IsEquipped = false;
         }
-        _weaponDatas[_weaponDataIndex].IsEquipped = true;
+
+        WeaponData equipped = _weaponDatas[_weaponDataIndex];
+        equipped.IsEquipped = true;
+
+        int upgradeLevel = equipped.Upgrade;
+
+        if (upgradeLevel < equipped.UpgradeStats.Count)
+        {
+            var upgradedStat = equipped.UpgradeStats[upgradeLevel];
+            _playerData.atk = upgradedStat.Attack;
+            _playerData.critRate =  upgradedStat.Critical;
+        }
+        else
+        {
+            _playerData.atk = equipped.Attack;
+            _playerData.critRate = equipped.Critical;
+        }
+            
         ShowSendError("장착을 완료했습니다.", Color.green);
     }
 
@@ -150,6 +167,12 @@ public class ShopUI : MonoBehaviour
             currentWeapon.Level = stat.UpgradeLevel;
             
             currentWeapon.Upgrade++;
+
+            if (currentWeapon.IsEquipped)
+            {
+                _playerData.atk = currentWeapon.Attack;
+                _playerData.critRate = currentWeapon.Critical;
+            }
             
             ShowSendError("업그레이드를 완료하였습니다", Color.green);
             
