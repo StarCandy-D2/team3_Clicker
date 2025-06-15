@@ -128,7 +128,7 @@ public class ShopUI : MonoBehaviour
 
         if (upgradeLevel < equipped.UpgradeStats.Count)
         {
-            var upgradedStat = equipped.UpgradeStats[upgradeLevel];
+            WeaponData.UpgradeData upgradedStat = equipped.UpgradeStats[upgradeLevel];
             _playerData.atk = upgradedStat.Attack;
             _playerData.critRate =  upgradedStat.Critical;
         }
