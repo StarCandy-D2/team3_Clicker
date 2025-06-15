@@ -71,7 +71,7 @@ public class EnemyGenerator : MonoBehaviour
         currentLayerIndex++;
     }
 
-    private void OnLayerDestroyed()
+    public void OnLayerDestroyed()
     {
         // 첫 번째 층 제거 (이미 null이 됨)
         if (activeLayers.Count > 0)

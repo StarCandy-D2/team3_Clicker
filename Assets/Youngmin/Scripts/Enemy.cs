@@ -31,17 +31,31 @@ public class Enemy : MonoBehaviour
     void Die()  //여기부터 재작업 - 스테이지별 골드 획득, StageUIMamager에서 추가 코딩
     {
  
-        // if (GameManager.Instance != null && GameManager.Instance.playerData != null)
-        // {
-        //     int goldReward = 10;
-        //     if (StageUIManager.Instance != null)
-        //     {
-        //         goldReward = StageUIManager.Instance.GetCurrentStageGoldReward();
-        //     }
-        //     GameManager.Instance.playerData.gold += goldReward;
-        //     
-        //     if
-        // }
+        if (GameManager.Instance != null && GameManager.Instance.playerData != null)
+        {
+            int goldReward = 10;
+            if (StageUIManager.Instance != null)
+            {
+                goldReward = StageUIManager.Instance.GetCurrentStageGoldReward();
+            }
+            GameManager.Instance.playerData.gold += goldReward;
+
+            if (StageUIManager.Instance != null)
+            {
+                StageUIManager.Instance.AddSessionGold(goldReward);
+            }
+        }
+
+        if (StageUIManager.Instance != null)
+        {
+            StageUIManager.Instance.OnLayerCleared();
+        }
+
+        if (enemyGenerator != null)
+        {
+            enemyGenerator.OnLayerDestroyed();
+        }
+        
         
         // 파괴 이펙트 실행
         StartCoroutine(DestroyEffect());
