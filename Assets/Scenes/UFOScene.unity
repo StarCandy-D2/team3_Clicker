@@ -10151,7 +10151,10 @@ MonoBehaviour:
   _GoldText: {fileID: 288488897}
   _playerData: {fileID: 11400000, guid: 4accf49d8f7451c4cafdf3240c110644, type: 2}
   _sendErrorText: {fileID: 1779255271}
-  _closeItemData: []
+  _closeItemData:
+  - {fileID: 11400000, guid: 623c10b89163a4fbf9f27ad4a15349eb, type: 2}
+  - {fileID: 11400000, guid: 2d1fbbb77772d45dfa4a2d60860b6533, type: 2}
+  - {fileID: 11400000, guid: 446d775a68c834c2d86ea72869fd41ff, type: 2}
 --- !u!114 &901626849
 MonoBehaviour:
   m_ObjectHideFlags: 0
