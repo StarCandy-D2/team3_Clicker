@@ -16,7 +16,7 @@ public class BGMManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
@@ -24,15 +24,20 @@ public class BGMManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        audioSource = GetComponent<AudioSource>();
-        audioSource.loop = true;
 
-        float savedVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
-        audioSource.volume = savedVolume;
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogWarning("AudioSource가 없어서 새로 추가합니다.");
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        audioSource.loop = true;
+        audioSource.volume = PlayerPrefs.GetFloat("BGMVolume", 0.1f);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+        OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
-
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         switch (scene.name)
@@ -48,22 +53,28 @@ public class BGMManager : MonoBehaviour
                 break;
         }
     }
-    //void Update()
-    //{
-    //    if (SceneManager.GetActiveScene().name != "MainScene") return;
-
-    //    if (player == null)
-    //    {
-    //        GameObject playerObj = GameObject.FindWithTag("Player");
-    //        if (playerObj != null)
-    //            player = playerObj.transform;
-    //        return;
-    //    }
-    //}
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        { SceneManager.LoadScene("UFOScene"); }
+    }
     public void PlayMusic(AudioClip clip)
     {
-        Debug.Log($"{clip.name}");
-        if (audioSource.clip == clip) return;
+        if (clip == null)
+        {
+            Debug.LogWarning("PlayMusic()에 null AudioClip이 전달되었습니다!");
+            return;
+        }
+
+        if (audioSource == null)
+        {
+            Debug.LogWarning("audioSource가 유효하지 않음 (파괴되었거나 초기화되지 않음)");
+            return;
+        }
+
+        if (audioSource.clip == clip && audioSource.isPlaying) return;
+
+        Debug.Log($"PlayMusic 호출: {clip.name}");
 
         audioSource.clip = clip;
         audioSource.Play();
@@ -79,7 +90,6 @@ public class BGMManager : MonoBehaviour
         audioSource.volume = volume;
         PlayerPrefs.SetFloat("BGMVolume", volume);
     }
-
     public float GetVolume()
     {
         return audioSource.volume;

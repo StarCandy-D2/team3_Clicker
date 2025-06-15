@@ -1,43 +1,95 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float maxHP;
-    [SerializeField] private float currentHP;
-    [SerializeField] private int enemyIndex;
+    [Header("체력")]
+    public float maxHP = 100f;
+    private float currentHP;
+
+    [Header("Layer 정보")]
+    public int layerIndex; // 층 번호
+    public EnemyGenerator enemyGenerator; // EnemyGenerator 참조
     
-    public GameLayer parentLayer; // 부모 레이어 참조
-    
-    public void Initialize(float hp, int index)
+    void Start()
     {
-        maxHP = hp;
-        currentHP = hp;
-        enemyIndex = index;
+        currentHP = maxHP;
     }
     
     public void TakeDamage(float damage)
     {
         currentHP -= damage;
+       
         
         if (currentHP <= 0)
         {
-            DestroyEnemy();
+            Die();
         }
     }
     
-    private void DestroyEnemy()
+    void Die()  //여기부터 재작업 - 스테이지별 골드 획득, StageUIMamager에서 추가 코딩
     {
-        // 파괴 신호
-        if (parentLayer != null)
+ 
+        if (GameManager.Instance != null && GameManager.Instance.playerData != null)
         {
-            parentLayer.OnEnemyDestroyed();
+            int goldReward = 10;
+            if (StageUIManager.Instance != null)
+            {
+                goldReward = StageUIManager.Instance.GetCurrentStageGoldReward();
+            }
+            GameManager.Instance.playerData.gold += goldReward;
+
+            if (StageUIManager.Instance != null)
+            {
+                StageUIManager.Instance.AddSessionGold(goldReward);
+            }
         }
-        //이펙트 등
+
+        if (StageUIManager.Instance != null)
+        {
+            StageUIManager.Instance.OnLayerCleared();
+        }
+
+        if (enemyGenerator != null)
+        {
+            enemyGenerator.OnLayerDestroyed();
+        }
+        
+        
+        // 파괴 이펙트 실행
+        StartCoroutine(DestroyEffect());
+    }
+    
+   
+    IEnumerator DestroyEffect()
+    {
+        // 모든 자식 타일들에게 물리 효과 적용
+        foreach (Transform child in transform)
+        {
+            child.SetParent(null);
+            Rigidbody2D rb = child.gameObject.AddComponent<Rigidbody2D>();
+            
+            
+            float forceX = Random.Range(-1.5f, 1.5f);
+            float forceY = Random.Range(2f, 3f);
+            rb.AddForce(new Vector2(forceX, forceY), ForceMode2D.Impulse);
+            
+            
+            // 2초 후 파괴
+            Destroy(child.gameObject, 1.5f);
+        }
+
+        yield return new WaitForSeconds(0.05f);
+        
         Destroy(gameObject);
     }
     
-    public float GetHPPercentage()
+   // 테스트용 클릭 함수
+    void OnMouseDown()
     {
-        return currentHP / maxHP;
+        Debug.Log("층 클릭됨!");
+        TakeDamage(maxHP); // 한 번에 파괴
+        
     }
 }

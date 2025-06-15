@@ -1,13 +1,16 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Data.Common;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    public PlayerData playerData;
+
     public float IdleSpeed = 5f; //튀어오르는 기본 속도
     // public float gravity = -9.8f; IdleSpeed로 통함
     public float attackPower = 10f; //임시 공격력
-    public float IdleAttackPower => attackPower * 0.1f; //Idle 공격력 (클릭 안했을때)
+    public float IdleAttackPower => playerData.atk * 0.1f; //Idle 공격력 (클릭 안했을때)
     private float velocity;
     private float currentHeight;
     private float maxHeight = 0.5f;
@@ -24,6 +27,26 @@ public class Attack : MonoBehaviour
     public bool OnAuto;
 
     //0.5 -0.5
+
+
+    public CinemachineImpulseSource idleimpulseSource;
+    public CinemachineImpulseSource attackimpulseSource;
+    public CinemachineImpulseSource autoattackimpulseSource;
+
+    public void IdleTriggerImpulse()
+    {
+        idleimpulseSource.GenerateImpulse();
+    }
+    public void AttackTriggerImpulse()
+    {
+
+        attackimpulseSource.GenerateImpulse();
+    }
+    public void AutoAttackTriggerImpulse()
+    {
+
+        autoattackimpulseSource.GenerateImpulse();
+    }
     void Start()
     {
         currentHeight = transform.position.y;
@@ -146,24 +169,29 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //Enemy dmg = other.gameObject.GetComponent<Enemy>();
         DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
+        
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            if (OnAttack)
+            Debug.Log("충돌함");
+            
+            if (OnAttack) // 클릭했을때 공격
             {
-
+                GetComponent<Attack>().AttackTriggerImpulse();
                 dmg.TakeDamage(attackPower);
                 OnAttack = false;
             }
-            else if(!OnAttack && !OnAuto)
+            else if(!OnAttack && !OnAuto) //가만히 있을때
             {
-
+                GetComponent<Attack>().IdleTriggerImpulse();
                 dmg.TakeDamage(IdleAttackPower);
             }
 
 
-            if (OnAuto)
+            if (OnAuto) //자동공격
             {
+                GetComponent<Attack>().AutoAttackTriggerImpulse();
                 dmg.TakeDamage(attackPower*1.2f);
             }
 
