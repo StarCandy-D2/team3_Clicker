@@ -1,6 +1,7 @@
 ﻿using Cinemachine;
 using System.Collections;
 using System.Data.Common;
+using PlayerUpgrade;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
@@ -11,7 +12,7 @@ public class Attack : MonoBehaviour
 
     public float IdleSpeed = 5f; //튀어오르는 기본 속도
     // public float gravity = -9.8f; IdleSpeed로 통함
-    public float attackPower => playerData.atk + weaponData.Attack; //임시 공격력
+    public float attackPower =>  playerData.GetStat(StatType.atk) + weaponData.Attack; //임시 공격력
     public float IdleAttackPower => attackPower * 0.1f; //Idle 공격력 (클릭 안했을때)
     private float velocity;
     private float currentHeight;
@@ -32,7 +33,7 @@ public class Attack : MonoBehaviour
     public float durabilityTimer = 0; //내구도 테스트 임시 타이머
     public float recoveryDurabilityTime = 5f;
     //자동공격
-    public float autoAttackDuration => weaponData.AutoAttackDuration; //자동공격 시간
+    public float autoAttackDuration = 5f; //자동공격 시간
     public float autoAttackSpeed = 50f; //공격속도
     public bool OnAuto;
 
@@ -93,7 +94,7 @@ public class Attack : MonoBehaviour
     public void PlayerAttack()
     {
         // 마우스 클릭 시 빠르게 낙하하도록 처리
-        if (Input.GetMouseButtonDown(0) && AttackTimer >= AttackDelay && OnAuto == false && CurrentDurability != 0)
+        if (Input.GetMouseButtonDown(0) && AttackTimer >= AttackDelay && OnAuto == false)
         {
             Debug.Log("클릭 인식확인");
             AttackTimer = 0f;
