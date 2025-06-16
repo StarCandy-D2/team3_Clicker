@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using PlayerUpgrade;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -85,7 +86,8 @@ public class ShopUI : MonoBehaviour
 
     public void UpdateGoldUI()
     {
-        _GoldText.text = _playerData.gold.ToString("N0") + "G";
+        _GoldText.text = _playerData.GetStat(StatType.Gold).ToString("N0") + "G";
+
     }
 
     public void OnClickNextButton()
@@ -132,13 +134,13 @@ public class ShopUI : MonoBehaviour
         if (upgradeLevel < equipped.UpgradeStats.Count)
         {
             WeaponData.UpgradeData upgradedStat = equipped.UpgradeStats[upgradeLevel];
-            _playerData.atk = upgradedStat.Attack;
-            _playerData.critRate =  upgradedStat.Critical;
+            _playerData.SetStat(StatType.atk, upgradedStat.Attack);
+            _playerData.SetStat(StatType.critRate, upgradedStat.Critical);
         }
         else
         {
-            _playerData.atk = equipped.Attack;
-            _playerData.critRate = equipped.Critical;
+            _playerData.SetStat(StatType.atk, equipped.Attack);
+            _playerData.SetStat(StatType.critRate, equipped.Critical);
         }
             
         ShowSendError("장착을 완료했습니다.", Color.green);
@@ -153,7 +155,7 @@ public class ShopUI : MonoBehaviour
     {
         WeaponData currentWeapon = _weaponDatas[_weaponDataIndex];
 
-        if (_playerData.gold < currentWeapon.NeedGold)
+        if (_playerData.GetStat(StatType.Gold) < currentWeapon.NeedGold)
         {
             ShowSendError($"골드가 부족합니다",Color.red);
             return;
@@ -173,8 +175,8 @@ public class ShopUI : MonoBehaviour
 
             if (currentWeapon.IsEquipped)
             {
-                _playerData.atk = currentWeapon.Attack;
-                _playerData.critRate = currentWeapon.Critical;
+                _playerData.SetStat(StatType.atk, currentWeapon.Attack);
+                _playerData.SetStat(StatType.critRate, currentWeapon.Critical);
             }
             
             ShowSendError("업그레이드를 완료하였습니다", Color.green);
@@ -192,12 +194,12 @@ public class ShopUI : MonoBehaviour
     public void PayGold()
     {
         float upgradeCost = _weaponDatas[_weaponDataIndex].NeedGold;
-        float playerGold = _playerData.gold;
+        float playerGold = _playerData.GetStat(StatType.Gold);
     
         if (playerGold >= upgradeCost)
         {
             Debug.Log("골드 충분이요~ 바로 계산갑니데이.");
-            _playerData.gold -= upgradeCost;
+            _playerData.SetStat(StatType.Gold, _playerData.GetStat(StatType.Gold) - upgradeCost);
         }
         else
         {
@@ -258,10 +260,10 @@ public class ShopUI : MonoBehaviour
 
     public void OnClickBuyButton()
     {
-        if (_playerData.gold >= _closeItemData[_currentIndex-1].NeedGold)
+        if (_playerData.GetStat(StatType.Gold) >= _closeItemData[_currentIndex-1].NeedGold)
         {
             //골드 차감
-            _playerData.gold -= _closeItemData[_currentIndex-1].NeedGold;
+            _playerData.SetStat(StatType.Gold, _playerData.GetStat(StatType.Gold)- _closeItemData[_currentIndex-1].NeedGold);
             
             //구매처리
             _weaponDatas[_currentIndex-1].IsUnlocked = true;
