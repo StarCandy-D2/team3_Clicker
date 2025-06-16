@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ public class StageData : ScriptableObject
    public int totalLayers = 100;           //스테이지별 층 개수
    public float baseLayerHP = 1f;          // 층 기본 체력
    public float hpMultiplier = 1f;  //스테이지별 체력 배수
-   public float layerHeight = 1f; // 층 높이
+   public float layerHeight = 0.6f; // 층 높이
 
    [Header("프리팹")] 
    public GameObject layerPrefab;

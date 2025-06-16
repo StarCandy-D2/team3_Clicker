@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using PlayerUpgrade;
 using TMPro;
@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class StageUIManager : MonoBehaviour
 {
-    public static StageUIManager instance;
+    public static StageUIManager Instance;
 
     [Header("UI")] public TextMeshProUGUI stageText;
     public TextMeshProUGUI layerText;
@@ -16,13 +16,16 @@ public class StageUIManager : MonoBehaviour
     [Header("스테이지")] public int currentStage = 1;
     public int currentLayer = 1;
     public int maxLayersPerStage = 100;
-    public int sessionGold = 0;
+    public int sessionGold;
 
+    [Header("스테이지별 골드")] 
+    public int[] stageGoldRewards = { 10, 15, 25, 40, 60 };
+    
     private string[] stageNames = { "지각", "상부맨틀", "하부맨틀", "외핵", "내핵" };
 
     void Awake()
     {
-        if (instance == null) instance = this;
+        if (Instance == null) Instance = this;
 
         else
         {
@@ -80,7 +83,7 @@ public class StageUIManager : MonoBehaviour
 
         if (layerText != null)
         {
-            layerText.text = $"{currentLayer}층";
+            layerText.text = $"{currentLayer}m";
         }
 
         if (sessionGoldText != null)
@@ -92,6 +95,16 @@ public class StageUIManager : MonoBehaviour
         {
             totalGoldText.text = $"보유 골드 : {GameManager.Instance.playerData.GetStat(StatType.Gold):N0}";
         }
+    }
+
+    public int GetCurrentStageGoldReward()
+    {
+        if (stageGoldRewards.Length >= currentStage)
+        {
+            return stageGoldRewards[currentStage - 1];
+        }
+
+        return 10;
     }
     public void SetStageInfo(int stage, int layer) // 테스트용
     {
