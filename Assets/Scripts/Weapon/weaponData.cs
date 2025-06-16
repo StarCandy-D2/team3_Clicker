@@ -19,9 +19,9 @@ public class WeaponData : ScriptableObject
     //자동공격지속시간
     public float AutoAttackDuration;
     //내구도
-    public float Durability;
-    //내구도 회복
-    public float DurabilityRecovery;
+    public float CurrentDurability;
+    //최대내구도
+    public float MaxDurability;
     
     [Header("강화 속성")]
     //강화
