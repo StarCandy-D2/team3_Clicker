@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PlayerUpgrade;
 using TMPro;
 using UnityEngine;
 
@@ -92,7 +93,7 @@ public class StageUIManager : MonoBehaviour
 
         if (totalGoldText != null && GameManager.Instance?.playerData != null)
         {
-            totalGoldText.text = $"보유 골드 : {GameManager.Instance.playerData.gold:N0}";
+            totalGoldText.text = $"보유 골드 : {GameManager.Instance.playerData.GetStat(StatType.Gold):N0}";
         }
     }
 

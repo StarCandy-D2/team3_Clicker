@@ -1,6 +1,7 @@
 ﻿using Cinemachine;
 using System.Collections;
 using System.Data.Common;
+using PlayerUpgrade;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
@@ -10,7 +11,7 @@ public class Attack : MonoBehaviour
     public float IdleSpeed = 5f; //튀어오르는 기본 속도
     // public float gravity = -9.8f; IdleSpeed로 통함
     public float attackPower = 10f; //임시 공격력
-    public float IdleAttackPower => attackPower * 0.1f; //Idle 공격력 (클릭 안했을때)
+    public float IdleAttackPower => playerData.GetStat(StatType.atk) * 0.1f; //Idle 공격력 (클릭 안했을때)
     private float velocity;
     private float currentHeight;
     private float maxHeight = 0.5f;
@@ -20,7 +21,6 @@ public class Attack : MonoBehaviour
     public bool OnAttack;
     public float AttackDelay = 0.5f; //어택딜레이 임시
     public float AttackTimer = 0;
-
 
     //자동공격
     public float autoAttackDuration = 5f; //자동공격 시간
@@ -33,8 +33,6 @@ public class Attack : MonoBehaviour
     public CinemachineImpulseSource idleimpulseSource;
     public CinemachineImpulseSource attackimpulseSource;
     public CinemachineImpulseSource autoattackimpulseSource;
-    public ParticleSystem attackParticle;
-    public TrailRenderer trailRenderer;
 
     public void IdleTriggerImpulse()
     {
@@ -53,22 +51,13 @@ public class Attack : MonoBehaviour
     void Start()
     {
         currentHeight = transform.position.y;
-        trailRenderer.emitting = false;
+
     }
 
     void Update()
     {
         PlayerAttack();
         AttackTimer += Time.deltaTime;
-        if (OnAttack||OnAuto)
-        {
-
-            trailRenderer.emitting = true;
-        }
-        else
-        {
-            trailRenderer.emitting = false;
-        }
     }
     public void PlayerAttack()
     {
@@ -82,7 +71,6 @@ public class Attack : MonoBehaviour
                 OnAttack = true;
                 isJump = false;
                 velocity = -IdleSpeed * 2f; // 빠르게 낙하
-
             }
 
         }
@@ -182,15 +170,13 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Enemy dmg = other.gameObject.GetComponent<Enemy>();
-        //DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
+        //Enemy dmg = other.gameObject.GetComponent<Enemy>();
+        DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
         
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             Debug.Log("충돌함");
-            attackParticle.Play();
-
-
+            
             if (OnAttack) // 클릭했을때 공격
             {
                 GetComponent<Attack>().AttackTriggerImpulse();
@@ -199,11 +185,10 @@ public class Attack : MonoBehaviour
             }
             else if(!OnAttack && !OnAuto) //가만히 있을때
             {
-                Debug.Log("idle");
                 GetComponent<Attack>().IdleTriggerImpulse();
-                dmg.TakeDamage(IdleAttackPower); 
+                dmg.TakeDamage(IdleAttackPower);
             }
-            
+
 
             if (OnAuto) //자동공격
             {
