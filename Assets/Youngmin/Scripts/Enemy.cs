@@ -42,6 +42,12 @@ public class Enemy : MonoBehaviour
 
     {
         Debug.Log("Enemy destroyed!");
+        if (enemyGenerator!=null)
+        {
+            enemyGenerator.OnLayerDestroyed();
+
+
+        }
         
         // 파괴 이펙트 실행
         StartCoroutine(DestroyEffect());
@@ -71,11 +77,11 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
     
-   // // 테스트용 클릭 함수
-   //  void OnMouseDown()
-   //  {
-   //      Debug.Log("층 클릭됨!");
-   //      TakeDamage(maxHP); // 한 번에 파괴
-   //  }
+    // 테스트용 클릭 함수
+     void OnMouseDown()
+     {
+         Debug.Log("층 클릭됨!");
+         TakeDamage(maxHP); // 한 번에 파괴
+     }
 
 }
