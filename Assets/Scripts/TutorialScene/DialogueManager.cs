@@ -55,7 +55,7 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false;
         speakerNameText.text = "";
         typer.dialogueText.text = "";
-
+        FadeManager.Instance.FadeTo(0.0f);
         Debug.Log("대화 종료");
     }
 }

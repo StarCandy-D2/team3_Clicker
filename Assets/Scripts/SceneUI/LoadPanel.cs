@@ -32,9 +32,10 @@ public class LoadPanel : MonoBehaviour
             btn.GetComponent<Button>().onClick.AddListener(() =>
             {
                 gameManager.LoadPlayerDataFromJson(fileName);
-             
+
+                //버튼이 클릭되었을 때만 씬 전환
+                FadeManager.Instance.FadeOutAndLoadScene("UFOScene");
             });
         }
-        UnityEngine.SceneManagement.SceneManager.LoadScene("UFOScene");
     }
 }

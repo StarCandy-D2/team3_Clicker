@@ -24,10 +24,21 @@ public class FadeManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
+        if (fadeImage != null)
+        {
+            Color color = fadeImage.color;
+            color.a = 1f;
+            fadeImage.color = color;
+        }
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "StartScene")
+        {
+            FadeTo(0f, defaultFadeTime); // StartScene에서 수동 호출
+        }
+    }
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -50,6 +61,8 @@ public class FadeManager : MonoBehaviour
 
     private IEnumerator FadeRoutine(float targetAlpha, float duration)
     {
+        Debug.Log($"[Fade] 시작: targetAlpha = {targetAlpha}, duration = {duration}");
+
         Color color = fadeImage.color;
         float startAlpha = color.a;
         float time = 0f;
