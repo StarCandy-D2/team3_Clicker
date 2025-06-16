@@ -62,9 +62,7 @@ public class ShopUI : MonoBehaviour
         if (level < _weaponDatas[current].UpgradeStats.Count)
         {
             WeaponData weapon = _weaponDatas[current];
-           
-            // //Upgrade가 0이면 UpgradeStat[0]을 가져온다. 결국 1강할 때 스텟이 바큄.
-            // WeaponData.UpgradeData preview = _weaponDatas[current].UpgradeStats[level];
+            
             _attackText[current].text = weapon.Attack.ToString();
             _criticalText[current].text = weapon.Critical.ToString();
             _durabilityText[current].text = weapon.CurrentDurability.ToString();
@@ -145,8 +143,8 @@ public class ShopUI : MonoBehaviour
             // float finalAtk = baseAtk * (1f + stat.attack);
             // float finalCrit = baseCrit * (1f + stat.Critical);
             
-            float finalAtk = baseAtk * (1f + upgradedStat.Attack);
-            float finalCrit = baseCrit * (1f + upgradedStat.Critical);
+            float finalAtk = baseAtk + (1f * upgradedStat.Attack);
+            float finalCrit = baseCrit + (1f * upgradedStat.Critical);
             
             //_playerData.SetStat(StatType.atk, finalAtk);
             //_playerData.SetStat(StatType.critRate, finalCrit);
@@ -187,8 +185,8 @@ public class ShopUI : MonoBehaviour
         {
             WeaponData.UpgradeData stat = currentWeapon.UpgradeStats[currentWeapon.Upgrade];
 
-            currentWeapon.Attack = stat.Attack;
-            currentWeapon.Critical = stat.Critical;
+            // currentWeapon.Attack = stat.Attack;
+            // currentWeapon.Critical = stat.Critical;
             currentWeapon.CurrentDurability = stat.Durability;
             currentWeapon.NeedGold = stat.cost;
             currentWeapon.Level = stat.UpgradeLevel;
@@ -201,7 +199,7 @@ public class ShopUI : MonoBehaviour
             }
             
             ShowSendError("업그레이드를 완료하였습니다", Color.green);
-            
+            EquipButton();
             PayGold();
             UpdateWeaponUI();
         }
