@@ -61,3 +61,4 @@ public class PlayerData : ScriptableObject
         SetStat(StatType.goldGain, goldGain);
     }
 }
+

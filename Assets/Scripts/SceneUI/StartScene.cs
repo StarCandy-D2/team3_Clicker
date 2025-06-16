@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using PlayerUpgrade;
+using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -41,9 +42,9 @@ public class StartScene : MonoBehaviour
         PlayerData playerData = GameManager.Instance.playerData;
 
         playerData.userName = enteredName;
-        playerData.Oxygen = 100f;
-        playerData.atk = 10f;
-        playerData.gold = 0f;
+        playerData.SetStat(StatType.Oxygen,100f);
+        playerData.SetStat(StatType.atk,10f);
+        playerData.SetStat(StatType.Gold,0f);
         // 초기값 설정 등...
 
         // 저장도 가능하다면

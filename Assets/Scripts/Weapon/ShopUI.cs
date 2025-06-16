@@ -135,8 +135,8 @@ public class ShopUI : MonoBehaviour
         // float baseAtk = _playerData.GetStat(StatementType.atk);
         // float baseCrit = _playerData.GetStat(StatementType.critRate);
         
-        float baseAtk = _playerData.atk;
-        float baseCrit = _playerData.critRate;
+        float baseAtk = _playerData.GetStat(StatType.atk);
+        float baseCrit = _playerData.GetStat(StatType.critRate);
 
         if (upgradeLevel < equipped.UpgradeStats.Count)
         {

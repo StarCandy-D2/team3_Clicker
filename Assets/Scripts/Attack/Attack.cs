@@ -215,7 +215,7 @@ public class Attack : MonoBehaviour
 
         float randomValue = Random.value;
         float iscritical ;
-        if (playerData.critRate / 100 >= randomValue)
+        if (playerData.GetStat(StatType.critRate) / 100 >= randomValue)
         {
             iscritical = 2f;
 
