@@ -223,12 +223,12 @@ public class Attack : MonoBehaviour
 
             iscritical = 1f;
         }
-        Debug.Log(iscritical);
+        Debug.Log($"{iscritical}ddddd");
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             Debug.Log("충돌함");
             attackParticle.Play();
-
+             
 
             if (OnAttack) // 클릭했을때 공격
             {
