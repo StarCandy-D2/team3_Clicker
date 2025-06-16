@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
+
     [Header("스테이지별 데이터")] 
     [SerializeField] private StageData[] stageDataArray;
 
@@ -13,17 +15,18 @@ public class EnemyGenerator : MonoBehaviour
 
     [Header("생성 설정")] 
     [SerializeField] private int preloadLayers = 10;
+
     [SerializeField] private Transform worldContainer;
-    
+
     private Queue<System.Action> destroyQueue = new Queue<System.Action>();
     private bool isProcessingQueue = false;
-    
+
 
     public List<Enemy> activeLayers = new List<Enemy>(); // GameLayer → Enemy로 변경
 
     private int currentLayerIndex = 0;
     private float currentWorldY = 0f;
-   
+
 
     void Start()
     {
@@ -69,11 +72,12 @@ public class EnemyGenerator : MonoBehaviour
             nextAction.Invoke();
         }
     }
-    
-    
+
+
 
     public void GenerateLayer()
     {
+
         int generationStage = (totalLayerGenerated / 100) + 1;
         StageData stageData = GetStageData(generationStage);
         
@@ -90,6 +94,7 @@ public class EnemyGenerator : MonoBehaviour
         float newLayerY = -((activeLayers.Count) * standardHeight);
         layerObject.transform.position = new Vector3(0, newLayerY-1.3f, 0); //최초 생성 위치 y값에서 조정가능
         
+
         // Enemy 컴포넌트 가져오기
         Enemy layerEnemy = layerObject.GetComponent<Enemy>();
         if (layerEnemy != null)
@@ -148,7 +153,7 @@ public class EnemyGenerator : MonoBehaviour
 
     private System.Collections.IEnumerator SmoothMoveWorld()
     {
-       
+
 
 
         Vector3 startPos = worldContainer.position; // 시작
@@ -171,7 +176,7 @@ public class EnemyGenerator : MonoBehaviour
         }
 
         worldContainer.position = targetPos;
-       
+
     }
     
     

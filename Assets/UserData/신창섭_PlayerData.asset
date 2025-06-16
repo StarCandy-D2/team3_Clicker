@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userName: "\uC2E0\uCC3D\uC12D"
   Oxygen: 0
-  atk: 0
-  critRate: 0
-  gold: 9999700
+  atk: 10
+  critRate: 11
+  gold: 58649
   goldGain: 0

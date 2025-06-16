@@ -40,6 +40,7 @@ public class Enemy : MonoBehaviour
     void Die()  
 
     {
+
         
         if (GameManager.Instance != null && GameManager.Instance.playerData != null)
         {
@@ -64,6 +65,7 @@ public class Enemy : MonoBehaviour
         if (enemyGenerator != null)
         {
             enemyGenerator.OnLayerDestroyed();
+
         }
         
         // 파괴 이펙트 실행
@@ -94,11 +96,13 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
     
+
    // 테스트용 클릭 함수
     void OnMouseDown()
     {
         Debug.Log("층 클릭됨!");
         TakeDamage(maxHP); // 한 번에 파괴
     }
+
 
 }
