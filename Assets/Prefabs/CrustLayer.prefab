@@ -58,9 +58,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 0
-  currentHP: 0
-  enemyIndex: 0
-  parentLayer: {fileID: 0}
+  layerIndex: 0
+  enemyGenerator: {fileID: 0}
+  RubblePrefab: {fileID: 0}
 --- !u!212 &6990470069452946241
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 4112814578494391655}
   m_Layer: 6
   m_Name: CursteTile
-  m_TagString: Untagged
+  m_TagString: Crust
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 3863170901163668118}
   m_Layer: 6
   m_Name: CursteTile (6)
-  m_TagString: Untagged
+  m_TagString: Crust
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 3869976248595924170}
   m_Layer: 6
   m_Name: CursteTile (4)
-  m_TagString: Untagged
+  m_TagString: Crust
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 8273578351978808851}
   m_Layer: 6
   m_Name: CursteTile (10)
-  m_TagString: Untagged
+  m_TagString: Crust
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 8501115510447847973}
   m_Layer: 6
   m_Name: CursteTile (5)
-  m_TagString: Untagged
+  m_TagString: Crust
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 9126529772570123031}
   m_Layer: 6
   m_Name: CursteTile (7)
-  m_TagString: Untagged
+  m_TagString: Crust
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -674,7 +674,7 @@ GameObject:
   - component: {fileID: 7419359562584387343}
   m_Layer: 6
   m_Name: CursteTile (3)
-  m_TagString: Untagged
+  m_TagString: Crust
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -758,7 +758,7 @@ GameObject:
   - component: {fileID: 1788145113584417198}
   m_Layer: 6
   m_Name: CursteTile (2)
-  m_TagString: Untagged
+  m_TagString: Crust
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 4812382471274520804}
   m_Layer: 6
   m_Name: CursteTile (1)
-  m_TagString: Untagged
+  m_TagString: Crust
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -926,7 +926,7 @@ GameObject:
   - component: {fileID: 5498846337116321384}
   m_Layer: 6
   m_Name: CursteTile (9)
-  m_TagString: Untagged
+  m_TagString: Crust
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1010,7 +1010,7 @@ GameObject:
   - component: {fileID: 5228163115764727843}
   m_Layer: 6
   m_Name: CursteTile (8)
-  m_TagString: Untagged
+  m_TagString: Crust
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

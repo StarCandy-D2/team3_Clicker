@@ -60,6 +60,7 @@ MonoBehaviour:
   maxHP: 0
   layerIndex: 0
   enemyGenerator: {fileID: 0}
+  RubblePrefab: {fileID: 0}
 --- !u!212 &7117944753752832934
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -169,7 +170,7 @@ GameObject:
   - component: {fileID: 2647214745725203312}
   m_Layer: 6
   m_Name: UpperMantleTile (8)
-  m_TagString: Untagged
+  m_TagString: UpperMantle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -253,7 +254,7 @@ GameObject:
   - component: {fileID: 5267825766715526440}
   m_Layer: 6
   m_Name: UpperMantleTile (5)
-  m_TagString: Untagged
+  m_TagString: UpperMantle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -337,7 +338,7 @@ GameObject:
   - component: {fileID: 8354393629014742403}
   m_Layer: 6
   m_Name: UpperMantleTile (1)
-  m_TagString: Untagged
+  m_TagString: UpperMantle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,7 +422,7 @@ GameObject:
   - component: {fileID: 1485944305254995832}
   m_Layer: 6
   m_Name: UpperMantleTile (3)
-  m_TagString: Untagged
+  m_TagString: UpperMantle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -505,7 +506,7 @@ GameObject:
   - component: {fileID: 1089809875638029814}
   m_Layer: 6
   m_Name: UpperMantleTile (6)
-  m_TagString: Untagged
+  m_TagString: UpperMantle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -589,7 +590,7 @@ GameObject:
   - component: {fileID: 544950063259584339}
   m_Layer: 6
   m_Name: UpperMantleTile (7)
-  m_TagString: Untagged
+  m_TagString: UpperMantle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -673,7 +674,7 @@ GameObject:
   - component: {fileID: 5510203393155311058}
   m_Layer: 6
   m_Name: UpperMantleTile
-  m_TagString: Untagged
+  m_TagString: UpperMantle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -757,7 +758,7 @@ GameObject:
   - component: {fileID: 8361104752092297439}
   m_Layer: 6
   m_Name: UpperMantleTile (4)
-  m_TagString: Untagged
+  m_TagString: UpperMantle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -841,7 +842,7 @@ GameObject:
   - component: {fileID: 2706677948734320288}
   m_Layer: 6
   m_Name: UpperMantleTile (9)
-  m_TagString: Untagged
+  m_TagString: UpperMantle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -925,7 +926,7 @@ GameObject:
   - component: {fileID: 251621981103328801}
   m_Layer: 6
   m_Name: UpperMantleTile (10)
-  m_TagString: Untagged
+  m_TagString: UpperMantle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1009,7 +1010,7 @@ GameObject:
   - component: {fileID: 8057878393652927741}
   m_Layer: 6
   m_Name: UpperMantleTile (2)
-  m_TagString: Untagged
+  m_TagString: UpperMantle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
