@@ -12,22 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5846c720d6e4bad874f1281caa6907, type: 3}
   m_Name: weapon_silver
   m_EditorClassIdentifier: 
-  Attack: 0
-  Critical: 0
+  Attack: 10
+  Critical: 11
   NeedGold: 1000
-  Level: 0
+  Level: 1
   WeaponName: "\uC740\uC0BD"
   WeaponIcon: {fileID: 21300000, guid: e7940ac5cca5941c69d6e5ca1d751d07, type: 3}
   AutoAttackDuration: 1
-  Durability: 0
-  DurabilityRecovery: 10
+  CurrentDurability: 90
+  MaxDurability: 0
   Upgrade: 0
   UpgradeStats:
-  - UpgradeLevel: 0
-    Attack: 9
-    Critical: 10
-    cost: 0
-    Durability: 90
   - UpgradeLevel: 1
     Attack: 10
     Critical: 11
@@ -53,5 +48,5 @@ MonoBehaviour:
     Critical: 15
     cost: 1400
     Durability: 300
-  IsEquipped: 1
+  IsEquipped: 0
   IsUnlocked: 1
