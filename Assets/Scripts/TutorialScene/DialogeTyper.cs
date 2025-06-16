@@ -8,7 +8,6 @@ public class DialogueTyper : MonoBehaviour
     public float typingSpeed = 0.01f;
     public AudioSource audioSource;
     public AudioClip typeSFX;
-    public float typingSpeed = 0.04f;
     public bool IsTyping { get; private set; }
 
     public void StartDialogue(string message)
