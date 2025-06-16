@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BGMManager : MonoBehaviour
@@ -9,42 +10,43 @@ public class BGMManager : MonoBehaviour
     public AudioClip musicB;
     public AudioClip musicC;
 
-    //private bool isInMusicZone = false;
+    private bool isInMusicZone = false;
 
     private AudioSource audioSource;
     //private Transform player;
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+    }
+
+    
+
+    private void Start()
+    {
         audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            Debug.LogWarning("AudioSource가 없어서 새로 추가합니다.");
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
-
         audioSource.loop = true;
-        audioSource.volume = PlayerPrefs.GetFloat("BGMVolume", 0.1f);
 
+        float savedVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
+        audioSource.volume = savedVolume;
         SceneManager.sceneLoaded += OnSceneLoaded;
-        OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+        Debug.Log(SceneManager.GetActiveScene().name);
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("dd");
         switch (scene.name)
         {
             case "StartScene":
                 PlayMusic(musicA);
-                break;       
+                break;
             case "UFOScene":
                 PlayMusic(musicB);
                 break;
@@ -53,22 +55,22 @@ public class BGMManager : MonoBehaviour
                 break;
         }
     }
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        { SceneManager.LoadScene("UFOScene"); }
-    }
+    //void Update()
+    //{
+    //    if (SceneManager.GetActiveScene().name != "MainScene") return;
+
+    //    if (player == null)
+    //    {
+    //        GameObject playerObj = GameObject.FindWithTag("Player");
+    //        if (playerObj != null)
+    //            player = playerObj.transform;
+    //        return;
+    //    }
+    //}
     public void PlayMusic(AudioClip clip)
     {
-        if (clip == null)
-        {
-            Debug.LogWarning("PlayMusic()에 null AudioClip이 전달되었습니다!");
-            return;
-        }
-
-        Debug.Log($"PlayMusic 호출: {clip.name}");
-
-        //if (audioSource.clip == clip) return;
+        Debug.Log($"{clip.name}");
+        if (audioSource.clip == clip) return;
 
         audioSource.clip = clip;
         audioSource.Play();
@@ -84,6 +86,7 @@ public class BGMManager : MonoBehaviour
         audioSource.volume = volume;
         PlayerPrefs.SetFloat("BGMVolume", volume);
     }
+
     public float GetVolume()
     {
         return audioSource.volume;
