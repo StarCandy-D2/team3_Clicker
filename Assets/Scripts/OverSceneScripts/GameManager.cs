@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿using PlayerUpgrade;
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using PlayerUpgrade;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -22,13 +23,15 @@ public class GameManager : MonoBehaviour
     {
         UserData saveData = new UserData
         {
-            userName = playerData.userName,
-            Oxygen = playerData.GetStat(StatType.Oxygen),
-            atk = playerData.GetStat(StatType.atk),
-            critRate = playerData.GetStat(StatType.critRate),
-            gold = playerData.GetStat(StatType.Gold),
-            goldGain = playerData.GetStat(StatType.goldGain),
+            userName = playerData.userName
         };
+
+        // 현재 PlayerData의 statList 내용을 모두 복사
+        foreach (StatType stat in Enum.GetValues(typeof(StatType)))
+        {
+            float value = playerData.GetStat(stat);
+            saveData.SetStat(stat, value);
+        }
 
         userDataManager.SaveUserData(saveData, playerData.userName);
     }
@@ -39,11 +42,11 @@ public class GameManager : MonoBehaviour
         if (loaded != null)
         {
             playerData.userName = loaded.userName;
-            playerData.SetStat(StatType.Oxygen, loaded.Oxygen);
-            playerData.SetStat(StatType.atk, loaded.atk);
-            playerData.SetStat(StatType.critRate, loaded.critRate);
-            playerData.SetStat(StatType.Gold, loaded.gold);
-            playerData.SetStat(StatType.goldGain, loaded.goldGain);
+
+            foreach (StatEntry statEntry in loaded.statList)
+            {
+                playerData.SetStat(statEntry.statType, statEntry.value);
+            }
         }
     }
 }
