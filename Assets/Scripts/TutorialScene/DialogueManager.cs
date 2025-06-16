@@ -4,86 +4,58 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public DialogueTyper[] typers;               // 텍스트
-    public TMP_Text[] speakerNameTexts;          // 화자
-    public Animator[] dialogueAnimators; //애니메이션
-    private List<DialogueLine> dialogueLines;    // 전체 대사 목록
-    private int currentLineIndex = 0;
-    private bool isDialogueActive = false;
-    public Animator skip;
+    public DialogueTyper typer;
+    public TMP_Text speakerNameText;
 
+    private Queue<DialogueLine> dialogueQueue = new Queue<DialogueLine>();
+    private bool isDialogueActive = false;
+    public DialogueTrigger DialogueTrigger;
+    void Start()
+    {
+        DialogueTrigger.TriggerDialogue(); // 테스트용 강제 실행
+    }
     public void StartDialogue(List<DialogueLine> lines)
     {
-        if (isDialogueActive) return; // 중복 방지
 
-        dialogueLines = lines;
-        currentLineIndex = 0;
-        isDialogueActive = true;
-
-        ShowCurrentLine();
-    }
-
-    void Update()
-    {
-        if (isDialogueActive && Input.GetMouseButtonDown(0))
+        dialogueQueue.Clear();
+        foreach (var line in lines)
         {
-            // 타이핑 중이면 클릭 무시
-            if (currentLineIndex < typers.Length && typers[currentLineIndex].IsTyping)
-                return;
-
-            if (currentLineIndex < dialogueLines.Count)
-            {
-                DialogueLine currentLine = dialogueLines[currentLineIndex];
-
-                // 애니메이션 재생
-                if (currentLine.playAnimation &&
-                    currentLineIndex < dialogueAnimators.Length &&
-                    dialogueAnimators[currentLineIndex] != null) //애니메이션 true일때만
-                {
-                    Debug.Log(dialogueAnimators[currentLineIndex]);
-                    dialogueAnimators[currentLineIndex].SetTrigger("Show"); //트리거로 재생
-                }
-
-                // 다음 대사로 이동하고 출력
-                currentLineIndex++;
-                ShowCurrentLine();
-            }
+            dialogueQueue.Enqueue(line);
         }
+
+        isDialogueActive = true;
+        ShowNextLine();
     }
 
-    void ShowCurrentLine()
+    public void ShowNextLine()
     {
-        if (currentLineIndex >= dialogueLines.Count)
+
+        if (!isDialogueActive)
+        {
+            return;
+        }
+
+        if (dialogueQueue.Count == 0)
         {
             EndDialogue();
             return;
         }
 
-        DialogueLine line = dialogueLines[currentLineIndex];
+        DialogueLine line = dialogueQueue.Dequeue();
 
-        if (currentLineIndex < typers.Length && currentLineIndex < speakerNameTexts.Length)
-        {
-            speakerNameTexts[currentLineIndex].text = line.speaker;
-            typers[currentLineIndex].StartDialogue(line.message);
+        if (speakerNameText != null)
+            speakerNameText.text = line.speaker;
 
-            
-            
-        }
+        typer.StartDialogue(line.message);
     }
 
-    void EndDialogue()
+
+    public void EndDialogue()
     {
         isDialogueActive = false;
-
+        speakerNameText.text = "";
+        typer.dialogueText.text = "";
+        FadeManager.Instance.FadeTo(0.0f);
         Debug.Log("대화 종료");
     }
-   public void Skip()
-    {
-
-        skip.SetTrigger("Show");
-        isDialogueActive = false;
-        
-    }
-
-    
 }

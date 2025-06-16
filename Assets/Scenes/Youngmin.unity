@@ -414,7 +414,6 @@ MonoBehaviour:
   currentLayer: 1
   maxLayersPerStage: 100
   sessionGold: 0
-  stageGoldRewards: 0a0000000f00000019000000280000003c000000
 --- !u!1 &669442776
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +439,9 @@ Transform:
   m_GameObject: {fileID: 669442776}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+
   m_LocalPosition: {x: 0, y: 0, z: 0}
+
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -734,7 +735,9 @@ Transform:
   m_GameObject: {fileID: 1475063238}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1034,7 +1037,9 @@ Transform:
   m_GameObject: {fileID: 1963985952}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+
   m_LocalPosition: {x: 0, y: 0, z: 0}
+
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1052,15 +1057,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e007f90d94390cb48997940d8189be55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageDataArray:
-  - {fileID: 11400000, guid: fed27bcf4f4fd994f84c0eec7a165686, type: 2}
-  - {fileID: 11400000, guid: 4c91de37a842641419822007c7be1eed, type: 2}
-  - {fileID: 11400000, guid: 7cd75bc43da9b6d4eb767f79c14aef97, type: 2}
-  - {fileID: 11400000, guid: 15871ad6c344efd4391c053b67c83017, type: 2}
-  - {fileID: 11400000, guid: ddde2c149b8b2dc438cd243a0d1d09f4, type: 2}
+  currentStageData: {fileID: 11400000, guid: fed27bcf4f4fd994f84c0eec7a165686, type: 2}
+
   preloadLayers: 10
+
   worldContainer: {fileID: 669442777}
-  activeLayers: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

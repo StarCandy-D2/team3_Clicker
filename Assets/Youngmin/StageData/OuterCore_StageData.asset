@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: OuterCore_StageData
   m_EditorClassIdentifier: 
   stageName: 
-  stageLevel: 4
+  stageLevel: 0
   totalLayers: 100
   baseLayerHP: 1
-  hpMultiplier: 5
-  layerHeight: 0.6
-  layerPrefab: {fileID: 1219370270669919687, guid: 21792080f81db7a49a376dfccc9112d1, type: 3}
+  hpMultiplier: 1
+  stageColor: {r: 1, g: 1, b: 1, a: 1}
+  layerSprite: {fileID: 0}
+  layerMaterial: {fileID: 0}
   bossPrefab: {fileID: 0}

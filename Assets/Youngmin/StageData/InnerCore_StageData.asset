@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: InnerCore_StageData
   m_EditorClassIdentifier: 
   stageName: 
-  stageLevel: 5
+  stageLevel: 0
   totalLayers: 100
   baseLayerHP: 1
   hpMultiplier: 1
-  layerHeight: 0.6
-  layerPrefab: {fileID: 1068504377347183833, guid: 93291657572fffb4fb8ff2698efcd137, type: 3}
+  stageColor: {r: 1, g: 1, b: 1, a: 1}
+  layerSprite: {fileID: 0}
+  layerMaterial: {fileID: 0}
   bossPrefab: {fileID: 0}

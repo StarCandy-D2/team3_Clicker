@@ -26,7 +26,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHP -= damage;
-        
+
+        Debug.Log($"Enemy damaged! HP: {currentHP}/{maxHP}");
         
         if (currentHP <= 0)
         {
@@ -40,31 +41,11 @@ public class Enemy : MonoBehaviour
     void Die()  
 
     {
-
-        
-        if (GameManager.Instance != null && GameManager.Instance.playerData != null)
-        {
-            int goldReward = 10;
-            if (StageUIManager.Instance != null)
-            {
-                goldReward = StageUIManager.Instance.GetCurrentStageGoldReward();
-            }
-            GameManager.Instance.playerData.gold += goldReward;
-
-            if (StageUIManager.Instance != null)
-            {
-                StageUIManager.Instance.AddSessionGold(goldReward);
-            }
-        }
-
-        if (StageUIManager.Instance != null)
-        {
-            StageUIManager.Instance.OnLayerCleared();
-        }
-
-        if (enemyGenerator != null)
+        Debug.Log("Enemy destroyed!");
+        if (enemyGenerator!=null)
         {
             enemyGenerator.OnLayerDestroyed();
+
 
         }
         
@@ -96,13 +77,11 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
     
-
-   // 테스트용 클릭 함수
-    //void OnMouseDown()
-    //{
-    //    Debug.Log("층 클릭됨!");
-    //    TakeDamage(maxHP); // 한 번에 파괴
-    //}
-
+    // 테스트용 클릭 함수
+     void OnMouseDown()
+     {
+         Debug.Log("층 클릭됨!");
+         TakeDamage(maxHP); // 한 번에 파괴
+     }
 
 }
