@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Crust_StageData
   m_EditorClassIdentifier: 
   stageName: Crust_StageData
-  stageLevel: 0
+  stageLevel: 1
   totalLayers: 100
   baseLayerHP: 3
   hpMultiplier: 1
