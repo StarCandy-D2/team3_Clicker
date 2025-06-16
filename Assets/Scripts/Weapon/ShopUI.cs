@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -128,20 +129,42 @@ public class ShopUI : MonoBehaviour
         equipped.IsEquipped = true;
 
         int upgradeLevel = equipped.Upgrade;
+        
+        // 지금 배열코드가없어서 임시로 작성 주석
+        // float baseAtk = _playerData.GetStat(StatementType.atk);
+        // float baseCrit = _playerData.GetStat(StatementType.critRate);
+        
+        float baseAtk = _playerData.atk;
+        float baseCrit = _playerData.critRate;
 
         if (upgradeLevel < equipped.UpgradeStats.Count)
         {
             WeaponData.UpgradeData upgradedStat = equipped.UpgradeStats[upgradeLevel];
-            _playerData.atk = upgradedStat.Attack;
-            _playerData.critRate =  upgradedStat.Critical;
+
+            // //배열이 있다는 전제의 계산 로직
+            // float finalAtk = baseAtk * (1f + stat.attack);
+            // float finalCrit = baseCrit * (1f + stat.Critical);
+            
+            float finalAtk = baseAtk * (1f + upgradedStat.Attack);
+            float finalCrit = baseCrit * (1f + upgradedStat.Critical);
+            
+            //_playerData.SetStat(StatType.atk, finalAtk);
+            //_playerData.SetStat(StatType.critRate, finalCrit);
+            
+            _playerData.atk = finalAtk;
+            _playerData.critRate =  finalCrit;
         }
         else
         {
+            //_playerData.SetStat(StatType.atk, baseAtk);
+            //_playerData.SetStat(StatType.critRate, baseCrit);
+            
             _playerData.atk = equipped.Attack;
             _playerData.critRate = equipped.Critical;
         }
             
         ShowSendError("장착을 완료했습니다.", Color.green);
+        UpdateWeaponUI();
     }
 
     public void HideEquipMarker()
@@ -250,6 +273,12 @@ public class ShopUI : MonoBehaviour
             currentWeapon.CurrentDurability = baseStat.Durability;
             currentWeapon.NeedGold = baseStat.cost;
             currentWeapon.Level = baseStat.UpgradeLevel;
+        }
+
+        if (_playerData.atk > 0)
+        {
+            _playerData.atk = 0;
+            _playerData.critRate = 0;
         }
 
         // UI 갱신
