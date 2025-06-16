@@ -130,6 +130,13 @@ public class ShopUI : MonoBehaviour
         equipped.IsEquipped = true;
 
         int upgradeLevel = equipped.Upgrade;
+        
+        // 지금 배열코드가없어서 임시로 작성 주석
+        // float baseAtk = _playerData.GetStat(StatementType.atk);
+        // float baseCrit = _playerData.GetStat(StatementType.critRate);
+
+        float baseAtk = _playerData.GetStat(StatType.atk);
+        float baseCrit = _playerData.GetStat(StatType.critRate);
 
         if (upgradeLevel < equipped.UpgradeStats.Count)
         {
@@ -144,6 +151,7 @@ public class ShopUI : MonoBehaviour
         }
             
         ShowSendError("장착을 완료했습니다.", Color.green);
+        UpdateWeaponUI();
     }
 
     public void HideEquipMarker()
