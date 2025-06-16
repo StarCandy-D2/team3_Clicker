@@ -1,7 +1,7 @@
 ﻿
 using System.Collections;
 using System.Collections.Generic;
-
+using PlayerUpgrade;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -49,7 +49,9 @@ public class Enemy : MonoBehaviour
             {
                 goldReward = StageUIManager.Instance.GetCurrentStageGoldReward();
             }
-            GameManager.Instance.playerData.gold += goldReward;
+            // GameManager.Instance.playerData.GetStat(StatType.Gold) += goldReward;
+            var data = GameManager.Instance.playerData;
+            data.SetStat(StatType.Gold, data.GetStat(StatType.Gold) + goldReward);
 
             if (StageUIManager.Instance != null)
             {
