@@ -1,4 +1,5 @@
-﻿using PlayerUpgrade;
+﻿using PlayerUpgrad;
+using PlayerUpgrade;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,14 +24,22 @@ public class GameManager : MonoBehaviour
     {
         UserData saveData = new UserData
         {
-            userName = playerData.userName
+            userName = playerData.userName,
+            Oxygen = playerData.GetStat(StatType.Oxygen),
+            atk = playerData.GetStat(StatType.atk),
+            critRate = playerData.GetStat(StatType.critRate),
+            gold = playerData.GetStat(StatType.Gold),
+            goldGain = playerData.GetStat(StatType.goldGain),
+            upgradeLevels = new List<UpgradeSaveData>()
         };
 
-        // 현재 PlayerData의 statList 내용을 모두 복사
-        foreach (StatType stat in Enum.GetValues(typeof(StatType)))
+        foreach (var upgrade in UpgradeManager.instance.upgradeData)
         {
-            float value = playerData.GetStat(stat);
-            saveData.SetStat(stat, value);
+            saveData.upgradeLevels.Add(new UpgradeSaveData
+            {
+                statName = upgrade.statName,
+                level = upgrade.level
+            });
         }
 
         userDataManager.SaveUserData(saveData, playerData.userName);
@@ -42,10 +51,24 @@ public class GameManager : MonoBehaviour
         if (loaded != null)
         {
             playerData.userName = loaded.userName;
+            playerData.SetStat(StatType.Oxygen, loaded.Oxygen);
+            playerData.SetStat(StatType.atk, loaded.atk);
+            playerData.SetStat(StatType.critRate, loaded.critRate);
+            playerData.SetStat(StatType.Gold, loaded.gold);
+            playerData.SetStat(StatType.goldGain, loaded.goldGain);
 
-            foreach (StatEntry statEntry in loaded.statList)
+            foreach (var upgradeSave in loaded.upgradeLevels)
             {
-                playerData.SetStat(statEntry.statType, statEntry.value);
+                var upgrade = UpgradeManager.instance.upgradeData.Find(u => u.statName == upgradeSave.statName);
+                if (upgrade != null)
+                {
+                    upgrade.level = upgradeSave.level;
+                    // 스탯 재계산 후 적용
+                    if (System.Enum.TryParse(upgrade.statName, out StatType stat))
+                    {
+                        playerData.SetStat(stat, upgrade.GetCurStatValue());
+                    }
+                }
             }
         }
     }

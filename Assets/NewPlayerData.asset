@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: NewPlayerData
   m_EditorClassIdentifier: 
   userName: test
-  Oxygen: 0
-  atk: 10
-  critRate: 20
-  gold: 0
-  goldGain: 0
+  statList:
+  - statType: 0
+    value: 100
+  - statType: 1
+    value: 10
+  - statType: 2
+    value: 10
+  - statType: 4
+    value: 0
+  - statType: 3
+    value: 100000

@@ -394,6 +394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 167271153}
+  - component: {fileID: 167271154}
   m_Layer: 5
   m_Name: goldgain
   m_TagString: Untagged
@@ -422,6 +423,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &167271154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167271152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a46a358f3d8e845aff85977e346ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statType: 4
 --- !u!1 &175807110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,10 +1854,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1473803208}
-        m_TargetAssemblyTypeName: PlayerUpgrad.UpgradeManager, Assembly-CSharp
-        m_MethodName: UpgradeStat
-        m_Mode: 5
+      - m_Target: {fileID: 167271154}
+        m_TargetAssemblyTypeName: UpgradeButtonHandler, Assembly-CSharp
+        m_MethodName: OnPressDown
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2141,6 +2155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 474373905}
+  - component: {fileID: 474373906}
   m_Layer: 5
   m_Name: critRate
   m_TagString: Untagged
@@ -2169,6 +2184,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &474373906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474373904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a46a358f3d8e845aff85977e346ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statType: 2
 --- !u!1 &506846641
 GameObject:
   m_ObjectHideFlags: 0
@@ -4439,6 +4467,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 882801049}
+  - component: {fileID: 882801050}
   m_Layer: 5
   m_Name: Oxygen
   m_TagString: Untagged
@@ -4467,6 +4496,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &882801050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882801048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a46a358f3d8e845aff85977e346ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statType: 0
 --- !u!1 &885962111
 GameObject:
   m_ObjectHideFlags: 0
@@ -4760,10 +4802,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1473803208}
-        m_TargetAssemblyTypeName: PlayerUpgrad.UpgradeManager, Assembly-CSharp
-        m_MethodName: UpgradeStat
-        m_Mode: 5
+      - m_Target: {fileID: 1343983553}
+        m_TargetAssemblyTypeName: UpgradeButtonHandler, Assembly-CSharp
+        m_MethodName: OnPressDown
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6617,6 +6659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1343983552}
+  - component: {fileID: 1343983553}
   m_Layer: 5
   m_Name: atk
   m_TagString: Untagged
@@ -6645,6 +6688,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1343983553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343983551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a46a358f3d8e845aff85977e346ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statType: 1
 --- !u!1 &1353165625
 GameObject:
   m_ObjectHideFlags: 0
@@ -6913,6 +6969,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393275128}
   m_CullTransparentMesh: 1
+--- !u!1 &1425014737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1425014739}
+  - component: {fileID: 1425014738}
+  m_Layer: 0
+  m_Name: UserDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1425014738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425014737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f7166f5ff3db24fa3f19d3c2d5db2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1425014739
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425014737}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1473803207 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6639835578952445064, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
@@ -7979,10 +8079,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1473803208}
-        m_TargetAssemblyTypeName: PlayerUpgrad.UpgradeManager, Assembly-CSharp
-        m_MethodName: UpgradeStat
-        m_Mode: 5
+      - m_Target: {fileID: 474373906}
+        m_TargetAssemblyTypeName: UpgradeButtonHandler, Assembly-CSharp
+        m_MethodName: OnPressDown
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8459,6 +8559,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780216558}
   m_CullTransparentMesh: 1
+--- !u!1 &1786660814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1786660816}
+  - component: {fileID: 1786660815}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1786660815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786660814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15df750c92b766441b460164d629736b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userDataManager: {fileID: 1425014738}
+  playerData: {fileID: 11400000, guid: 78b7083d7f5b1c24db0acf5ca6774413, type: 2}
+--- !u!4 &1786660816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786660814}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1810934985
 GameObject:
   m_ObjectHideFlags: 0
@@ -8888,10 +9034,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1473803208}
-        m_TargetAssemblyTypeName: PlayerUpgrad.UpgradeManager, Assembly-CSharp
-        m_MethodName: UpgradeStat
-        m_Mode: 5
+      - m_Target: {fileID: 882801050}
+        m_TargetAssemblyTypeName: UpgradeButtonHandler, Assembly-CSharp
+        m_MethodName: OnPressDown
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9767,3 +9913,5 @@ SceneRoots:
   - {fileID: 1579314578}
   - {fileID: 2063768572}
   - {fileID: 301898850}
+  - {fileID: 1786660816}
+  - {fileID: 1425014739}
