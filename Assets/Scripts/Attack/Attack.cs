@@ -21,7 +21,7 @@ public class Attack : MonoBehaviour
     public bool OnAttack;
     public float AttackDelay = 0.3f; //어택딜레이
     public float AttackTimer = 0;
-
+    
     public float Maxdurability => weaponData.MaxDurability; // 내구도 테스트 임시 변수
     public float CurrentDurability
     {
@@ -210,33 +210,46 @@ public class Attack : MonoBehaviour
     {
         Enemy dmg = other.gameObject.GetComponent<Enemy>();
         //DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
-        
+
+        float randomValue = Random.value;
+        float iscritical ;
+        if (playerData.critRate / 100 >= randomValue)
+        {
+            iscritical = 2f;
+
+        }
+        else
+        {
+
+            iscritical = 1f;
+        }
+        Debug.Log($"{iscritical}ddddd");
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             Debug.Log("충돌함");
             attackParticle.Play();
-
+             
 
             if (OnAttack) // 클릭했을때 공격
             {
                 GetComponent<Attack>().AttackTriggerImpulse();
-                dmg.TakeDamage(attackPower); //클릭 공격 데미지
+                dmg.TakeDamage(attackPower * iscritical); //클릭 공격 데미지
                 OnAttack = false;
             }
-            else if(!OnAttack && !OnAuto) //가만히 있을때
+            else if (!OnAttack && !OnAuto) //가만히 있을때
             {
                 GetComponent<Attack>().IdleTriggerImpulse();
-                dmg.TakeDamage(IdleAttackPower); //기본 공격 데미지
+                dmg.TakeDamage(IdleAttackPower * iscritical); //기본 공격 데미지
             }
-            
+
 
             if (OnAuto) //자동공격
             {
                 GetComponent<Attack>().AutoAttackTriggerImpulse();
-                dmg.TakeDamage(attackPower*1.2f); // 자동 공격 데미지 클릭 공격 데미지 1.2배율
+                dmg.TakeDamage(attackPower * 1.2f * iscritical); // 자동 공격 데미지 클릭 공격 데미지 1.2배율
             }
 
-            
+
         }
     }
 
