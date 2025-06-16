@@ -78,7 +78,7 @@ public class EnemyGenerator : MonoBehaviour
         
         // 현재 활성 층들의 개수를 기준으로 위치 계산
         float newLayerY = -((activeLayers.Count) * currentStageData.layerHeight);
-        layerObject.transform.position = new Vector3(0, newLayerY, 0);
+        layerObject.transform.position = new Vector3(0, newLayerY, 0); //최초 생성 위치 y값에서 조정가능
         
         // Enemy 컴포넌트 가져오기
         Enemy layerEnemy = layerObject.GetComponent<Enemy>();
