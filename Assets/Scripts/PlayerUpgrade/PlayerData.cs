@@ -7,7 +7,7 @@ using UnityEngine;
 [System.Serializable]
 public class StatEntry
 {
-    public PlayerUpgrade.StatType statType;
+    public StatType statType;
     public float value;
 }//
 
@@ -19,40 +19,31 @@ public class PlayerData : ScriptableObject
     [SerializeField]
     private List<StatEntry> statList = new();//
     
-    //StatType이 key인 딕셔너리
-    private Dictionary<StatType, float> statValues = new();
-    
     //StatType 변화시 OnStatChanged실행
     public event Action<StatType, float> OnStatChanged;
     
-    private void OnEnable()//
-    {
-        // 리스트를 Dictionary로 변환
-        statValues.Clear();
-        foreach (var entry in statList)
-        {
-            statValues[entry.statType] = entry.value;
-        }
-    }
-
-    
     //Stat값 가져오기
-    public float GetStat(StatType stat) => statValues.ContainsKey(stat) ? statValues[stat] : 0;
+    public float GetStat(StatType stat)
+    {
+        var entry = statList.Find(e => e.statType == stat);
+        return entry != null ? entry.value : 0f;
+    }
     
     //Stat값 설정
     public void SetStat(StatType stat, float value)
     {
-        if (!statValues.ContainsKey(stat) || statValues[stat] != value)
+        var entry = statList.Find(e => e.statType == stat);
+        if (entry != null)
         {
-            statValues[stat] = value;
-            
-            // 리스트에도 동기화 Gpt 코드
-            var entry = statList.Find(e => e.statType == stat);
-            if (entry != null)
+            if (entry.value != value)
+            {
                 entry.value = value;
-            else
-                statList.Add(new StatEntry { statType = stat, value = value });
-            
+                OnStatChanged?.Invoke(stat, value);
+            }
+        }
+        else
+        {
+            statList.Add(new StatEntry { statType = stat, value = value });
             OnStatChanged?.Invoke(stat, value);
         }
     }
