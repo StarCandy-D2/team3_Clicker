@@ -1,25 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    [Header("현재 스테이지")] 
+    [Header("현재 스테이지")]
     [SerializeField] private StageData currentStageData;
 
-    [Header("생성 설정")] 
+    [Header("생성 설정")]
     [SerializeField] private int preloadLayers = 5;
     [SerializeField] private Transform worldContainer;
-    
+
     private Queue<System.Action> destroyQueue = new Queue<System.Action>();
     private bool isProcessingQueue = false;
-    
+
 
     private List<Enemy> activeLayers = new List<Enemy>(); // GameLayer → Enemy로 변경
 
     private int currentLayerIndex = 0;
     private float currentWorldY = 0f;
-   
+
 
     void Start()
     {
@@ -65,21 +66,21 @@ public class EnemyGenerator : MonoBehaviour
             nextAction.Invoke();
         }
     }
-    
-    
+
+
 
     public void GenerateLayer()
     {
         if (currentStageData == null) return;
-        
+
 
         // 층 생성 - 항상 맨 아래(가장 낮은 위치)에 생성
         GameObject layerObject = Instantiate(currentStageData.layerPrefab, worldContainer);
-        
+
         // 현재 활성 층들의 개수를 기준으로 위치 계산
-        float newLayerY = -((activeLayers.Count) * currentStageData.layerHeight)-1.3f;
-        layerObject.transform.position = new Vector3(0, newLayerY, 0);
-        Debug.Log($"{newLayerY}2232");
+        float newLayerY = -((activeLayers.Count) * currentStageData.layerHeight);
+        layerObject.transform.position = new Vector3(0, newLayerY-1.3f, 0); //최초 생성 위치 y값에서 조정가능
+
         // Enemy 컴포넌트 가져오기
         Enemy layerEnemy = layerObject.GetComponent<Enemy>();
         if (layerEnemy != null)
@@ -128,13 +129,13 @@ public class EnemyGenerator : MonoBehaviour
 
     private System.Collections.IEnumerator SmoothMoveWorld()
     {
-       
+
 
 
         Vector3 startPos = worldContainer.position; // 시작
         Vector3 targetPos = new Vector3(0, currentWorldY, 0); // 타겟
 
-        float duration = 0.2f; // 이동 시간
+        float duration = 0.1f; // 이동 시간
 
         float elapsed = 0f;
 
@@ -151,7 +152,7 @@ public class EnemyGenerator : MonoBehaviour
         }
 
         worldContainer.position = targetPos;
-       
+
     }
 
 
