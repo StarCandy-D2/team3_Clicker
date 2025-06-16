@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public Attack Instance;
+    
     public PlayerData playerData;
     public WeaponData weaponData;
 
@@ -42,7 +42,11 @@ public class Attack : MonoBehaviour
     public CinemachineImpulseSource idleimpulseSource;
     public CinemachineImpulseSource attackimpulseSource;
     public CinemachineImpulseSource autoattackimpulseSource;
-    public ParticleSystem attackParticle;
+    public ParticleSystem Crust_Particle;
+    public ParticleSystem InnerCore_Particle;
+    public ParticleSystem LowerMantle_Particle;
+    public ParticleSystem OuterCore_Particle;
+    public ParticleSystem UpperMantle_Particle;
     public TrailRenderer trailRenderer;
 
     public void IdleTriggerImpulse()
@@ -227,8 +231,43 @@ public class Attack : MonoBehaviour
         Debug.Log($"{iscritical}ddddd");
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Debug.Log("충돌함");
-            attackParticle.Play();
+         
+
+            switch (other.gameObject.tag)
+            {
+                case "Crust":
+                    Crust_Particle.Play();
+
+                    Debug.Log("크러스트");
+                    break;
+
+                case "InnerCore":
+                    InnerCore_Particle.Play();
+                    Debug.Log("내핵");
+                    break;
+
+                case "OuterCore":
+                    OuterCore_Particle.Play();
+                    Debug.Log("외핵");
+                    break;
+
+                case "UpperMantle":
+                    UpperMantle_Particle.Play();
+                    Debug.Log("상부맨틀");
+                    break;
+                case "LowerMantle":
+                    LowerMantle_Particle.Play();
+                    Debug.Log("하부맨틀");
+                    break;
+
+            }
+
+
+
+
+
+
+
              
 
             if (OnAttack) // 클릭했을때 공격
