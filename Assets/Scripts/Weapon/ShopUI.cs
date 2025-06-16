@@ -25,6 +25,7 @@ public class ShopUI : MonoBehaviour
     [Header("WeaponDateList")]
     [SerializeField] private WeaponData[] _weaponDatas;
     private int _weaponDataIndex = 0;
+    private int _weaponDisplayIndex = 1;
     
     [Header("기타")]
     public GameObject equippanel;
@@ -59,13 +60,15 @@ public class ShopUI : MonoBehaviour
         //아직 최대가 아니면 다음 강화 스텟 미리 보여주기.
         if (level < _weaponDatas[current].UpgradeStats.Count)
         {
-            //Upgrade가 0이면 UpgradeStat[0]을 가져온다. 결국 1강할 때 스텟이 바큄.
-            WeaponData.UpgradeData preview = _weaponDatas[current].UpgradeStats[level];
-            _attackText[current].text = preview.Attack.ToString();
-            _criticalText[current].text = preview.Critical.ToString();
-            _durabilityText[current].text = preview.Durability.ToString();
-            _costText[current].text = $"{preview.cost.ToString()}G";
-            _levelText[current].text = $"Lv.{preview.UpgradeLevel.ToString()}";
+            WeaponData weapon = _weaponDatas[current];
+           
+            // //Upgrade가 0이면 UpgradeStat[0]을 가져온다. 결국 1강할 때 스텟이 바큄.
+            // WeaponData.UpgradeData preview = _weaponDatas[current].UpgradeStats[level];
+            _attackText[current].text = weapon.Attack.ToString();
+            _criticalText[current].text = weapon.Critical.ToString();
+            _durabilityText[current].text = weapon.Durability.ToString();
+            _costText[current].text = $"{weapon.NeedGold.ToString()}G";
+            _levelText[current].text = $"Lv.{weapon.Level.ToString()}";
         }
         else
         {
@@ -156,6 +159,7 @@ public class ShopUI : MonoBehaviour
             return;
         }
         
+            currentWeapon.Upgrade++;
         if (currentWeapon.Upgrade < currentWeapon.UpgradeStats.Count)
         {
             WeaponData.UpgradeData stat = currentWeapon.UpgradeStats[currentWeapon.Upgrade];
@@ -166,7 +170,6 @@ public class ShopUI : MonoBehaviour
             currentWeapon.NeedGold = stat.cost;
             currentWeapon.Level = stat.UpgradeLevel;
             
-            currentWeapon.Upgrade++;
 
             if (currentWeapon.IsEquipped)
             {
@@ -182,6 +185,7 @@ public class ShopUI : MonoBehaviour
         else
         {
             ShowSendError("최대 강화입니다",Color.yellow);
+            return;
         }
     }
 
