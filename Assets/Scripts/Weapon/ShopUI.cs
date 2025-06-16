@@ -33,6 +33,11 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private TMP_Text _sendErrorText;
     [SerializeField] private WeaponData[] _closeItemData;
     
+    [SerializeField] private float errorDisplayDuration = 2.5f; // 표시 시간
+    [SerializeField] private float typingSpeed = 0.05f; // 타이핑 속도
+    private Coroutine _errorCoroutine;
+    
+    
 
     private void Awake()
     {
@@ -115,7 +120,25 @@ public class ShopUI : MonoBehaviour
         {
             weapon.IsEquipped = false;
         }
-        _weaponDatas[_weaponDataIndex].IsEquipped = true;
+
+        WeaponData equipped = _weaponDatas[_weaponDataIndex];
+        equipped.IsEquipped = true;
+
+        int upgradeLevel = equipped.Upgrade;
+
+        if (upgradeLevel < equipped.UpgradeStats.Count)
+        {
+            WeaponData.UpgradeData upgradedStat = equipped.UpgradeStats[upgradeLevel];
+            _playerData.atk = upgradedStat.Attack;
+            _playerData.critRate =  upgradedStat.Critical;
+        }
+        else
+        {
+            _playerData.atk = equipped.Attack;
+            _playerData.critRate = equipped.Critical;
+        }
+            
+        ShowSendError("장착을 완료했습니다.", Color.green);
     }
 
     public void HideEquipMarker()
@@ -129,7 +152,7 @@ public class ShopUI : MonoBehaviour
 
         if (_playerData.gold < currentWeapon.NeedGold)
         {
-            ShowSendError($"골드가 부족합니다.");
+            ShowSendError($"골드가 부족합니다",Color.red);
             return;
         }
         
@@ -144,13 +167,21 @@ public class ShopUI : MonoBehaviour
             currentWeapon.Level = stat.UpgradeLevel;
             
             currentWeapon.Upgrade++;
+
+            if (currentWeapon.IsEquipped)
+            {
+                _playerData.atk = currentWeapon.Attack;
+                _playerData.critRate = currentWeapon.Critical;
+            }
+            
+            ShowSendError("업그레이드를 완료하였습니다", Color.green);
             
             PayGold();
             UpdateWeaponUI();
         }
         else
         {
-            ShowSendError("이미 최대 강화입니다.");
+            ShowSendError("최대 강화입니다",Color.yellow);
         }
     }
 
@@ -173,9 +204,30 @@ public class ShopUI : MonoBehaviour
         UpdateGoldUI();
     }
 
-    public void ShowSendError(string error)
+    public void ShowSendError(string error, Color color)
     {
-        _sendErrorText.text = error;
+        if (_errorCoroutine != null)
+        {
+            StopCoroutine(_errorCoroutine);
+        }
+
+        _errorCoroutine = StartCoroutine(TypeErrorMessage(error, color));
+        
+    }
+
+    IEnumerator TypeErrorMessage(string error, Color color)
+    {
+        _sendErrorText.text = "";
+        _sendErrorText.color = color;
+
+        for (int i = 0; i < error.Length; i++)
+        {
+            _sendErrorText.text += error[i];
+            yield return new WaitForSeconds(typingSpeed);
+        }
+        
+        yield return new WaitForSeconds(errorDisplayDuration);
+        _sendErrorText.text = "";
     }
     
     public void ResetUpgradeButton()
@@ -213,11 +265,13 @@ public class ShopUI : MonoBehaviour
             _closePanels[_currentIndex-1].SetActive(false);
             _openPanels[_currentIndex-1].SetActive(true);
             
+            ShowSendError("새로운 삽이 등장합니다", Color.white);
+            
             UpdateGoldUI();
         }
         else
         {
-            ShowSendError("골드 부족해요 땅 더 파고 오시죠?");
+            ShowSendError("골드가 부족합니다",Color.red);
         }
     }
 }
