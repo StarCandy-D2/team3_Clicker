@@ -235,7 +235,7 @@ Transform:
   m_GameObject: {fileID: 465083473}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -262,12 +262,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 0}
   IdleSpeed: 15
-  attackPower: 1
+  attackPower: 20
   isJump: 1
   isAttack: 1
   OnAttack: 0
   AttackDelay: 0.2
   AttackTimer: 0
+  Maxdurability: 10
+  CurrentDurability: 0
+  durabilityTimer: 0
   autoAttackDuration: 5
   autoAttackSpeed: 50
   OnAuto: 0
@@ -751,7 +754,7 @@ Transform:
   m_GameObject: {fileID: 1235913745}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.65, z: -7.6}
+  m_LocalPosition: {x: 0, y: -0.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5914,7 +5917,7 @@ Transform:
   m_GameObject: {fileID: 1776112290}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -10}
+  m_LocalPosition: {x: 0, y: 2, z: -11.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
