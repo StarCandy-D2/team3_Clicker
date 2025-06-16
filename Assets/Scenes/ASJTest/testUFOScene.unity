@@ -1130,18 +1130,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 425069446439861145, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: upgradeData.Array.data[0].statName
-      value: atk
-      objectReference: {fileID: 0}
-    - target: {fileID: 425069446439861145, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: upgradeData.Array.data[2].statName
-      value: critRate
-      objectReference: {fileID: 0}
-    - target: {fileID: 425069446439861145, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: upgradeData.Array.data[3].statName
-      value: goldGain
-      objectReference: {fileID: 0}
     - target: {fileID: 4727170968519222981, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1854,7 +1842,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1473803207}
         m_TargetAssemblyTypeName: PlayerUpgradeUIManager, Assembly-CSharp
-        m_MethodName: UpdateAllTexts
+        m_MethodName: UpdateCostTexts
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4774,7 +4762,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1473803207}
         m_TargetAssemblyTypeName: PlayerUpgradeUIManager, Assembly-CSharp
-        m_MethodName: UpdateAllTexts
+        m_MethodName: UpdateCostTexts
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7993,7 +7981,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1473803207}
         m_TargetAssemblyTypeName: PlayerUpgradeUIManager, Assembly-CSharp
-        m_MethodName: UpdateAllTexts
+        m_MethodName: UpdateCostTexts
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8902,7 +8890,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1473803207}
         m_TargetAssemblyTypeName: PlayerUpgradeUIManager, Assembly-CSharp
-        m_MethodName: UpdateAllTexts
+        m_MethodName: UpdateCostTexts
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

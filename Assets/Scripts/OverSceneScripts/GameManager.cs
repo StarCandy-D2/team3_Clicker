@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using PlayerUpgrade;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -23,11 +22,11 @@ public class GameManager : MonoBehaviour
         UserData saveData = new UserData
         {
             userName = playerData.userName,
-            Oxygen = playerData.GetStat(StatType.Oxygen),
-            atk = playerData.GetStat(StatType.atk),
-            critRate = playerData.GetStat(StatType.critRate),
-            gold = playerData.GetStat(StatType.Gold),
-            goldGain = playerData.GetStat(StatType.goldGain),
+            Oxygen = playerData.Oxygen,
+            atk = playerData.atk,
+            critRate = playerData.critRate,
+            gold = playerData.gold,
+            goldGain = playerData.goldGain
         };
 
         userDataManager.SaveUserData(saveData, playerData.userName);
@@ -39,11 +38,11 @@ public class GameManager : MonoBehaviour
         if (loaded != null)
         {
             playerData.userName = loaded.userName;
-            playerData.SetStat(StatType.Oxygen, loaded.Oxygen);
-            playerData.SetStat(StatType.atk, loaded.atk);
-            playerData.SetStat(StatType.critRate, loaded.critRate);
-            playerData.SetStat(StatType.Gold, loaded.gold);
-            playerData.SetStat(StatType.goldGain, loaded.goldGain);
+            playerData.Oxygen = loaded.Oxygen;
+            playerData.atk = loaded.atk;
+            playerData.critRate = loaded.critRate;
+            playerData.gold = loaded.gold;
+            playerData.goldGain = loaded.goldGain;
         }
     }
 }

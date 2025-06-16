@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using PlayerUpgrade;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace PlayerUpgrad
@@ -23,9 +21,9 @@ namespace PlayerUpgrad
             if (upgrade == null) return;
 
             float cost = upgrade.GetUpgradeCost();
-            if (playerData.GetStat(StatType.Gold) >= cost)
+            if (playerData.gold >= cost)
             {
-                playerData.SetStat(StatType.Gold, playerData.GetStat(StatType.Gold) - cost);
+                playerData.gold -= cost;
                 upgrade.level++;
 
                 SetUpgradeStat(upgrade);
@@ -40,16 +38,17 @@ namespace PlayerUpgrad
         {
             switch (upgrade.statName)
             {
-                case "atk": playerData.SetStat(StatType.atk, upgrade.GetCurStatValue()); break;
-                case "critRate": playerData.SetStat(StatType.critRate, upgrade.GetCurStatValue()); break;
-                case "Oxygen": playerData.SetStat(StatType.Oxygen, upgrade.GetCurStatValue()); break;
-                case "goldGain": playerData.SetStat(StatType.goldGain, upgrade.GetCurStatValue()); break;
+                case "atk": playerData.atk = upgrade.GetCurStatValue(); break;
+                case "critRate": playerData.critRate = upgrade.GetCurStatValue(); break;
+                case "Oxygen": playerData.Oxygen = upgrade.GetCurStatValue(); break;
+                case "goldGain": playerData.goldGain = upgrade.GetCurStatValue(); break;
             }
         }
 
         public void GetGold()//테스트용 임시 매서드
         {
-            playerData.SetStat(StatType.Gold,playerData.GetStat(StatType.Gold) + playerData.GetStat(StatType.goldGain));
+            playerData.gold += playerData.goldGain;
+            pUUI.Setgold();
         }
     }
 }

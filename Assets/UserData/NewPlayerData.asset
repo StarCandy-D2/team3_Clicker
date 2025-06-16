@@ -12,15 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958ce31a29fcd86458e9dc6abea670bb, type: 3}
   m_Name: NewPlayerData
   m_EditorClassIdentifier: 
-  userName: 
-  statList:
-  - statType: 0
-    value: 16
-  - statType: 1
-    value: 14
-  - statType: 2
-    value: 2
-  - statType: 3
-    value: 690
-  - statType: 4
-    value: 120
+  userName: "\uC2E0\uCC3D\uC12D"
+  Oxygen: 34
+  atk: 16
+  critRate: 1
+  gold: 4516
+  goldGain: 140
