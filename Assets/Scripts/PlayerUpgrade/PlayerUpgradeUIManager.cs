@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using PlayerUpgrad;
+using PlayerUpgrade;
 using TMPro;
 using UnityEngine;
 
@@ -21,41 +22,82 @@ public class PlayerUpgradeUIManager : MonoBehaviour
     public TMP_Text crirateText;
     public TMP_Text goldgainText;
     
+    private Dictionary<StatType, TMP_Text> statTextMap;
+    private Dictionary<StatType, TMP_Text> costTextMap;
+    
     void Start()
     {
-        UpdateCostTexts();
-        UpdateStatTexts();
-        Setgold();
+        Mapping();
+        UpdateAllTexts();
     }
 
-    public void UpdateCostTexts()
+    void Mapping()
     {
-        oxygencostText.text = GetCost("Oxygen");
-        atkcostText.text =GetCost("atk");
-        criratecostText.text = GetCost("critRate");
-        goldgaincostText.text =GetCost("goldGain");
-        Setgold();
-        UpdateStatTexts();
+        var data = upgradeManager.playerData;
 
-    }
-    public void UpdateStatTexts()
-    {
-        oxygenText.text = upgradeManager.playerData.Oxygen.ToString();
-        atkText.text = upgradeManager.playerData.atk.ToString();
-        crirateText.text = upgradeManager.playerData.critRate.ToString();
-        goldgainText.text = upgradeManager.playerData.goldGain.ToString();
-    }
+        statTextMap = new()
+        {
+            { StatType.Oxygen, oxygenText },
+            { StatType.atk, atkText },
+            { StatType.critRate, crirateText },
+            { StatType.goldGain, goldgainText },
+        };
 
-    private string GetCost(string statName)
-    {
-        var upgrade =  upgradeManager.upgradeData.Find(u => u.statName == statName);
-        string costText = upgrade.GetUpgradeCost().ToString();
-        return costText;
+        costTextMap = new()
+        {
+            { StatType.Oxygen, oxygencostText },
+            { StatType.atk, atkcostText },
+            { StatType.critRate, criratecostText },
+            { StatType.goldGain, goldgaincostText },
+        };
+
+        data.OnStatChanged += OnStatChanged;
     }
 
-    public void Setgold()
+    public void OnStatChanged(StatType stat, float value)
     {
-        goldgaintestText.text =  upgradeManager.playerData.goldGain.ToString();
-        goldText.text = upgradeManager.playerData.gold.ToString();
+        if (stat == StatType.Gold)
+        {
+            goldText.text = value.ToString();
+            UpdateCostColors(value);
+        }
+        else if (stat == StatType.goldGain)
+        {
+            goldgaintestText.text = value.ToString();
+        }
+
+        if (statTextMap.TryGetValue(stat, out var text))
+        {
+            text.text = value.ToString();
+        }
+    }
+    //UI 업데이트
+    public void UpdateAllTexts() //Gpt 코드
+    {
+        var data = upgradeManager.playerData;
+        
+        foreach (var kvp in statTextMap)
+        {
+            float value = upgradeManager.playerData.GetStat(kvp.Key);
+            kvp.Value.text = value.ToString();
+        }
+
+        goldText.text = data.GetStat(StatType.Gold).ToString();
+        goldgaintestText.text = data.GetStat(StatType.goldGain).ToString();
+        UpdateCostColors(data.GetStat(StatType.Gold));
+    }
+
+    //gold 부족시 빨간색 표시
+    private void UpdateCostColors(float currentGold)
+    {
+        foreach (var kvp in costTextMap)
+        {
+            var upgrade = upgradeManager.upgradeData.Find(u => u.statName == kvp.Key.ToString());
+            if (upgrade != null)
+            {
+                kvp.Value.text = upgrade.GetUpgradeCost().ToString();
+                kvp.Value.color = currentGold < upgrade.GetUpgradeCost() ? Color.red : Color.black;
+            }
+        }
     }
 }

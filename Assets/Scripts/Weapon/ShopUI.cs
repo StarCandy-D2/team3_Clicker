@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using PlayerUpgrade;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -67,7 +68,8 @@ public class ShopUI : MonoBehaviour
 
     public void UpdateGoldUI()
     {
-        _GoldText.text = _playerData.gold.ToString("N0") + "G";
+        _GoldText.text = _playerData.GetStat(StatType.Gold).ToString("N0") + "G";
+
     }
 
     public void OnClickNextButton()
@@ -117,7 +119,7 @@ public class ShopUI : MonoBehaviour
     {
         WeaponData currentWeapon = _weaponDatas[_weaponDataIndex];
 
-        if (_playerData.gold < currentWeapon.NeedGold)
+        if (_playerData.GetStat(StatType.Gold) < currentWeapon.NeedGold)
         {
             ShowSendError($"골드가 부족합니다.");
             return;
@@ -147,12 +149,12 @@ public class ShopUI : MonoBehaviour
     public void PayGold()
     {
         float upgradeCost = _weaponDatas[_weaponDataIndex].NeedGold;
-        float playerGold = _playerData.gold;
+        float playerGold = _playerData.GetStat(StatType.Gold);
     
         if (playerGold >= upgradeCost)
         {
             Debug.Log("골드 충분이요~ 바로 계산갑니데이.");
-            _playerData.gold -= upgradeCost;
+            _playerData.SetStat(StatType.Gold, _playerData.GetStat(StatType.Gold) - upgradeCost);
         }
         else
         {
@@ -192,10 +194,10 @@ public class ShopUI : MonoBehaviour
 
     public void OnClickBuyButton()
     {
-        if (_playerData.gold >= _weaponDatas[_currentIndex-1].NeedGold)
+        if (_playerData.GetStat(StatType.Gold) >= _weaponDatas[_currentIndex-1].NeedGold)
         {
             //골드 차감
-            _playerData.gold -= _weaponDatas[_currentIndex-1].NeedGold;
+            _playerData.SetStat(StatType.Gold, _playerData.GetStat(StatType.Gold) - _weaponDatas[_currentIndex-1].NeedGold);
             
             //구매처리
             _weaponDatas[_currentIndex-1].IsUnlocked = true;

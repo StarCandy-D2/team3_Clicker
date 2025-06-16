@@ -1,6 +1,7 @@
 ﻿using Cinemachine;
 using System.Collections;
 using System.Data.Common;
+using PlayerUpgrade;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
@@ -10,7 +11,7 @@ public class Attack : MonoBehaviour
     public float IdleSpeed = 5f; //튀어오르는 기본 속도
     // public float gravity = -9.8f; IdleSpeed로 통함
     public float attackPower = 10f; //임시 공격력
-    public float IdleAttackPower => playerData.atk * 0.1f; //Idle 공격력 (클릭 안했을때)
+    public float IdleAttackPower => playerData.GetStat(StatType.atk) * 0.1f; //Idle 공격력 (클릭 안했을때)
     private float velocity;
     private float currentHeight;
     private float maxHeight = 0.5f;
