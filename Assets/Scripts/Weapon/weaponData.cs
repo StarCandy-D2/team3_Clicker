@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +7,8 @@ public class WeaponData : ScriptableObject
 {
     //플레이어의 속성과 무기 속성이 달라서 합산해서 진행 할꺼라면 따로 만들어야함.
     [Header("기본 속성")]
-    public float Attack;
-    public float Critical;
+    public float Attack =5f;
+    public float Critical =5f;
     public float NeedGold;
     public float Level;
     public string WeaponName;

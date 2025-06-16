@@ -235,7 +235,7 @@ Transform:
   m_GameObject: {fileID: 465083473}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -260,15 +260,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68957023f1e41804e88a890a349d400c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 0}
+  playerData: {fileID: 11400000, guid: 78b7083d7f5b1c24db0acf5ca6774413, type: 2}
+  weaponData: {fileID: 11400000, guid: d2a4b522e3bee314ea92cc69b35bcfdf, type: 2}
   IdleSpeed: 15
-  attackPower: 50
   isJump: 1
   isAttack: 1
   OnAttack: 0
-  AttackDelay: 0.2
+  AttackDelay: 0.3
   AttackTimer: 0
-  autoAttackDuration: 5
+  durabilityTimer: 0
+  recoveryDurabilityTime: 5
   autoAttackSpeed: 50
   OnAuto: 0
   idleimpulseSource: {fileID: 555919312826478624, guid: e7b1508c1729c684eb5fe237be0a9aa9, type: 3}
@@ -5914,7 +5915,7 @@ Transform:
   m_GameObject: {fileID: 1776112290}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -10}
+  m_LocalPosition: {x: 0, y: 2, z: -11.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5984,9 +5985,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e007f90d94390cb48997940d8189be55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentStageData: {fileID: 11400000, guid: fed27bcf4f4fd994f84c0eec7a165686, type: 2}
+  stageDataArray:
+  - {fileID: 11400000, guid: fed27bcf4f4fd994f84c0eec7a165686, type: 2}
+  - {fileID: 11400000, guid: 4c91de37a842641419822007c7be1eed, type: 2}
+  - {fileID: 11400000, guid: 7cd75bc43da9b6d4eb767f79c14aef97, type: 2}
+  - {fileID: 11400000, guid: 15871ad6c344efd4391c053b67c83017, type: 2}
+  - {fileID: 11400000, guid: ddde2c149b8b2dc438cd243a0d1d09f4, type: 2}
   preloadLayers: 10
   worldContainer: {fileID: 1674281482}
+  activeLayers: []
 --- !u!4 &1905609732
 Transform:
   m_ObjectHideFlags: 0

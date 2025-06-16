@@ -11,7 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UFOScene.unity
     guid: 6c180c23460735844989254b9279efc3
-  - enabled: 1
-    path: Assets/Scenes/TutorialScene.unity
+  - enabled: 0
+    path: Assets/Scenes/TutorialScene ragacy.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/IntroScene.unity
+    guid: 241edeb05f3080d46b50b00982f10d35
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 9bf48f50853764546b8b28f6cd1611ca
   m_configObjects: {}
