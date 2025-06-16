@@ -66,7 +66,7 @@ public class ShopUI : MonoBehaviour
             // WeaponData.UpgradeData preview = _weaponDatas[current].UpgradeStats[level];
             _attackText[current].text = weapon.Attack.ToString();
             _criticalText[current].text = weapon.Critical.ToString();
-            _durabilityText[current].text = weapon.Durability.ToString();
+            _durabilityText[current].text = weapon.CurrentDurability.ToString();
             _costText[current].text = $"{weapon.NeedGold.ToString()}G";
             _levelText[current].text = $"Lv.{weapon.Level.ToString()}";
         }
@@ -74,7 +74,7 @@ public class ShopUI : MonoBehaviour
         {
             _attackText[current].text = _weaponDatas[current].Attack.ToString();
             _criticalText[current].text = _weaponDatas[current].Critical.ToString();
-            _durabilityText[current].text = _weaponDatas[current].Durability.ToString();
+            _durabilityText[current].text = _weaponDatas[current].CurrentDurability.ToString();
             _costText[current].text = "MAX";
             _levelText[current].text = "MAX";
         }
@@ -166,7 +166,7 @@ public class ShopUI : MonoBehaviour
 
             currentWeapon.Attack = stat.Attack;
             currentWeapon.Critical = stat.Critical;
-            currentWeapon.Durability = stat.Durability;
+            currentWeapon.CurrentDurability = stat.Durability;
             currentWeapon.NeedGold = stat.cost;
             currentWeapon.Level = stat.UpgradeLevel;
             
@@ -247,7 +247,7 @@ public class ShopUI : MonoBehaviour
             WeaponData.UpgradeData baseStat = currentWeapon.UpgradeStats[0];
             currentWeapon.Attack = baseStat.Attack;
             currentWeapon.Critical = baseStat.Critical;
-            currentWeapon.Durability = baseStat.Durability;
+            currentWeapon.CurrentDurability = baseStat.Durability;
             currentWeapon.NeedGold = baseStat.cost;
             currentWeapon.Level = baseStat.UpgradeLevel;
         }
