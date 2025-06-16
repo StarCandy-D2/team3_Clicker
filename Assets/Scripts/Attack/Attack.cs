@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public Attack Instance;
     public PlayerData playerData;
     public WeaponData weaponData;
 

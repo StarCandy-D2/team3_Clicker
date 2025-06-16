@@ -9,8 +9,6 @@ public class StageUIManager : MonoBehaviour
 
     [Header("UI")] public TextMeshProUGUI stageText;
     public TextMeshProUGUI layerText;
-    public TextMeshProUGUI sessionGoldText;
-    public TextMeshProUGUI totalGoldText;
 
     [Header("스테이지")] public int currentStage = 1;
     public int currentLayer = 1;
@@ -83,16 +81,6 @@ public class StageUIManager : MonoBehaviour
         if (layerText != null)
         {
             layerText.text = $"{currentLayer}m";
-        }
-
-        if (sessionGoldText != null)
-        {
-            sessionGoldText.text = $"획득 골드 : {sessionGold:N0}";
-        }
-
-        if (totalGoldText != null && GameManager.Instance?.playerData != null)
-        {
-            totalGoldText.text = $"보유 골드 : {GameManager.Instance.playerData.gold:N0}";
         }
     }
 
