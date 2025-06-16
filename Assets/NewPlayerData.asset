@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958ce31a29fcd86458e9dc6abea670bb, type: 3}
   m_Name: NewPlayerData
   m_EditorClassIdentifier: 
-  userName: 
+  userName: test
   Oxygen: 0
   atk: 10
   critRate: 20
