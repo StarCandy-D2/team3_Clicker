@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -82,7 +82,7 @@ public class StageUIManager : MonoBehaviour
 
         if (layerText != null)
         {
-            layerText.text = $"{currentLayer}층";
+            layerText.text = $"{currentLayer}m";
         }
 
         if (sessionGoldText != null)

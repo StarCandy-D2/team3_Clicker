@@ -269,6 +269,7 @@ MonoBehaviour:
   AttackDelay: 0.3
   AttackTimer: 0
   durabilityTimer: 0
+  recoveryDurabilityTime: 5
   autoAttackSpeed: 50
   OnAuto: 0
   idleimpulseSource: {fileID: 555919312826478624, guid: e7b1508c1729c684eb5fe237be0a9aa9, type: 3}
@@ -5984,9 +5985,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e007f90d94390cb48997940d8189be55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentStageData: {fileID: 11400000, guid: fed27bcf4f4fd994f84c0eec7a165686, type: 2}
+  stageDataArray:
+  - {fileID: 11400000, guid: fed27bcf4f4fd994f84c0eec7a165686, type: 2}
+  - {fileID: 11400000, guid: 4c91de37a842641419822007c7be1eed, type: 2}
+  - {fileID: 11400000, guid: 7cd75bc43da9b6d4eb767f79c14aef97, type: 2}
+  - {fileID: 11400000, guid: 15871ad6c344efd4391c053b67c83017, type: 2}
+  - {fileID: 11400000, guid: ddde2c149b8b2dc438cd243a0d1d09f4, type: 2}
   preloadLayers: 10
   worldContainer: {fileID: 1674281482}
+  activeLayers: []
 --- !u!4 &1905609732
 Transform:
   m_ObjectHideFlags: 0
