@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Crust
   - UpperMantle
+  - LowerMantle
+  - OuterCore
+  - InnerCore
   layers:
   - Default
   - TransparentFX

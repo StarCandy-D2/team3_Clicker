@@ -16,7 +16,7 @@ MonoBehaviour:
   stageLevel: 4
   totalLayers: 100
   baseLayerHP: 1
-  hpMultiplier: 1
-  layerHeight: 1
-  layerPrefab: {fileID: 0}
+  hpMultiplier: 5
+  layerHeight: 0.4
+  layerPrefab: {fileID: 1219370270669919687, guid: 21792080f81db7a49a376dfccc9112d1, type: 3}
   bossPrefab: {fileID: 0}
