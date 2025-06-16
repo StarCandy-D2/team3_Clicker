@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -15,7 +15,7 @@ public class StageUIManager : MonoBehaviour
     [Header("스테이지")] public int currentStage = 1;
     public int currentLayer = 1;
     public int maxLayersPerStage = 100;
-    public int sessionGold = 0;
+    public int sessionGold;
 
     [Header("스테이지별 골드")] 
     public int[] stageGoldRewards = { 10, 15, 25, 40, 60 };
@@ -82,7 +82,7 @@ public class StageUIManager : MonoBehaviour
 
         if (layerText != null)
         {
-            layerText.text = $"{currentLayer}층";
+            layerText.text = $"{currentLayer}m";
         }
 
         if (sessionGoldText != null)
