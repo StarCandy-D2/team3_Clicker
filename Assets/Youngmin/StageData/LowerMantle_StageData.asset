@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: LowerMantle_StageData
   m_EditorClassIdentifier: 
   stageName: LowerMantle_StageData
-  stageLevel: 0
+  stageLevel: 3
   totalLayers: 100
   baseLayerHP: 1
-  hpMultiplier: 1
-  stageColor: {r: 1, g: 1, b: 1, a: 1}
-  layerSprite: {fileID: 0}
-  layerMaterial: {fileID: 0}
+  hpMultiplier: 3
+  layerHeight: 0.6
+  layerPrefab: {fileID: 2690080904144307574, guid: edff08fc87f49494ca8d7d115899d1ba, type: 3}
   bossPrefab: {fileID: 0}

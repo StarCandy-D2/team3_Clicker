@@ -15,7 +15,7 @@ public class StageUIManager : MonoBehaviour
     [Header("스테이지")] public int currentStage = 1;
     public int currentLayer = 1;
     public int maxLayersPerStage = 100;
-    public int sessionGold = 0;
+    public int sessionGold;
 
     [Header("스테이지별 골드")] 
     public int[] stageGoldRewards = { 10, 15, 25, 40, 60 };
