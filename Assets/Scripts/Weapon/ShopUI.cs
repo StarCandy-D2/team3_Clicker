@@ -63,8 +63,8 @@ public class ShopUI : MonoBehaviour
         {
             WeaponData weapon = _weaponDatas[current];
             
-            _attackText[current].text = weapon.Attack.ToString();
-            _criticalText[current].text = weapon.Critical.ToString();
+            _attackText[current].text = $"{weapon.Attack.ToString()}%";
+            _criticalText[current].text = $"{weapon.Critical.ToString()}%";
             _durabilityText[current].text = weapon.CurrentDurability.ToString();
             _costText[current].text = $"{weapon.NeedGold.ToString()}G";
             _levelText[current].text = $"Lv.{weapon.Level.ToString()}";
@@ -185,8 +185,8 @@ public class ShopUI : MonoBehaviour
         {
             WeaponData.UpgradeData stat = currentWeapon.UpgradeStats[currentWeapon.Upgrade];
 
-            // currentWeapon.Attack = stat.Attack;
-            // currentWeapon.Critical = stat.Critical;
+            currentWeapon.Attack = stat.Attack;
+            currentWeapon.Critical = stat.Critical;
             currentWeapon.CurrentDurability = stat.Durability;
             currentWeapon.NeedGold = stat.cost;
             currentWeapon.Level = stat.UpgradeLevel;
