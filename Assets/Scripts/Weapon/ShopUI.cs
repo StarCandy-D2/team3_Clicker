@@ -65,8 +65,8 @@ public class ShopUI : MonoBehaviour
            
             // //Upgrade가 0이면 UpgradeStat[0]을 가져온다. 결국 1강할 때 스텟이 바큄.
             // WeaponData.UpgradeData preview = _weaponDatas[current].UpgradeStats[level];
-            _attackText[current].text = weapon.Attack.ToString();
-            _criticalText[current].text = weapon.Critical.ToString();
+            _attackText[current].text = $"{weapon.Attack.ToString()}%";
+            _criticalText[current].text = $"{weapon.Critical.ToString()}%";
             _durabilityText[current].text = weapon.CurrentDurability.ToString();
             _costText[current].text = $"{weapon.NeedGold.ToString()}G";
             _levelText[current].text = $"Lv.{weapon.Level.ToString()}";
@@ -89,7 +89,7 @@ public class ShopUI : MonoBehaviour
         _GoldText.text = _playerData.GetStat(StatType.Gold).ToString("N0") + "G";
 
     }
-
+    
     public void OnClickNextButton()
     {
         if (_currentIndex >= _uiPanels.Length - 1 || _weaponDataIndex >= _weaponDatas.Length - 1) return;
@@ -134,13 +134,16 @@ public class ShopUI : MonoBehaviour
         // 지금 배열코드가없어서 임시로 작성 주석
         // float baseAtk = _playerData.GetStat(StatementType.atk);
         // float baseCrit = _playerData.GetStat(StatementType.critRate);
-
+        
         float baseAtk = _playerData.GetStat(StatType.atk);
         float baseCrit = _playerData.GetStat(StatType.critRate);
 
         if (upgradeLevel < equipped.UpgradeStats.Count)
         {
             WeaponData.UpgradeData upgradedStat = equipped.UpgradeStats[upgradeLevel];
+            float finalAtk = baseAtk + (1f * upgradedStat.Attack);
+            float finalCrit = baseCrit + (1f * upgradedStat.Critical);
+            
             _playerData.SetStat(StatType.atk, upgradedStat.Attack);
             _playerData.SetStat(StatType.critRate, upgradedStat.Critical);
         }
@@ -188,7 +191,7 @@ public class ShopUI : MonoBehaviour
             }
             
             ShowSendError("업그레이드를 완료하였습니다", Color.green);
-            
+            EquipButton();
             PayGold();
             UpdateWeaponUI();
         }
