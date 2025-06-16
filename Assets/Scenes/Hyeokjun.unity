@@ -260,18 +260,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68957023f1e41804e88a890a349d400c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 0}
+  playerData: {fileID: 11400000, guid: 78b7083d7f5b1c24db0acf5ca6774413, type: 2}
+  weaponData: {fileID: 11400000, guid: d2a4b522e3bee314ea92cc69b35bcfdf, type: 2}
   IdleSpeed: 15
-  attackPower: 20
   isJump: 1
   isAttack: 1
   OnAttack: 0
-  AttackDelay: 0.2
+  AttackDelay: 0.3
   AttackTimer: 0
-  Maxdurability: 10
-  CurrentDurability: 0
   durabilityTimer: 0
-  autoAttackDuration: 5
   autoAttackSpeed: 50
   OnAuto: 0
   idleimpulseSource: {fileID: 555919312826478624, guid: e7b1508c1729c684eb5fe237be0a9aa9, type: 3}

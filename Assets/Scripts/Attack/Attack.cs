@@ -6,10 +6,11 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public PlayerData playerData;
+    public WeaponData weaponData;
 
     public float IdleSpeed = 5f; //튀어오르는 기본 속도
     // public float gravity = -9.8f; IdleSpeed로 통함
-    public float attackPower = 10f; //임시 공격력
+    public float attackPower => playerData.atk + weaponData.Attack; //임시 공격력
     public float IdleAttackPower => attackPower * 0.1f; //Idle 공격력 (클릭 안했을때)
     private float velocity;
     private float currentHeight;
@@ -18,14 +19,19 @@ public class Attack : MonoBehaviour
     public bool isJump = true;
     public bool isAttack = true;
     public bool OnAttack;
-    public float AttackDelay = 0.5f; //어택딜레이 임시
+    public float AttackDelay = 0.3f; //어택딜레이
     public float AttackTimer = 0;
 
-    public float Maxdurability = 10f; // 내구도 테스트 임시 변수
-    public float CurrentDurability;
+    public float Maxdurability => weaponData.MaxDurability; // 내구도 테스트 임시 변수
+    public float CurrentDurability
+    {
+        get => weaponData.CurrentDurability;
+        set => weaponData.CurrentDurability = value;
+    }
     public float durabilityTimer = 0; //내구도 테스트 임시 타이머
+    public float recoveryDurabilityTime = 5f;
     //자동공격
-    public float autoAttackDuration = 5f; //자동공격 시간
+    public float autoAttackDuration => weaponData.AutoAttackDuration; //자동공격 시간
     public float autoAttackSpeed = 50f; //공격속도
     public bool OnAuto;
 
@@ -56,7 +62,8 @@ public class Attack : MonoBehaviour
     {
         currentHeight = transform.position.y;
         trailRenderer.emitting = false;
-        CurrentDurability = Maxdurability;
+        weaponData.CurrentDurability = Maxdurability;
+        Debug.Log(attackPower);
     }
 
     void Update()
@@ -75,7 +82,7 @@ public class Attack : MonoBehaviour
         if (CurrentDurability == 0)
         {
             durabilityTimer += Time.deltaTime;
-            if (durabilityTimer >= Maxdurability)
+            if (durabilityTimer >= recoveryDurabilityTime)
             {
                 CurrentDurability = Maxdurability;
                 durabilityTimer = 0;
