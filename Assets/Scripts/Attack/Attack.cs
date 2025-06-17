@@ -68,7 +68,6 @@ public class Attack : MonoBehaviour
 
         autoattackimpulseSource.GenerateImpulse();
     }
-
     public void impulse()
     {
 
@@ -91,15 +90,9 @@ public class Attack : MonoBehaviour
             {
 
                 GetComponent<Attack>().IdleTriggerImpulse();
-
             }
 
         }
-
-
-
-
-
     }
     void Start()
     {
@@ -152,9 +145,7 @@ public class Attack : MonoBehaviour
                     CurrentDurability = 0f;
                 }
             }
-
         }
-
         //정해진 높이에서 클릭으로 공격 가능
         if (transform.position.y <= 0.5 && transform.position.y >= -0.15)
         {
@@ -175,10 +166,8 @@ public class Attack : MonoBehaviour
         {
             velocity += -IdleSpeed * Time.deltaTime;
         }
-
         transform.position += new Vector3(0, velocity * Time.deltaTime, 0);
         currentHeight = transform.position.y;
-
         // maxHeight 도달 시 낙하
         if (transform.position.y >= maxHeight)
         {
@@ -186,7 +175,6 @@ public class Attack : MonoBehaviour
             velocity = 0f;
             transform.position = new Vector3(transform.position.x, maxHeight, transform.position.z);
         }
-
         // minHeight 도달 시 다시 점프
         if (transform.position.y <= minHeight)
         {
@@ -194,7 +182,6 @@ public class Attack : MonoBehaviour
             velocity = 0f;
             transform.position = new Vector3(transform.position.x, minHeight, transform.position.z);
         }
-
         // 자동 공격 조건 (모바일 탭 1초 이상 유지 시 발동)
 #if UNITY_EDITOR
         // 에디터 테스트용 마우스 클릭 유지
@@ -242,7 +229,6 @@ else if (Input.touchCount == 0)
 }
 #endif
     }
-
     //자동 공격 코루틴
     private IEnumerator AutoAttack()
     {
@@ -259,10 +245,8 @@ else if (Input.touchCount == 0)
             {
                 velocity += -30 * IdleSpeed * Time.deltaTime;
             }
-
             transform.position += new Vector3(0, velocity * Time.deltaTime, 0);
             currentHeight = transform.position.y;
-
             // maxHeight 도달 시 낙하
             if (transform.position.y >= maxHeight)
             {
@@ -270,7 +254,6 @@ else if (Input.touchCount == 0)
                 velocity = 0f;
                 transform.position = new Vector3(transform.position.x, maxHeight, transform.position.z);
             }
-
             // minHeight 도달 시 다시 점프
             if (transform.position.y <= minHeight)
             {
@@ -278,17 +261,12 @@ else if (Input.touchCount == 0)
                 velocity = 0f;
                 transform.position = new Vector3(transform.position.x, minHeight, transform.position.z);
             }
-
             yield return null;
             timer += Time.deltaTime;
-
         }
         OnAuto = false;
         Debug.Log("자동공격 종료");
-
-
     }
-
     //타일과 충돌 했을때 공격 로직
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -336,14 +314,6 @@ else if (Input.touchCount == 0)
 
             }
             //딕셔너리 고려
-
-
-
-
-
-
-           
-
             if (OnAttack) // 클릭했을때 공격
             {
                 impulse();
@@ -362,11 +332,7 @@ else if (Input.touchCount == 0)
                 impulse();
                 dmg.TakeDamage(attackPower * 1.2f * iscritical); // 자동 공격 데미지 클릭 공격 데미지 1.2배율
             }
-
-
         }
     }
-
-
 }
 
