@@ -1,19 +1,54 @@
-
 using PlayerUpgrad;
-using PlayerUpgrade;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
-public class UpgradeButtonHandler : MonoBehaviour
+namespace PlayerUpgrade
 {
-    public StatType statType;
-
-    public void OnPressDown()
+    public class UpgradeButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
-        UpgradeManager.instance.StartUpgradeHold(statType);
-    }
+        public StatType statType;
+        
+        private bool isPointerDown = false;
+        private float holdTime = 0f;
+        private bool isHolding = false;
+        public float minHoldTime;
 
-    public void OnPressUp()
-    {
-        UpgradeManager.instance.StopUpgradeHold();
+        void Update()
+        {
+            if (isPointerDown && !isHolding)
+            {
+                holdTime += Time.deltaTime;
+                if (holdTime >= minHoldTime)
+                {
+                    isHolding = true;
+                    UpgradeManager.instance.StartUpgradeHold(statType);
+                }
+            }
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            isPointerDown = true;
+            holdTime = 0f;
+            isHolding = false;
+        }
+        
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            isPointerDown = false;
+
+            if (isHolding)
+            {
+                UpgradeManager.instance.StopUpgradeHold();
+            }
+            else
+            {
+                UpgradeManager.instance.UpgradeStat(statType);
+            }
+
+            holdTime = 0f;
+            isHolding = false;
+        }
     }
 }
