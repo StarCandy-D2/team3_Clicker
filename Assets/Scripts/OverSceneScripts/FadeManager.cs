@@ -61,7 +61,11 @@ public class FadeManager : MonoBehaviour
 
     private IEnumerator FadeRoutine(float targetAlpha, float duration)
     {
-        Debug.Log($"[Fade] 시작: targetAlpha = {targetAlpha}, duration = {duration}");
+        if (fadeImage == null)
+        {
+            Debug.LogError("[FadeManager] fadeImage가 null입니다. 페이드 실패");
+            yield break;
+        }
 
         Color color = fadeImage.color;
         float startAlpha = color.a;
@@ -69,7 +73,7 @@ public class FadeManager : MonoBehaviour
 
         while (time < duration)
         {
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             float t = time / duration;
             color.a = Mathf.Lerp(startAlpha, targetAlpha, t);
             fadeImage.color = color;

@@ -18,7 +18,7 @@ public class StageUIManager : MonoBehaviour
     [Header("스테이지별 골드")] 
     public int[] stageGoldRewards = { 10, 15, 25, 40, 60 };
     
-    private string[] stageNames = { "지각", "상부맨틀", "하부맨틀", "외핵", "내핵" };
+    public string[] stageNames = { "지각", "상부맨틀", "하부맨틀", "외핵", "내핵" };
 
     void Awake()
     {

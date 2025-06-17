@@ -17105,7 +17105,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicbuttons: {fileID: 669305395}
   settingPanel: {fileID: 1263412565}
-  skillPanel: {fileID: 0}
   statPanel: {fileID: 1515657574}
   shopPanel: {fileID: 1538696278}
 --- !u!114 &1324511422
@@ -17124,6 +17123,8 @@ MonoBehaviour:
   sfxSlider: {fileID: 1970968299}
   bgmInput: {fileID: 656752209}
   sfxInput: {fileID: 545578593}
+  shaketoggle: {fileID: 0}
+  particletoggle: {fileID: 0}
   shakeonoff: 0
   particleonoff: 0
 --- !u!1 &1325606399
@@ -21496,103 +21497,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682127614}
   m_CullTransparentMesh: 1
---- !u!1001 &1693578217
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4727170968519222981, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4727170968519222981, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4727170968519222981, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4727170968519222981, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4727170968519222981, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4727170968519222981, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4727170968519222981, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4727170968519222981, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4727170968519222981, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4727170968519222981, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5909426681547141703, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: m_Name
-      value: UIManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6639835578952445064, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: atkText
-      value: 
-      objectReference: {fileID: 111628640}
-    - target: {fileID: 6639835578952445064, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: goldText
-      value: 
-      objectReference: {fileID: 1259621074}
-    - target: {fileID: 6639835578952445064, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: oxygenText
-      value: 
-      objectReference: {fileID: 632383129}
-    - target: {fileID: 6639835578952445064, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: atkcostText
-      value: 
-      objectReference: {fileID: 407679908}
-    - target: {fileID: 6639835578952445064, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: crirateText
-      value: 
-      objectReference: {fileID: 1214911185}
-    - target: {fileID: 6639835578952445064, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: goldgainText
-      value: 
-      objectReference: {fileID: 67723935}
-    - target: {fileID: 6639835578952445064, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: oxygencostText
-      value: 
-      objectReference: {fileID: 855870753}
-    - target: {fileID: 6639835578952445064, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: criratecostText
-      value: 
-      objectReference: {fileID: 622950850}
-    - target: {fileID: 6639835578952445064, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: goldgaincostText
-      value: 
-      objectReference: {fileID: 1231977634}
-    - target: {fileID: 6639835578952445064, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
-      propertyPath: goldgaintestText
-      value: 
-      objectReference: {fileID: 1967011258}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fde6a8902d2dbf8469ad4a868c385faa, type: 3}
 --- !u!1 &1700066107
 GameObject:
   m_ObjectHideFlags: 0
@@ -22143,6 +22047,7 @@ GameObject:
   - component: {fileID: 1756341189}
   - component: {fileID: 1756341188}
   - component: {fileID: 1756341187}
+  - component: {fileID: 1756341190}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -22240,6 +22145,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756341185}
   m_CullTransparentMesh: 1
+--- !u!114 &1756341190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756341185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &1759007400
 GameObject:
   m_ObjectHideFlags: 0
@@ -27286,4 +27217,3 @@ SceneRoots:
   - {fileID: 1625807146}
   - {fileID: 1324511420}
   - {fileID: 1579314578}
-  - {fileID: 1693578217}

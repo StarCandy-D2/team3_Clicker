@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using PlayerUpgrade;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -20,10 +21,11 @@ public class TutorialManager : MonoBehaviour
     public List<TutorialStep> steps;
     private int currentStep = 0;
     private bool isWaitingForTap = false;
-
+    public Button nextButton;
     void Start()
     {
         StartTutorial();
+        //nextButton.onClick.AddListener(OnClickNext);
     }
 
     void Update()
@@ -90,6 +92,21 @@ public class TutorialManager : MonoBehaviour
 
         // 예: 특정 조건에서만 표시
         // return stepIndex == 1 || stepIndex == 3;
+    }
+    public void OnClickNext()
+    {
+        var playerData = GameManager.Instance.playerData;
+        playerData.SetStat(StatType.Oxygen, playerData.GetStat(StatType.MaxEnergy));
+        Time.timeScale = 1f;
+        if (FadeManager.Instance != null)
+        {
+            FadeManager.Instance.FadeOutAndLoadScene("UFOScene");
+        }
+        else
+        {
+            Debug.LogWarning("FadeManager 인스턴스가 존재하지 않습니다.");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("UFOScene"); // 백업
+        }
     }
 }
 

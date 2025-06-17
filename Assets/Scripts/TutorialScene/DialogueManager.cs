@@ -85,5 +85,5 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false;
         
     }
-    public void GoToTutorial() { SceneManager.LoadScene("TutorialScene"); }
+    public void GoToTutorial() { FadeManager.Instance.FadeOutAndLoadScene("TutorialScene"); }
 }
