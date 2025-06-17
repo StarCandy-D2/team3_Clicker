@@ -1,7 +1,7 @@
 ﻿
 using System.Collections;
 using System.Collections.Generic;
-
+using PlayerUpgrade;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -37,10 +37,10 @@ public class Enemy : MonoBehaviour
     }
     
 
-    void Die()  
+    void Die()
 
     {
-
+        var data = GameManager.Instance.playerData;
         
         if (GameManager.Instance != null && GameManager.Instance.playerData != null)
         {
@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
             {
                 goldReward = StageUIManager.Instance.GetCurrentStageGoldReward();
             }
-            GameManager.Instance.playerData.gold += goldReward;
+            data.SetStat(StatType.Gold, data.GetStat(StatType.Gold) + goldReward);
 
             if (StageUIManager.Instance != null)
             {
@@ -98,11 +98,11 @@ public class Enemy : MonoBehaviour
     
 
    // 테스트용 클릭 함수
-    void OnMouseDown()
-    {
-        Debug.Log("층 클릭됨!");
-        TakeDamage(maxHP); // 한 번에 파괴
-    }
+    //void OnMouseDown()
+    //{
+    //    Debug.Log("층 클릭됨!");
+    //    TakeDamage(maxHP); // 한 번에 파괴
+    //}
 
 
 }

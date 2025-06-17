@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
+using PlayerUpgrade;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class ShopUI : MonoBehaviour
@@ -25,6 +23,7 @@ public class ShopUI : MonoBehaviour
     [Header("WeaponDateList")]
     [SerializeField] private WeaponData[] _weaponDatas;
     private int _weaponDataIndex = 0;
+    private int _weaponDisplayIndex = 1;
     
     [Header("기타")]
     public GameObject equippanel;
@@ -59,19 +58,21 @@ public class ShopUI : MonoBehaviour
         //아직 최대가 아니면 다음 강화 스텟 미리 보여주기.
         if (level < _weaponDatas[current].UpgradeStats.Count)
         {
-            //Upgrade가 0이면 UpgradeStat[0]을 가져온다. 결국 1강할 때 스텟이 바큄.
-            WeaponData.UpgradeData preview = _weaponDatas[current].UpgradeStats[level];
-            _attackText[current].text = preview.Attack.ToString();
-            _criticalText[current].text = preview.Critical.ToString();
-            _durabilityText[current].text = preview.Durability.ToString();
-            _costText[current].text = $"{preview.cost.ToString()}G";
-            _levelText[current].text = $"Lv.{preview.UpgradeLevel.ToString()}";
+            WeaponData weapon = _weaponDatas[current];
+           
+            // //Upgrade가 0이면 UpgradeStat[0]을 가져온다. 결국 1강할 때 스텟이 바큄.
+            // WeaponData.UpgradeData preview = _weaponDatas[current].UpgradeStats[level];
+            _attackText[current].text = weapon.Attack.ToString();
+            _criticalText[current].text = weapon.Critical.ToString();
+            _durabilityText[current].text = weapon.CurrentDurability.ToString();
+            _costText[current].text = $"{weapon.NeedGold.ToString()}G";
+            _levelText[current].text = $"Lv.{weapon.Level.ToString()}";
         }
         else
         {
             _attackText[current].text = _weaponDatas[current].Attack.ToString();
             _criticalText[current].text = _weaponDatas[current].Critical.ToString();
-            _durabilityText[current].text = _weaponDatas[current].Durability.ToString();
+            _durabilityText[current].text = _weaponDatas[current].CurrentDurability.ToString();
             _costText[current].text = "MAX";
             _levelText[current].text = "MAX";
         }
@@ -82,7 +83,8 @@ public class ShopUI : MonoBehaviour
 
     public void UpdateGoldUI()
     {
-        _GoldText.text = _playerData.gold.ToString("N0") + "G";
+        _GoldText.text = _playerData.GetStat(StatType.Gold).ToString("N0") + "G";
+
     }
 
     public void OnClickNextButton()
@@ -129,13 +131,13 @@ public class ShopUI : MonoBehaviour
         if (upgradeLevel < equipped.UpgradeStats.Count)
         {
             WeaponData.UpgradeData upgradedStat = equipped.UpgradeStats[upgradeLevel];
-            _playerData.atk = upgradedStat.Attack;
-            _playerData.critRate =  upgradedStat.Critical;
+            _playerData.SetStat(StatType.atk, upgradedStat.Attack);
+            _playerData.SetStat(StatType.critRate, upgradedStat.Critical);
         }
         else
         {
-            _playerData.atk = equipped.Attack;
-            _playerData.critRate = equipped.Critical;
+            _playerData.SetStat(StatType.atk, equipped.Attack);
+            _playerData.SetStat(StatType.critRate, equipped.Critical);
         }
             
         ShowSendError("장착을 완료했습니다.", Color.green);
@@ -150,28 +152,28 @@ public class ShopUI : MonoBehaviour
     {
         WeaponData currentWeapon = _weaponDatas[_weaponDataIndex];
 
-        if (_playerData.gold < currentWeapon.NeedGold)
+        if (_playerData.GetStat(StatType.Gold) < currentWeapon.NeedGold)
         {
             ShowSendError($"골드가 부족합니다",Color.red);
             return;
         }
         
+            currentWeapon.Upgrade++;
         if (currentWeapon.Upgrade < currentWeapon.UpgradeStats.Count)
         {
             WeaponData.UpgradeData stat = currentWeapon.UpgradeStats[currentWeapon.Upgrade];
 
             currentWeapon.Attack = stat.Attack;
             currentWeapon.Critical = stat.Critical;
-            currentWeapon.Durability = stat.Durability;
+            currentWeapon.CurrentDurability = stat.Durability;
             currentWeapon.NeedGold = stat.cost;
             currentWeapon.Level = stat.UpgradeLevel;
             
-            currentWeapon.Upgrade++;
 
             if (currentWeapon.IsEquipped)
             {
-                _playerData.atk = currentWeapon.Attack;
-                _playerData.critRate = currentWeapon.Critical;
+                _playerData.SetStat(StatType.atk, currentWeapon.Attack);
+                _playerData.SetStat(StatType.critRate, currentWeapon.Critical);
             }
             
             ShowSendError("업그레이드를 완료하였습니다", Color.green);
@@ -182,18 +184,19 @@ public class ShopUI : MonoBehaviour
         else
         {
             ShowSendError("최대 강화입니다",Color.yellow);
+            return;
         }
     }
 
     public void PayGold()
     {
         float upgradeCost = _weaponDatas[_weaponDataIndex].NeedGold;
-        float playerGold = _playerData.gold;
+        float playerGold = _playerData.GetStat(StatType.Gold);
     
         if (playerGold >= upgradeCost)
         {
             Debug.Log("골드 충분이요~ 바로 계산갑니데이.");
-            _playerData.gold -= upgradeCost;
+            _playerData.SetStat(StatType.Gold, _playerData.GetStat(StatType.Gold) - upgradeCost);
         }
         else
         {
@@ -243,7 +246,7 @@ public class ShopUI : MonoBehaviour
             WeaponData.UpgradeData baseStat = currentWeapon.UpgradeStats[0];
             currentWeapon.Attack = baseStat.Attack;
             currentWeapon.Critical = baseStat.Critical;
-            currentWeapon.Durability = baseStat.Durability;
+            currentWeapon.CurrentDurability = baseStat.Durability;
             currentWeapon.NeedGold = baseStat.cost;
             currentWeapon.Level = baseStat.UpgradeLevel;
         }
@@ -254,10 +257,10 @@ public class ShopUI : MonoBehaviour
 
     public void OnClickBuyButton()
     {
-        if (_playerData.gold >= _closeItemData[_currentIndex-1].NeedGold)
+        if (_playerData.GetStat(StatType.Gold) >= _closeItemData[_currentIndex-1].NeedGold)
         {
             //골드 차감
-            _playerData.gold -= _closeItemData[_currentIndex-1].NeedGold;
+            _playerData.SetStat(StatType.Gold, _playerData.GetStat(StatType.Gold)- _closeItemData[_currentIndex-1].NeedGold);
             
             //구매처리
             _weaponDatas[_currentIndex-1].IsUnlocked = true;
