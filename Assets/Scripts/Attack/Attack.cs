@@ -5,6 +5,7 @@ using System.Data.Common;
 using PlayerUpgrade;
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class Attack : MonoBehaviour
 {
@@ -45,15 +46,21 @@ public class Attack : MonoBehaviour
     //0.5 -0.5
 
 
-    public CinemachineImpulseSource idleimpulseSource;
-    public CinemachineImpulseSource attackimpulseSource;
-    public CinemachineImpulseSource autoattackimpulseSource;
-    public ParticleSystem Crust_Particle;
+    public CinemachineImpulseSource idleimpulseSource; //idle 카메라 shake
+    public CinemachineImpulseSource attackimpulseSource; // attack 카메라 shake
+    public CinemachineImpulseSource autoattackimpulseSource; //autoattack 카메라 shake
+
+    //파티클 넣으면 됩니다
+    public ParticleSystem Crust_Particle; 
     public ParticleSystem InnerCore_Particle;
     public ParticleSystem LowerMantle_Particle;
     public ParticleSystem OuterCore_Particle;
     public ParticleSystem UpperMantle_Particle;
     public TrailRenderer trailRenderer;
+
+    //데미지 텍스트 박스
+    public GameObject damageTextPrefab;
+    public Transform spawnPosition; //데미지 위치
 
 
     private Dictionary<string, ParticleSystem> tagToParticle;
@@ -302,7 +309,7 @@ else if (Input.touchCount == 0)
 
         float randomValue = Random.value;
         float iscritical;
-        if (playerData.GetStat(StatType.critRate) / 100 >= randomValue)
+        if (playerData.GetStat(StatType.critRate) / 100 >= randomValue) //크리 떴을때 데미지 배율
         {
             iscritical = 2f;
 
@@ -312,7 +319,9 @@ else if (Input.touchCount == 0)
 
             iscritical = 1f;
         }
-        Debug.Log($"{iscritical}ddddd");
+        Debug.Log($"{iscritical}");
+
+        //레이어가 Enemy이고 파티클on일때만 파티클 재생
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && !settingUI.particleonoff)
         {
             PlayHitParticle(other.gameObject.tag);
@@ -345,7 +354,7 @@ else if (Input.touchCount == 0)
             //        break;
 
             //}
-            //딕셔너리 고려
+            //딕셔너리로 수정
             if (OnAttack) // 클릭했을때 공격
             {
                 impulse();
@@ -365,6 +374,21 @@ else if (Input.touchCount == 0)
                 dmg.TakeDamage(attackPower * 1.2f * iscritical); // 자동 공격 데미지 클릭 공격 데미지 1.2배율
             }
         }
+    }
+
+
+
+    public void ShowDamage(float amount)
+    {
+        GameObject damageText = Instantiate(damageTextPrefab, spawnPosition.position, Quaternion.identity, spawnPosition.parent);
+        TMP_Text tmp = damageText.GetComponent<TMP_Text>();
+        tmp.text = amount.ToString();
+
+        // 움직이고 사라지는 애니메이션
+        LeanTween.moveY(damageText, damageText.transform.position.y + 1f, 1f).setEaseOutCubic();
+        LeanTween.alphaText(damageText.GetComponent<RectTransform>(), 0, 1f).setOnComplete(() => {
+            Destroy(damageText);
+        });
     }
 }
 
