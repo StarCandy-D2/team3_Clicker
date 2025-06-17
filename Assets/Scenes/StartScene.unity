@@ -2183,19 +2183,19 @@ MonoBehaviour:
   - statType: 0
     level: 0
     baseStatValue: 10
-    valueIncrease: 10
+    valueIncrease: 5
     baseCost: 100
     costIncrease: 100
   - statType: 2
     level: 0
     baseStatValue: 10
-    valueIncrease: 10
+    valueIncrease: 5
     baseCost: 100
     costIncrease: 100
   - statType: 3
     level: 0
     baseStatValue: 10
-    valueIncrease: 1
+    valueIncrease: 5
     baseCost: 100
     costIncrease: 100
   - statType: 5

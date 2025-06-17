@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using PlayerUpgrade;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -94,6 +95,8 @@ public class TutorialManager : MonoBehaviour
     }
     public void OnClickNext()
     {
+        var playerData = GameManager.Instance.playerData;
+        playerData.SetStat(StatType.Oxygen, playerData.GetStat(StatType.MaxEnergy));
         Time.timeScale = 1f;
         if (FadeManager.Instance != null)
         {
