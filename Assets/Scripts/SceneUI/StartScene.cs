@@ -43,18 +43,18 @@ public class StartScene : MonoBehaviour
             Debug.LogWarning("이름을 입력해주세요!");
             return;
         }
-        GameManager.Instance.playerData.userName = enteredName;
-        GameManager.Instance.playerData.SetStat(StatType.Oxygen, 100f);
-        GameManager.Instance.playerData.SetStat(StatType.atk, 10f);
-        GameManager.Instance.playerData.SetStat(StatType.Gold, 100f);
-        GameManager.Instance.playerData.SetStat(StatType.critRate, 10f);
+        var playerData = GameManager.Instance.playerData;
 
+        // 값 저장
+        playerData.userName = enteredName;
+        playerData.SetStat(StatType.Oxygen, 100f);
+        playerData.SetStat(StatType.atk, 10f);
+        playerData.SetStat(StatType.Gold, 100f);
+        playerData.SetStat(StatType.critRate, 10f);
+        playerData.SetStat(StatType.goldGain, 0f); // 누락 방지
         // 저장
-        UserData initialData = PlayerDataConverter.ToUserData(GameManager.Instance.playerData);
-        UserDataManager.Instance.SaveUserData(initialData, enteredName);
-
-        // 다음 씬
-        SceneManager.LoadScene("TutorialScene");
+        UserData initialData = PlayerDataConverter.ToUserData(playerData);
+        GameManager.Instance.userDataManager.SaveUserData(initialData, enteredName);
     }
 
     public void BackToBasic()
