@@ -4,10 +4,11 @@ using System.Collections;
 using System.Data.Common;
 using PlayerUpgrade;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Attack : MonoBehaviour
 {
-    
+
     public PlayerData playerData;
     public WeaponData weaponData;
     public SettingUI settingUI;
@@ -24,7 +25,7 @@ public class Attack : MonoBehaviour
     public bool OnAttack;
     public float AttackDelay = 0.3f; //어택딜레이
     public float AttackTimer = 0;
-    
+
     public float Maxdurability => weaponData.MaxDurability; // 내구도 테스트 임시 변수
     public float CurrentDurability
     {
@@ -53,6 +54,11 @@ public class Attack : MonoBehaviour
     public ParticleSystem OuterCore_Particle;
     public ParticleSystem UpperMantle_Particle;
     public TrailRenderer trailRenderer;
+
+
+    private Dictionary<string, ParticleSystem> tagToParticle;
+
+    
 
     public void IdleTriggerImpulse()
     {
@@ -107,13 +113,25 @@ public class Attack : MonoBehaviour
         trailRenderer.emitting = false;
         weaponData.CurrentDurability = Maxdurability;
         Debug.Log(attackPower);
+
+        tagToParticle = new Dictionary<string, ParticleSystem>()
+    {
+        { "Crust", Crust_Particle },
+        { "InnerCore", InnerCore_Particle },
+        { "OuterCore", OuterCore_Particle },
+        { "UpperMantle", UpperMantle_Particle },
+        { "LowerMantle", LowerMantle_Particle }
+    };
+
+
+
     }
 
     void Update()
     {
         PlayerAttack();
         AttackTimer += Time.deltaTime;
-        if (OnAttack||OnAuto)
+        if (OnAttack || OnAuto)
         {
 
             trailRenderer.emitting = true;
@@ -132,6 +150,15 @@ public class Attack : MonoBehaviour
             }
         }
     }
+
+    private void PlayHitParticle(string tag)
+    {
+        if (tagToParticle.ContainsKey(tag))
+        {
+            tagToParticle[tag].Play();
+            Debug.Log(tag);
+        }
+    }
     public void PlayerAttack()
     {
         // 마우스 클릭 시 빠르게 낙하하도록 처리
@@ -145,7 +172,7 @@ public class Attack : MonoBehaviour
                 isJump = false;
                 velocity = -IdleSpeed * 2f; // 빠르게 낙하
 
-
+                playerData.SetStat(StatType.Oxygen, playerData.GetStat(StatType.Oxygen) - 2f);
                 CurrentDurability -= 2f; //내구도 2감소
                 if (CurrentDurability <= 0f)
                 {
@@ -296,7 +323,7 @@ else if (Input.touchCount == 0)
         //DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
 
         float randomValue = Random.value;
-        float iscritical ;
+        float iscritical;
         if (playerData.GetStat(StatType.critRate) / 100 >= randomValue)
         {
             iscritical = 2f;
@@ -310,36 +337,36 @@ else if (Input.touchCount == 0)
         Debug.Log($"{iscritical}ddddd");
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && !settingUI.particleonoff)
         {
-         
+            PlayHitParticle(other.gameObject.tag);
 
-            switch (other.gameObject.tag)
-            {
-                case "Crust":
-                    Crust_Particle.Play();
+            //switch (other.gameObject.tag)
+            //{
+            //    case "Crust":
+            //        Crust_Particle.Play();
 
-                    Debug.Log("크러스트");
-                    break;
+            //        Debug.Log("크러스트");
+            //        break;
 
-                case "InnerCore":
-                    InnerCore_Particle.Play();
-                    Debug.Log("내핵");
-                    break;
+            //    case "InnerCore":
+            //        InnerCore_Particle.Play();
+            //        Debug.Log("내핵");
+            //        break;
 
-                case "OuterCore":
-                    OuterCore_Particle.Play();
-                    Debug.Log("외핵");
-                    break;
+            //    case "OuterCore":
+            //        OuterCore_Particle.Play();
+            //        Debug.Log("외핵");
+            //        break;
 
-                case "UpperMantle":
-                    UpperMantle_Particle.Play();
-                    Debug.Log("상부맨틀");
-                    break;
-                case "LowerMantle":
-                    LowerMantle_Particle.Play();
-                    Debug.Log("하부맨틀");
-                    break;
+            //    case "UpperMantle":
+            //        UpperMantle_Particle.Play();
+            //        Debug.Log("상부맨틀");
+            //        break;
+            //    case "LowerMantle":
+            //        LowerMantle_Particle.Play();
+            //        Debug.Log("하부맨틀");
+            //        break;
 
-            }
+            //}
             //딕셔너리 고려
 
 
@@ -347,7 +374,7 @@ else if (Input.touchCount == 0)
 
 
 
-           
+
 
             if (OnAttack) // 클릭했을때 공격
             {
