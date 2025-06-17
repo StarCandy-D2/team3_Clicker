@@ -1,3 +1,4 @@
+using System.Collections;
 using PlayerUpgrad;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,6 +15,7 @@ namespace PlayerUpgrade
         private bool isHolding = false;
         public float minHoldTime;
 
+        private Coroutine upgraderoutine;
         void Update()
         {
             if (isPointerDown && !isHolding)
@@ -22,7 +24,7 @@ namespace PlayerUpgrade
                 if (holdTime >= minHoldTime)
                 {
                     isHolding = true;
-                    UpgradeManager.instance.StartUpgradeHold(statType);
+                    StartUpgradeHold(statType);
                 }
             }
         }
@@ -40,7 +42,7 @@ namespace PlayerUpgrade
 
             if (isHolding)
             {
-                UpgradeManager.instance.StopUpgradeHold();
+                StopUpgradeHold();
             }
             else
             {
@@ -49,6 +51,30 @@ namespace PlayerUpgrade
 
             holdTime = 0f;
             isHolding = false;
+        }
+        
+        //홀딩시 코루틴 실행
+        public void StartUpgradeHold(StatType statType)
+        {
+            upgraderoutine = StartCoroutine(UpgradeLoop(statType));
+        }
+        //코루틴 정지
+        public void StopUpgradeHold()
+        {
+            if (upgraderoutine != null)
+            {
+                StopCoroutine(upgraderoutine);
+                upgraderoutine = null;
+            }
+        }
+
+        private IEnumerator UpgradeLoop(StatType statType)
+        {
+            while (true)
+            {
+                UpgradeManager.instance.UpgradeStat(statType);
+                yield return new WaitForSeconds(0.2f); //업그레이드 딜레이
+            }
         }
     }
 }

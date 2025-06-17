@@ -10,38 +10,18 @@ namespace PlayerUpgrad
     {
         public static UpgradeManager instance;
         public PlayerData playerData;
-        public PlayerUpgradeUIManager pUUI;
         public List<UpgradeData> upgradeData;
-
-        private Coroutine upgraderoutine;
-        void Start()
+        
+        void Awake()
         {
+            if (instance != null && instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
             instance = this;
         }
-        //홀딩시 코루틴 실행
-        public void StartUpgradeHold(StatType statType)
-        {
-            upgraderoutine = StartCoroutine(UpgradeLoop(statType));
-        }
-        //코루틴 정지
-        public void StopUpgradeHold()
-        {
-            if (upgraderoutine != null)
-            {
-                StopCoroutine(upgraderoutine);
-                upgraderoutine = null;
-            }
-        }
-
-        private IEnumerator UpgradeLoop(StatType statType)
-        {
-            while (true)
-            {
-                UpgradeStat(statType);
-                yield return new WaitForSeconds(0.2f); //업그레이드 딜레이
-            }
-        }
-        
+        //업그레이드시 stat값 계산
         public void UpgradeStat(StatType stat)
         {
             var upgrade = upgradeData.Find(u => u.statName == stat.ToString());
@@ -66,6 +46,36 @@ namespace PlayerUpgrad
         public void GetGold()//테스트용 임시 매서드
         {
             playerData.SetStat(StatType.Gold,playerData.GetStat(StatType.Gold) + playerData.GetStat(StatType.goldGain));
+        }
+        
+        //각 stat별 level 저장
+        public void SaveUpgradeLevels(UserData data)
+        {
+            data.upgradeLevels = new List<UpgradeSaveData>();
+            foreach (var upgrade in upgradeData)
+            {
+                data.upgradeLevels.Add(new UpgradeSaveData
+                {
+                    statName = upgrade.statName,
+                    level = upgrade.level
+                });
+            }
+        }
+        //level 불러오기
+        public void LoadUpgradeLevels(UserData data)
+        {
+            foreach (var upgradeSave in data.upgradeLevels)
+            {
+                var upgrade = upgradeData.Find(u => u.statName == upgradeSave.statName);
+                if (upgrade != null)
+                {
+                    upgrade.level = upgradeSave.level;
+                    if (System.Enum.TryParse(upgrade.statName, out StatType stat))
+                    {
+                        playerData.SetStat(stat, upgrade.GetCurStatValue());
+                    }
+                }
+            }
         }
     }
 }
