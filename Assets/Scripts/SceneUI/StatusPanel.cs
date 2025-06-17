@@ -67,4 +67,19 @@ public class StatusPanel : MonoBehaviour
             Time.timeScale = 0.0f;
         }
     }
+    public void OnClickNext()
+    {
+        var playerData = GameManager.Instance.playerData;
+        playerData.SetStat(StatType.CurEnergy, playerData.GetStat(StatType.MaxEnergy));
+        Time.timeScale = 1f;
+        if (FadeManager.Instance != null)
+        {
+            FadeManager.Instance.FadeOutAndLoadScene("UFOScene");
+        }
+        else
+        {
+            Debug.LogWarning("FadeManager 인스턴스가 존재하지 않습니다.");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("UFOScene"); // 백업
+        }
+    }
 }
