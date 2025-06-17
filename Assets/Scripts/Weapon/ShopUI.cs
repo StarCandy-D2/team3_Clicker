@@ -212,7 +212,30 @@ public class ShopUI : MonoBehaviour
             return;
         }
         
+        bool isEquipped = currentWeapon.IsEquipped;
+        
+        if (isEquipped)
+        {
+            ShowSendError("장비 해제 후 업그레이드를 해주세요",Color.yellow);
+            return;
+        }
+
+        // if (!isEquipped && currentWeapon.Upgrade < currentWeapon.UpgradeStats.Count)
+        // {
+        //     WeaponData.UpgradeData oldStat = currentWeapon.UpgradeStats[currentWeapon.Upgrade];
+        //     
+        //     float currentAtk = _playerData.GetStat(StatType.atk);
+        //     float currentCrit = _playerData.GetStat(StatType.critRate);
+        //     
+        //     currentAtk /= (1f + oldStat.Attack);
+        //     currentCrit/= (1f + oldStat.Critical);
+        //     
+        //     _playerData.SetStat(StatType.atk, currentAtk);
+        //     _playerData.SetStat(StatType.critRate, currentCrit);
+        // }
+        
             currentWeapon.Upgrade++;
+            
         if (currentWeapon.Upgrade < currentWeapon.UpgradeStats.Count)
         {
             WeaponData.UpgradeData stat = currentWeapon.UpgradeStats[currentWeapon.Upgrade];
@@ -226,19 +249,24 @@ public class ShopUI : MonoBehaviour
 
             if (currentWeapon.IsEquipped)
             {
-                _playerData.SetStat(StatType.atk, currentWeapon.Attack);
-                _playerData.SetStat(StatType.critRate, currentWeapon.Critical);
+                float baseAtk = _playerData.GetStat(StatType.atk);
+                float baseCrit = _playerData.GetStat(StatType.critRate);
+                
+                float finalAtk = baseAtk * (1f + stat.cost);
+                float finalCrit = baseCrit * (1f + stat.cost);
+                
+                
+                _playerData.SetStat(StatType.atk, finalAtk);
+                _playerData.SetStat(StatType.critRate, finalCrit);
             }
             
             ShowSendError("업그레이드를 완료하였습니다", Color.green);
-            EquipButton();
             PayGold();
             UpdateWeaponUI();
         }
         else
         {
             ShowSendError("최대 강화입니다",Color.yellow);
-            return;
         }
     }
 
