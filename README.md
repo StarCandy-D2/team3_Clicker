@@ -4,7 +4,13 @@
 Unity 기반 플랫포머 액션 게임, Mission: In Buu Sible은 파괴 본능을 지닌 로봇이 다양한 행성을 누비며 거침없이 땅을 부수는 통쾌한 플레이를 선사합니다.
 
 ---
-![image](https://github.com/user-attachments/assets/178d98d2-0987-46af-8034-a7069c2a3dd5)
+
+<div aling = "center">
+  <figure>
+  <img src="https://github.com/user-attachments/assets/178d98d2-0987-46af-8034-a7069c2a3dd5" width="300" />
+   <figure>
+   <div></div>
+
 
 
 ## 🎮 게임 소개
@@ -13,7 +19,14 @@ Unity 기반 플랫포머 액션 게임, Mission: In Buu Sible은 파괴 본능�
 * **플랫폼:** 모바일
 * **제작 도구:** Unity 2022.3.17
 * **개발 언어:** C#
-* ![image](https://github.com/user-attachments/assets/2c344077-1479-4461-b7bf-efd27b72aa43)
+
+<div aling = "center">
+  <figure>
+  <img src="https://github.com/user-attachments/assets/2c344077-1479-4461-b7bf-efd27b72aa43" width="300" />
+   <figcaption>로고 디자인</figcaption>
+   <figure>
+   <div></div>
+ 
 
 ---
 
@@ -46,14 +59,23 @@ Unity 기반 플랫포머 액션 게임, Mission: In Buu Sible은 파괴 본능�
 ## 📸 스크린샷
 
 
-<div align="center">
+<div align="left">
+ <figure>
   <img src="https://github.com/user-attachments/assets/d6bb713c-d041-4527-b385-2e8364e9b361" width="300" />
+   <figcaption>스토리에 대한 사진입니다.</figcaption>
   <img src="https://github.com/user-attachments/assets/e5a07863-3dc6-478b-8daa-74aa56b3f19f" width="300" />
+  <figcaption>튜토리얼에 대한 사진입니다.</figcaption>
+ <figure>
 </div>
 
 <div align="center">
+<figure>
   <img src="https://github.com/user-attachments/assets/1345097e-4edc-4d0e-b190-bd9e18c8b9e1" width="300" />
+  <figcaption>상점에 대한 사진입니다.</figcaption>
   <img src="https://github.com/user-attachments/assets/fa4773c8-6386-4eab-b440-3272a9c67dcc" width="300" />
+  <figcaption>플레이어업그레이드에 대한 사진입니다.</figcaption>
+<figure>
+  
 </div>
 
 
