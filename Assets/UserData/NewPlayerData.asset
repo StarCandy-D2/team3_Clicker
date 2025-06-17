@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958ce31a29fcd86458e9dc6abea670bb, type: 3}
   m_Name: NewPlayerData
   m_EditorClassIdentifier: 
-  userName: asdf
+  userName: "\u3141\u3134\u3147\u3139"
   statList:
   - statType: 0
     value: 10
   - statType: 1
     value: 10
   - statType: 2
-    value: 10
+    value: 11.5
   - statType: 3
-    value: 10
+    value: 10.4
   - statType: 4
-    value: 360
+    value: 28000
   - statType: 5
     value: 100
