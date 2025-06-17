@@ -2,6 +2,8 @@
 using TMPro;
 using UnityEngine;
 
+using UnityEngine.UI;
+
 public class StatusPanel : MonoBehaviour
 {
     public TextMeshProUGUI name;
@@ -17,12 +19,13 @@ public class StatusPanel : MonoBehaviour
     public TextMeshProUGUI gameoversessiongold;
     public TextMeshProUGUI gameoverstage;
     public TextMeshProUGUI gameoverlayer;
-
+    public Slider slider;
     public GameObject settingPanel;
-    public GameObject gameoverPanel;
+    public GameObject gameoverPanel; 
 
     public PlayerData playerData;
     public WeaponData weaponData;
+
 
     private void Update()
     {
@@ -37,7 +40,7 @@ public class StatusPanel : MonoBehaviour
         string stageName = stageUIManager.stageNames[stageUIManager.currentStage - 1];
         name.text = playerData.userName;
         atk.text = $"공격력 : {(playerData.GetStat(StatType.atk) + weaponData.Attack).ToString()}";
-        oxygen.text = $"산소 : {(playerData.GetStat(StatType.Oxygen)).ToString()}";
+        oxygen.text = $"에너지 : {(playerData.GetStat(StatType.Oxygen)).ToString()}";
         crit.text = $"치명타 : {playerData.GetStat(StatType.critRate).ToString()}";
         gold.text = $"보유 골드 : {playerData.GetStat(StatType.Gold).ToString()}";
         goldgain.text = $"골드 획득량 증가 : {playerData.GetStat(StatType.goldGain).ToString()}";
@@ -47,6 +50,7 @@ public class StatusPanel : MonoBehaviour
         gameoversessiongold.text = $"획득 골드 : {stageUIManager.sessionGold.ToString()}";
         gameoverstage.text = $"현재 스테이지 : {stageName}";
         gameoverlayer.text = $"현재 위치 = {stageUIManager.currentLayer}m";
+        slider.value = stageUIManager.currentLayer / 500f;
     }
 
     public void Showsetting()
