@@ -219,22 +219,8 @@ public class ShopUI : MonoBehaviour
             ShowSendError("장비 해제 후 업그레이드를 해주세요",Color.yellow);
             return;
         }
-
-        // if (!isEquipped && currentWeapon.Upgrade < currentWeapon.UpgradeStats.Count)
-        // {
-        //     WeaponData.UpgradeData oldStat = currentWeapon.UpgradeStats[currentWeapon.Upgrade];
-        //     
-        //     float currentAtk = _playerData.GetStat(StatType.atk);
-        //     float currentCrit = _playerData.GetStat(StatType.critRate);
-        //     
-        //     currentAtk /= (1f + oldStat.Attack);
-        //     currentCrit/= (1f + oldStat.Critical);
-        //     
-        //     _playerData.SetStat(StatType.atk, currentAtk);
-        //     _playerData.SetStat(StatType.critRate, currentCrit);
-        // }
         
-            currentWeapon.Upgrade++;
+        currentWeapon.Upgrade++;
             
         if (currentWeapon.Upgrade < currentWeapon.UpgradeStats.Count)
         {
