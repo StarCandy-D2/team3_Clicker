@@ -18,12 +18,12 @@ namespace PlayerUpgrad
         {
             instance = this;
         }
-
+        //홀딩시 코루틴 실행
         public void StartUpgradeHold(StatType statType)
         {
             upgraderoutine = StartCoroutine(UpgradeLoop(statType));
         }
-
+        //코루틴 정지
         public void StopUpgradeHold()
         {
             if (upgraderoutine != null)
@@ -38,7 +38,7 @@ namespace PlayerUpgrad
             while (true)
             {
                 UpgradeStat(statType);
-                yield return new WaitForSeconds(0.5f); // 원하는 간격
+                yield return new WaitForSeconds(0.2f); //업그레이드 딜레이
             }
         }
         

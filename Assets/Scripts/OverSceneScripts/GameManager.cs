@@ -1,8 +1,11 @@
-﻿using PlayerUpgrad;
+﻿﻿using PlayerUpgrad;
 using PlayerUpgrade;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using OverSceneScripts;
+using PlayerUpgrad;
+using PlayerUpgrade;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -32,7 +35,6 @@ public class GameManager : MonoBehaviour
             goldGain = playerData.GetStat(StatType.goldGain),
             upgradeLevels = new List<UpgradeSaveData>()
         };
-
         foreach (var upgrade in UpgradeManager.instance.upgradeData)
         {
             saveData.upgradeLevels.Add(new UpgradeSaveData
@@ -41,7 +43,6 @@ public class GameManager : MonoBehaviour
                 level = upgrade.level
             });
         }
-
         userDataManager.SaveUserData(saveData, playerData.userName);
     }
 
@@ -56,7 +57,6 @@ public class GameManager : MonoBehaviour
             playerData.SetStat(StatType.critRate, loaded.critRate);
             playerData.SetStat(StatType.Gold, loaded.gold);
             playerData.SetStat(StatType.goldGain, loaded.goldGain);
-
             foreach (var upgradeSave in loaded.upgradeLevels)
             {
                 var upgrade = UpgradeManager.instance.upgradeData.Find(u => u.statName == upgradeSave.statName);
