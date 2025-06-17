@@ -53,7 +53,7 @@ Unity 기반 플랫포머 액션 게임, Mission: In Buu Sible은 파괴 본능�
 ## 🖥️ 플레이 방법
 
 * **Mouse click : 창 이동 및 공격**
-* **Mouse Hold : 자동동 공격**
+* **Mouse Hold : 자동 공격**
 ---
 
 ## 📸 스크린샷
