@@ -37,7 +37,7 @@ public class StatusPanel : MonoBehaviour
         string stageName = stageUIManager.stageNames[stageUIManager.currentStage - 1];
         name.text = playerData.userName;
         atk.text = $"공격력 : {(playerData.GetStat(StatType.atk) + weaponData.Attack).ToString()}";
-        oxygen.text = $"산소 : {(playerData.GetStat(StatType.Oxygen)).ToString()}";
+        oxygen.text = $"산소 : {(playerData.GetStat(StatType.CurEnergy)).ToString()}";
         crit.text = $"치명타 : {playerData.GetStat(StatType.critRate).ToString()}";
         gold.text = $"보유 골드 : {playerData.GetStat(StatType.Gold).ToString()}";
         goldgain.text = $"골드 획득량 증가 : {playerData.GetStat(StatType.goldGain).ToString()}";
@@ -61,7 +61,7 @@ public class StatusPanel : MonoBehaviour
     }
     public void Gameover()
     {
-        if (playerData.GetStat(StatType.Oxygen) <= 0f)
+        if (playerData.GetStat(StatType.CurEnergy) <= 0f)
         {
             gameoverPanel.SetActive(true);
             Time.timeScale = 0.0f;

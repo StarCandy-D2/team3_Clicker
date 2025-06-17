@@ -52,9 +52,9 @@ public class PlayerData : ScriptableObject
     //playerData.GetStat(StatType.Gold)
     //playerData.SetStat(StatType.불러올 타입, 저장 할 값);
     
-    public void Init(float oxygen, float atk, float critRate, float gold, float goldGain)
+    public void Init(float maxEnergy, float atk, float critRate, float gold, float goldGain)
     {
-        SetStat(StatType.Oxygen, oxygen);
+        SetStat(StatType.MaxEnergy, maxEnergy);
         SetStat(StatType.atk, atk);
         SetStat(StatType.critRate, critRate);
         SetStat(StatType.Gold, gold);
