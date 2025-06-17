@@ -60,8 +60,8 @@ public class ShopUI : MonoBehaviour
         {
             WeaponData weapon = _weaponDatas[current];
             
-            _attackText[current].text = $"{weapon.Attack.ToString()}%";
-            _criticalText[current].text = $"{weapon.Critical.ToString()}%";
+            _attackText[current].text = $"{weapon.Attack * 100f}% 증가";
+            _criticalText[current].text = $"{weapon.Critical * 100f}% 증가";
             _durabilityText[current].text = weapon.CurrentDurability.ToString();
             _costText[current].text = $"{weapon.NeedGold.ToString()}G";
             _levelText[current].text = $"Lv.{weapon.Level.ToString()}";

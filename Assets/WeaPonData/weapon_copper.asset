@@ -27,26 +27,26 @@ MonoBehaviour:
     Attack: 0.25
     Critical: 0.14
     cost: 1400
-    Durability: 50
+    Durability: 25
   - UpgradeLevel: 2
     Attack: 0.3
     Critical: 0.16
     cost: 1800
-    Durability: 55
+    Durability: 26
   - UpgradeLevel: 3
     Attack: 0.35
     Critical: 0.18
     cost: 2200
-    Durability: 60
+    Durability: 27
   - UpgradeLevel: 4
     Attack: 0.4
     Critical: 0.2
     cost: 2600
-    Durability: 65
+    Durability: 28
   - UpgradeLevel: 5
     Attack: 0.45
     Critical: 0.22
     cost: 3000
-    Durability: 70
+    Durability: 29
   IsEquipped: 0
   IsUnlocked: 1
