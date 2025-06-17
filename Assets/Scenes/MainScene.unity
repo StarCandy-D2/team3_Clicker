@@ -369,8 +369,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68957023f1e41804e88a890a349d400c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 78b7083d7f5b1c24db0acf5ca6774413, type: 2}
+  playerData: {fileID: 11400000, guid: 4accf49d8f7451c4cafdf3240c110644, type: 2}
   weaponData: {fileID: 11400000, guid: d2a4b522e3bee314ea92cc69b35bcfdf, type: 2}
+  settingUI: {fileID: 0}
   IdleSpeed: 15
   isJump: 1
   isAttack: 1
@@ -384,8 +385,14 @@ MonoBehaviour:
   idleimpulseSource: {fileID: 555919312826478624, guid: e7b1508c1729c684eb5fe237be0a9aa9, type: 3}
   attackimpulseSource: {fileID: 2369591620390397390, guid: 67b0caad0e54e0a4a87b7e4646af63c9, type: 3}
   autoattackimpulseSource: {fileID: 8432670858168295678, guid: 8ff1de68aac3dcf429741bc3297b497a, type: 3}
-  attackParticle: {fileID: 1922691007}
+  Crust_Particle: {fileID: 0}
+  InnerCore_Particle: {fileID: 0}
+  LowerMantle_Particle: {fileID: 0}
+  OuterCore_Particle: {fileID: 0}
+  UpperMantle_Particle: {fileID: 0}
   trailRenderer: {fileID: 1551656676}
+  damageTextPrefab: {fileID: 1640343451540910621, guid: 9027e47f81d9bc043ae099c3949b72a8, type: 3}
+  spawnPosition: {fileID: 0}
 --- !u!4 &1007835160
 Transform:
   m_ObjectHideFlags: 0
