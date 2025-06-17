@@ -43,7 +43,7 @@ public class Attack : MonoBehaviour
     private float requiredHoldTime = 1f;//꾹 누르기를 위한 변수
 
     //0.5 -0.5
-
+    
 
     public CinemachineImpulseSource idleimpulseSource;
     public CinemachineImpulseSource attackimpulseSource;

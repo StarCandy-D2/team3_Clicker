@@ -61,7 +61,11 @@ public class FadeManager : MonoBehaviour
 
     private IEnumerator FadeRoutine(float targetAlpha, float duration)
     {
-        Debug.Log($"[Fade] 시작: targetAlpha = {targetAlpha}, duration = {duration}");
+        if (fadeImage == null)
+        {
+            Debug.LogError("[FadeManager] fadeImage가 null입니다. 페이드 중단.");
+            yield break;
+        }
 
         Color color = fadeImage.color;
         float startAlpha = color.a;
