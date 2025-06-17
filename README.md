@@ -96,7 +96,7 @@ Unity 기반 플랫포머 액션 게임, Mission: In Buu Sible은 파괴 본능�
 
 ## 📂 빌드 & 실행 방법
 
-1. 관련된 파일을 다운받습니다.
+1. 관련된 파일(Assets, projectSettings, Packages)을 다운받습니다.
 2. 유니티에 접근합니다.
 3. Main Branch에 이동합니다.
 4. StartScene으로 이동합니다.
