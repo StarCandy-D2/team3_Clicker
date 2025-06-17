@@ -1,11 +1,7 @@
 ﻿﻿using PlayerUpgrad;
 using PlayerUpgrade;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using OverSceneScripts;
-using PlayerUpgrad;
-using PlayerUpgrade;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour

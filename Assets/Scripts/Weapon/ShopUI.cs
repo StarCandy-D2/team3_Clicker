@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using PlayerUpgrade;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class ShopUI : MonoBehaviour
