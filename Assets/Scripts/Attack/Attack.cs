@@ -106,6 +106,8 @@ public class Attack : MonoBehaviour
                 OnAttack = true;
                 isJump = false;
                 velocity = -IdleSpeed * 2f; // 빠르게 낙하
+
+
                 CurrentDurability -= 2f; //내구도 2감소
                 if (CurrentDurability <= 0f)
                 {
@@ -261,7 +263,7 @@ public class Attack : MonoBehaviour
                     break;
 
             }
-
+            //딕셔너리 고려
 
 
 
