@@ -12,46 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5846c720d6e4bad874f1281caa6907, type: 3}
   m_Name: weapon_copper
   m_EditorClassIdentifier: 
-  Attack: 4
-  Critical: 5
-  NeedGold: 10
+  Attack: 0
+  Critical: 0
+  NeedGold: 1000
   Level: 0
   WeaponName: "\uB3D9\uC0BD"
   WeaponIcon: {fileID: 21300000, guid: 35822a21ffd494b86bee7b8b09c15b44, type: 3}
   AutoAttackDuration: 1
-  Durability: 0
-  DurabilityRecovery: 10
-  Upgrade: 1
+  CurrentDurability: 0
+  MaxDurability: 0
+  Upgrade: 0
   UpgradeStats:
-  - UpgradeLevel: 0
-    Attack: 4
-    Critical: 5
-    cost: 0
-    Durability: 10
   - UpgradeLevel: 1
-    Attack: 5
-    Critical: 6
-    cost: 550
+    Attack: 0.25
+    Critical: 0.14
+    cost: 1400
     Durability: 50
   - UpgradeLevel: 2
-    Attack: 6
-    Critical: 7
-    cost: 600
+    Attack: 0.3
+    Critical: 0.16
+    cost: 1800
     Durability: 55
   - UpgradeLevel: 3
-    Attack: 7
-    Critical: 8
-    cost: 650
+    Attack: 0.35
+    Critical: 0.18
+    cost: 2200
     Durability: 60
   - UpgradeLevel: 4
-    Attack: 8
-    Critical: 9
-    cost: 700
+    Attack: 0.4
+    Critical: 0.2
+    cost: 2600
     Durability: 65
   - UpgradeLevel: 5
-    Attack: 9
-    Critical: 10
-    cost: 750
+    Attack: 0.45
+    Critical: 0.22
+    cost: 3000
     Durability: 70
   IsEquipped: 0
   IsUnlocked: 1

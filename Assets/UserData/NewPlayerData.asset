@@ -17,10 +17,10 @@ MonoBehaviour:
   - statType: 0
     value: 16
   - statType: 1
-    value: 14
+    value: 1.5
   - statType: 2
-    value: 2
+    value: 1.3333334
   - statType: 3
-    value: 690
+    value: 993600
   - statType: 4
     value: 120
