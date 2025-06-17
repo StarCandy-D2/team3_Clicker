@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public class UpgradeSaveData
@@ -13,7 +14,7 @@ public class UpgradeSaveData
 public class UserData
 {
     public string userName;
-    public float Oxygen;
+    public float curEnergy;
     public float atk;
     public float critRate;
     public float gold;

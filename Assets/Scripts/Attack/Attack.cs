@@ -174,7 +174,7 @@ public class Attack : MonoBehaviour
                 isJump = false;
                 velocity = -IdleSpeed * 2f; // 빠르게 낙하
 
-                playerData.SetStat(StatType.Oxygen, playerData.GetStat(StatType.Oxygen) - 2f);
+                playerData.SetStat(StatType.CurEnergy, playerData.GetStat(StatType.CurEnergy) - 2f);
                 CurrentDurability -= 2f; //내구도 2감소
                 if (CurrentDurability <= 0f)
                 {

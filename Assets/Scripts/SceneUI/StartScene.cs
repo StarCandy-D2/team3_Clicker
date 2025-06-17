@@ -49,7 +49,7 @@ public class StartScene : MonoBehaviour
         // 값 저장
         playerData.userName = enteredName;
         playerData.SetStat(StatType.MaxEnergy, 10f);
-        playerData.SetStat(StatType.Oxygen, 10f);
+        playerData.SetStat(StatType.CurEnergy, 10f);
         playerData.SetStat(StatType.atk, 10f);
         playerData.SetStat(StatType.Gold, 100f);
         playerData.SetStat(StatType.critRate, 10f);
@@ -62,7 +62,7 @@ public class StartScene : MonoBehaviour
         initialData.upgradeLevels = new List<UpgradeSaveData>
         {
             new UpgradeSaveData { statName = "atk", level = 0 },
-            new UpgradeSaveData { statName = "Oxygen", level = 0 },
+            new UpgradeSaveData { statName = "MaxEnergy", level = 0 },
             new UpgradeSaveData { statName = "critRate", level = 0 },
             new UpgradeSaveData { statName = "goldGain", level = 0 },
         };
