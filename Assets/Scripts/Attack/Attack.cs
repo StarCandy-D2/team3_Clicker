@@ -36,6 +36,9 @@ public class Attack : MonoBehaviour
     public float autoAttackSpeed = 50f; //공격속도
     public bool OnAuto;
 
+    private float touchDuration = 0f; //터치 시간
+    private float requiredHoldTime = 1f;//꾹 누르기를 위한 변수
+
     //0.5 -0.5
 
 
@@ -151,13 +154,52 @@ public class Attack : MonoBehaviour
             transform.position = new Vector3(transform.position.x, minHeight, transform.position.z);
         }
 
-        // 자동 공격 테스트 코드
-        if (Input.GetKeyDown(KeyCode.Space) && OnAuto == false)
+        // 자동 공격 조건 (모바일 탭 1초 이상 유지 시 발동)
+#if UNITY_EDITOR
+        // 에디터 테스트용 마우스 클릭 유지
+        if (!OnAuto)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                touchDuration += Time.deltaTime;
+                if (touchDuration >= requiredHoldTime)
+                {
+                    OnAuto = true;
+                    Debug.Log("자동공격 실행 (에디터)");
+                    StartCoroutine(AutoAttack());
+                }
+            }
+            else
+            {
+                touchDuration = 0f;
+            }
+        }
+#else
+// 모바일 터치 유지 감지
+if (!OnAuto && Input.touchCount > 0)
+{
+    Touch touch = Input.GetTouch(0);
+
+    if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
+    {
+        touchDuration += Time.deltaTime;
+        if (touchDuration >= requiredHoldTime)
         {
             OnAuto = true;
-            Debug.Log("자동공격 실행");
+            Debug.Log("자동공격 실행 (모바일)");
             StartCoroutine(AutoAttack());
         }
+    }
+    else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+    {
+        touchDuration = 0f;
+    }
+}
+else if (Input.touchCount == 0)
+{
+    touchDuration = 0f;
+}
+#endif
     }
 
     //자동 공격 코루틴
