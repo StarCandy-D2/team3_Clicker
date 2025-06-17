@@ -29871,7 +29871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShowDebugText: 0
   m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
+  m_IgnoreTimeScale: 1
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
   m_BlendUpdateMethod: 1
@@ -30111,7 +30111,7 @@ MonoBehaviour:
   durability: {fileID: 1359070910}
   stageUIManager: {fileID: 258579772}
   settingPanel: {fileID: 2078353926}
-  playerData: {fileID: 11400000, guid: 78b7083d7f5b1c24db0acf5ca6774413, type: 2}
+  playerData: {fileID: 11400000, guid: 4accf49d8f7451c4cafdf3240c110644, type: 2}
   weaponData: {fileID: 11400000, guid: d2a4b522e3bee314ea92cc69b35bcfdf, type: 2}
 --- !u!1 &1713914411
 GameObject:
@@ -31178,6 +31178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 4accf49d8f7451c4cafdf3240c110644, type: 2}
   weaponData: {fileID: 11400000, guid: d2a4b522e3bee314ea92cc69b35bcfdf, type: 2}
+  settingUI: {fileID: 2078353928}
   IdleSpeed: 15
   isJump: 1
   isAttack: 1
