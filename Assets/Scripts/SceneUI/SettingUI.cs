@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 using System.Collections;
+using UnityEngine.Rendering;
 
 public class SettingUI : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class SettingUI : MonoBehaviour
     public Slider sfxSlider;
     public TMP_InputField bgmInput;
     public TMP_InputField sfxInput;
+    public Toggle shaketoggle;
+    public Toggle particletoggle;
+
+    public bool shakeonoff;
+    public bool particleonoff;
     private void Start()
     {
         StartCoroutine(InitializeUI());
@@ -62,6 +68,25 @@ public class SettingUI : MonoBehaviour
             sfxSlider.value = v;
             OnSFXSliderChanged(v);
         }
+    }
+    public void OnOffShake()
+    {
+        if (shaketoggle == true)
+        {
+            shakeonoff = true;
+        }
+        else
+        {
+            shakeonoff = false;
+        }
+    }
+    public void OnOffParticle()
+    {
+        if (particletoggle == true)
+        {
+            particleonoff = true;
+        }
+        else { particleonoff = false; }
     }
 
 }

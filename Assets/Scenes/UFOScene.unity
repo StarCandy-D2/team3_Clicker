@@ -17124,6 +17124,8 @@ MonoBehaviour:
   sfxSlider: {fileID: 1970968299}
   bgmInput: {fileID: 656752209}
   sfxInput: {fileID: 545578593}
+  shakeonoff: 0
+  particleonoff: 0
 --- !u!1 &1325606399
 GameObject:
   m_ObjectHideFlags: 0

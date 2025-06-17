@@ -1,8 +1,7 @@
-﻿using System.Collections;
+﻿using PlayerUpgrad;
+using PlayerUpgrade;
 using System.Collections.Generic;
 using OverSceneScripts;
-using PlayerUpgrad;
-using PlayerUpgrade;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -15,9 +14,14 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject); // 씬 전환 시 파괴되지 않도록 설정
+        }
         else
-            Destroy(gameObject);
+        {
+            Destroy(gameObject); // 중복 방지
+        }
     }
     // 저장할 때
     public void SavePlayerDataToJson()

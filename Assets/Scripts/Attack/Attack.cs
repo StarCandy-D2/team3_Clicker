@@ -1,15 +1,17 @@
 ﻿using Cinemachine;
+using PlayerUpgrade;
 using System.Collections;
 using System.Data.Common;
 using PlayerUpgrade;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Attack : MonoBehaviour
 {
-    
+
     public PlayerData playerData;
     public WeaponData weaponData;
-
+    public SettingUI settingUI;
     public float IdleSpeed = 5f; //튀어오르는 기본 속도
     // public float gravity = -9.8f; IdleSpeed로 통함
     public float attackPower => playerData.GetStat(StatType.atk) + weaponData.Attack; //임시 공격력
@@ -23,7 +25,7 @@ public class Attack : MonoBehaviour
     public bool OnAttack;
     public float AttackDelay = 0.3f; //어택딜레이
     public float AttackTimer = 0;
-    
+
     public float Maxdurability => weaponData.MaxDurability; // 내구도 테스트 임시 변수
     public float CurrentDurability
     {
@@ -37,6 +39,9 @@ public class Attack : MonoBehaviour
     public float autoAttackSpeed = 50f; //공격속도
     public bool OnAuto;
 
+    private float touchDuration = 0f; //터치 시간
+    private float requiredHoldTime = 1f;//꾹 누르기를 위한 변수
+
     //0.5 -0.5
 
 
@@ -49,6 +54,11 @@ public class Attack : MonoBehaviour
     public ParticleSystem OuterCore_Particle;
     public ParticleSystem UpperMantle_Particle;
     public TrailRenderer trailRenderer;
+
+
+    private Dictionary<string, ParticleSystem> tagToParticle;
+
+    
 
     public void IdleTriggerImpulse()
     {
@@ -64,19 +74,57 @@ public class Attack : MonoBehaviour
 
         autoattackimpulseSource.GenerateImpulse();
     }
+    public void impulse()
+    {
+
+        if (!settingUI.shakeonoff)
+        {
+
+            if (OnAttack)
+            {
+
+                GetComponent<Attack>().AttackTriggerImpulse();
+            }
+
+            else if (OnAuto)
+            {
+
+                GetComponent<Attack>().AutoAttackTriggerImpulse();
+            }
+
+            else if (!OnAttack && !OnAuto)
+            {
+
+                GetComponent<Attack>().IdleTriggerImpulse();
+            }
+
+        }
+    }
     void Start()
     {
         currentHeight = transform.position.y;
         trailRenderer.emitting = false;
         weaponData.CurrentDurability = Maxdurability;
         Debug.Log(attackPower);
+
+        tagToParticle = new Dictionary<string, ParticleSystem>()
+    {
+        { "Crust", Crust_Particle },
+        { "InnerCore", InnerCore_Particle },
+        { "OuterCore", OuterCore_Particle },
+        { "UpperMantle", UpperMantle_Particle },
+        { "LowerMantle", LowerMantle_Particle }
+    };
+
+
+
     }
 
     void Update()
     {
         PlayerAttack();
         AttackTimer += Time.deltaTime;
-        if (OnAttack||OnAuto)
+        if (OnAttack || OnAuto)
         {
 
             trailRenderer.emitting = true;
@@ -95,6 +143,15 @@ public class Attack : MonoBehaviour
             }
         }
     }
+
+    private void PlayHitParticle(string tag)
+    {
+        if (tagToParticle.ContainsKey(tag))
+        {
+            tagToParticle[tag].Play();
+            Debug.Log(tag);
+        }
+    }
     public void PlayerAttack()
     {
         // 마우스 클릭 시 빠르게 낙하하도록 처리
@@ -107,15 +164,15 @@ public class Attack : MonoBehaviour
                 OnAttack = true;
                 isJump = false;
                 velocity = -IdleSpeed * 2f; // 빠르게 낙하
+
+                playerData.SetStat(StatType.Oxygen, playerData.GetStat(StatType.Oxygen) - 2f);
                 CurrentDurability -= 2f; //내구도 2감소
                 if (CurrentDurability <= 0f)
                 {
                     CurrentDurability = 0f;
                 }
             }
-
         }
-
         //정해진 높이에서 클릭으로 공격 가능
         if (transform.position.y <= 0.5 && transform.position.y >= -0.15)
         {
@@ -136,10 +193,8 @@ public class Attack : MonoBehaviour
         {
             velocity += -IdleSpeed * Time.deltaTime;
         }
-
         transform.position += new Vector3(0, velocity * Time.deltaTime, 0);
         currentHeight = transform.position.y;
-
         // maxHeight 도달 시 낙하
         if (transform.position.y >= maxHeight)
         {
@@ -147,7 +202,6 @@ public class Attack : MonoBehaviour
             velocity = 0f;
             transform.position = new Vector3(transform.position.x, maxHeight, transform.position.z);
         }
-
         // minHeight 도달 시 다시 점프
         if (transform.position.y <= minHeight)
         {
@@ -155,16 +209,53 @@ public class Attack : MonoBehaviour
             velocity = 0f;
             transform.position = new Vector3(transform.position.x, minHeight, transform.position.z);
         }
+        // 자동 공격 조건 (모바일 탭 1초 이상 유지 시 발동)
+#if UNITY_EDITOR
+        // 에디터 테스트용 마우스 클릭 유지
+        if (!OnAuto)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                touchDuration += Time.deltaTime;
+                if (touchDuration >= requiredHoldTime)
+                {
+                    OnAuto = true;
+                    Debug.Log("자동공격 실행 (에디터)");
+                    StartCoroutine(AutoAttack());
+                }
+            }
+            else
+            {
+                touchDuration = 0f;
+            }
+        }
+#else
+// 모바일 터치 유지 감지
+if (!OnAuto && Input.touchCount > 0)
+{
+    Touch touch = Input.GetTouch(0);
 
-        // 자동 공격 테스트 코드
-        if (Input.GetKeyDown(KeyCode.Space) && OnAuto == false)
+    if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
+    {
+        touchDuration += Time.deltaTime;
+        if (touchDuration >= requiredHoldTime)
         {
             OnAuto = true;
-            Debug.Log("자동공격 실행");
+            Debug.Log("자동공격 실행 (모바일)");
             StartCoroutine(AutoAttack());
         }
     }
-
+    else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+    {
+        touchDuration = 0f;
+    }
+}
+else if (Input.touchCount == 0)
+{
+    touchDuration = 0f;
+}
+#endif
+    }
     //자동 공격 코루틴
     private IEnumerator AutoAttack()
     {
@@ -181,10 +272,8 @@ public class Attack : MonoBehaviour
             {
                 velocity += -30 * IdleSpeed * Time.deltaTime;
             }
-
             transform.position += new Vector3(0, velocity * Time.deltaTime, 0);
             currentHeight = transform.position.y;
-
             // maxHeight 도달 시 낙하
             if (transform.position.y >= maxHeight)
             {
@@ -192,7 +281,6 @@ public class Attack : MonoBehaviour
                 velocity = 0f;
                 transform.position = new Vector3(transform.position.x, maxHeight, transform.position.z);
             }
-
             // minHeight 도달 시 다시 점프
             if (transform.position.y <= minHeight)
             {
@@ -200,17 +288,12 @@ public class Attack : MonoBehaviour
                 velocity = 0f;
                 transform.position = new Vector3(transform.position.x, minHeight, transform.position.z);
             }
-
             yield return null;
             timer += Time.deltaTime;
-
         }
         OnAuto = false;
         Debug.Log("자동공격 종료");
-
-
     }
-
     //타일과 충돌 했을때 공격 로직
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -218,7 +301,7 @@ public class Attack : MonoBehaviour
         //DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
 
         float randomValue = Random.value;
-        float iscritical ;
+        float iscritical;
         if (playerData.GetStat(StatType.critRate) / 100 >= randomValue)
         {
             iscritical = 2f;
@@ -230,70 +313,58 @@ public class Attack : MonoBehaviour
             iscritical = 1f;
         }
         Debug.Log($"{iscritical}ddddd");
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && !settingUI.particleonoff)
         {
-         
+            PlayHitParticle(other.gameObject.tag);
 
-            switch (other.gameObject.tag)
-            {
-                case "Crust":
-                    Crust_Particle.Play();
+            //switch (other.gameObject.tag)
+            //{
+            //    case "Crust":
+            //        Crust_Particle.Play();
 
-                    Debug.Log("크러스트");
-                    break;
+            //        Debug.Log("크러스트");
+            //        break;
 
-                case "InnerCore":
-                    InnerCore_Particle.Play();
-                    Debug.Log("내핵");
-                    break;
+            //    case "InnerCore":
+            //        InnerCore_Particle.Play();
+            //        Debug.Log("내핵");
+            //        break;
 
-                case "OuterCore":
-                    OuterCore_Particle.Play();
-                    Debug.Log("외핵");
-                    break;
+            //    case "OuterCore":
+            //        OuterCore_Particle.Play();
+            //        Debug.Log("외핵");
+            //        break;
 
-                case "UpperMantle":
-                    UpperMantle_Particle.Play();
-                    Debug.Log("상부맨틀");
-                    break;
-                case "LowerMantle":
-                    LowerMantle_Particle.Play();
-                    Debug.Log("하부맨틀");
-                    break;
+            //    case "UpperMantle":
+            //        UpperMantle_Particle.Play();
+            //        Debug.Log("상부맨틀");
+            //        break;
+            //    case "LowerMantle":
+            //        LowerMantle_Particle.Play();
+            //        Debug.Log("하부맨틀");
+            //        break;
 
-            }
-
-
-
-
-
-
-
-             
-
+            //}
+            //딕셔너리 고려
             if (OnAttack) // 클릭했을때 공격
             {
-                GetComponent<Attack>().AttackTriggerImpulse();
+                impulse();
                 dmg.TakeDamage(attackPower * iscritical); //클릭 공격 데미지
                 OnAttack = false;
             }
             else if (!OnAttack && !OnAuto) //가만히 있을때
             {
-                GetComponent<Attack>().IdleTriggerImpulse();
+                impulse();
                 dmg.TakeDamage(IdleAttackPower * iscritical); //기본 공격 데미지
             }
 
 
             if (OnAuto) //자동공격
             {
-                GetComponent<Attack>().AutoAttackTriggerImpulse();
+                impulse();
                 dmg.TakeDamage(attackPower * 1.2f * iscritical); // 자동 공격 데미지 클릭 공격 데미지 1.2배율
             }
-
-
         }
     }
-
-
 }
 

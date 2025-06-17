@@ -12,6 +12,7 @@ public class StartScene : MonoBehaviour
     public GameObject startGamePanel;
     public GameObject loadGamePanel;
     public GameObject creditPanel;
+    public GameObject title;
 
     public PlayerData playerData;
 
@@ -19,16 +20,19 @@ public class StartScene : MonoBehaviour
     {
         startGamePanel.SetActive(true);
         basicButtons.SetActive(false);
+        title.SetActive(false);
     }
     public void CallCreditPanel()
     {
         creditPanel.SetActive(true);
         basicButtons.SetActive(false);
+        title.SetActive(false);
     }
     public void CallLoadGamePanel()
     {
         loadGamePanel.SetActive(true);
         basicButtons.SetActive(false);
+        title.SetActive(false);
     }
     public void StartGame()
     {
@@ -39,26 +43,24 @@ public class StartScene : MonoBehaviour
             Debug.LogWarning("이름을 입력해주세요!");
             return;
         }
+        var playerData = GameManager.Instance.playerData;
 
-        PlayerData playerData = GameManager.Instance.playerData;
-
+        // 값 저장
         playerData.userName = enteredName;
         playerData.SetStat(StatType.Oxygen, 100f);
         playerData.SetStat(StatType.atk, 10f);
         playerData.SetStat(StatType.Gold, 100f);
         playerData.SetStat(StatType.critRate, 10f);
-        // 초기값 설정 등...
-
-        // 저장도 가능하다면
-       // UserData initialData = PlayerDataConverter.ToUserData(playerData);
-       // UserDataManager.Instance.SaveUserData(initialData, enteredName);
-        // 이후 GameManager 또는 다음 씬에서 playerData 사용 가능
-        SceneManager.LoadScene("TutorialScene");
+        playerData.SetStat(StatType.goldGain, 0f); // 누락 방지
+        // 저장
+        UserData initialData = PlayerDataConverter.ToUserData(playerData);
+        GameManager.Instance.userDataManager.SaveUserData(initialData, enteredName);
     }
 
     public void BackToBasic()
     {
         basicButtons.SetActive(true);
+        title.SetActive(true);
         startGamePanel.SetActive(false);
         loadGamePanel.SetActive(false);
         creditPanel.SetActive(false);
