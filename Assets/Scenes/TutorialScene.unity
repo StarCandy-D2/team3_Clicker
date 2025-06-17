@@ -32488,6 +32488,8 @@ MonoBehaviour:
   OuterCore_Particle: {fileID: 713115187}
   UpperMantle_Particle: {fileID: 769990791}
   trailRenderer: {fileID: 84139758}
+  damageTextPrefab: {fileID: 1640343451540910621, guid: 9027e47f81d9bc043ae099c3949b72a8, type: 3}
+  spawnPosition: {fileID: 0}
 --- !u!4 &2012540399
 Transform:
   m_ObjectHideFlags: 0
