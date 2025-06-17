@@ -46,14 +46,14 @@ public class Attack : MonoBehaviour
     private float requiredHoldTime = 1f;//꾹 누르기를 위한 변수
 
     //0.5 -0.5
-    
+
 
     public CinemachineImpulseSource idleimpulseSource; //idle 카메라 shake
     public CinemachineImpulseSource attackimpulseSource; // attack 카메라 shake
     public CinemachineImpulseSource autoattackimpulseSource; //autoattack 카메라 shake
 
     //파티클 넣으면 됩니다
-    public ParticleSystem Crust_Particle; 
+    public ParticleSystem Crust_Particle;
     public ParticleSystem InnerCore_Particle;
     public ParticleSystem LowerMantle_Particle;
     public ParticleSystem OuterCore_Particle;
@@ -67,7 +67,7 @@ public class Attack : MonoBehaviour
 
     private Dictionary<string, ParticleSystem> tagToParticle;
 
-    
+
 
     public void IdleTriggerImpulse()
     {
@@ -363,7 +363,7 @@ else if (Input.touchCount == 0)
                 impulse();
                 dmg.TakeDamage(attackPower * iscritical); //클릭 공격 데미지
                 Vector3 spawnPos = transform.position + new Vector3(0, -2f, 0);
-                ShowDamage(attackPower * iscritical,spawnPos);
+                ShowDamage(attackPower * iscritical, spawnPos);
                 OnAttack = false;
             }
             else if (!OnAttack && !OnAuto) //가만히 있을때
@@ -397,8 +397,8 @@ else if (Input.touchCount == 0)
 
 
         Vector2 randomOffset = new Vector2(
-         Random.Range(-30f, 30f), 
-         Random.Range(-15f, 15f)  
+         Random.Range(-30f, 30f),
+         Random.Range(-15f, 15f)
         );
         rectTransform.anchoredPosition = basePosition + randomOffset;
         TMP_Text text = obj.GetComponent<TMP_Text>();
@@ -418,6 +418,6 @@ else if (Input.touchCount == 0)
 
     }
 
-    
+
 }
 
