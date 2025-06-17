@@ -4,7 +4,7 @@ using PlayerUpgrade;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace PlayerUpgrad
+namespace PlayerUpgrade
 {
     public class UpgradeManager : MonoBehaviour
     {
@@ -24,7 +24,7 @@ namespace PlayerUpgrad
         //업그레이드시 stat값 계산
         public void UpgradeStat(StatType stat)
         {
-            var upgrade = upgradeData.Find(u => u.statName == stat.ToString());
+            var upgrade = upgradeData.Find(u => u.statType == stat);
             if (upgrade == null) return;
 
             float cost = upgrade.GetUpgradeCost();
@@ -56,7 +56,7 @@ namespace PlayerUpgrad
             {
                 data.upgradeLevels.Add(new UpgradeSaveData
                 {
-                    statName = upgrade.statName,
+                    statName = upgrade.statType.ToString(),
                     level = upgrade.level
                 });
             }
@@ -66,12 +66,12 @@ namespace PlayerUpgrad
         {
             foreach (var upgradeSave in data.upgradeLevels)
             {
-                var upgrade = upgradeData.Find(u => u.statName == upgradeSave.statName);
-                if (upgrade != null)
+                if (System.Enum.TryParse(upgradeSave.statName, out StatType stat))
                 {
-                    upgrade.level = upgradeSave.level;
-                    if (System.Enum.TryParse(upgrade.statName, out StatType stat))
+                    var upgrade = upgradeData.Find(u => u.statType == stat);
+                    if (upgrade != null)
                     {
+                        upgrade.level = upgradeSave.level;
                         playerData.SetStat(stat, upgrade.GetCurStatValue());
                     }
                 }

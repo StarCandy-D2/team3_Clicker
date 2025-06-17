@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using PlayerUpgrade;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 [System.Serializable]
 public class UpgradeData
 {
-    public string statName;
+    public StatType statType;
     public int level;
     
     public float baseStatValue;

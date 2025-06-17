@@ -1,6 +1,4 @@
-﻿using PlayerUpgrad;
-using PlayerUpgrade;
-using System.Collections.Generic;
+﻿using PlayerUpgrade;
 using OverSceneScripts;
 using UnityEngine;
 

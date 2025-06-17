@@ -9,8 +9,5 @@ namespace PlayerUpgrade
         critRate,
         Gold,
         goldGain,
-        atkRate,
-        autoAtktime,
-        reviveAtkRate
     }
 }

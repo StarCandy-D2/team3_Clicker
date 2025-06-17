@@ -1,5 +1,5 @@
 using System.Collections;
-using PlayerUpgrad;
+using PlayerUpgrade;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;

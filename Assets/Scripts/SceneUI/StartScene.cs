@@ -1,4 +1,5 @@
-﻿using OverSceneScripts;
+﻿using System.Collections.Generic;
+using OverSceneScripts;
 using PlayerUpgrade;
 using UnityEngine;
 using TMPro;
@@ -51,9 +52,21 @@ public class StartScene : MonoBehaviour
         playerData.SetStat(StatType.atk, 10f);
         playerData.SetStat(StatType.Gold, 100f);
         playerData.SetStat(StatType.critRate, 10f);
-        playerData.SetStat(StatType.goldGain, 0f); // 누락 방지
-        // 저장
+        playerData.SetStat(StatType.goldGain, 0f);
+        // 누락 방지
+        // 업그레이드 기본값 설정
         UserData initialData = PlayerDataConverter.ToUserData(playerData);
+
+        // 초기화할 업그레이드 리스트 추가
+        initialData.upgradeLevels = new List<UpgradeSaveData>
+        {
+            new UpgradeSaveData { statName = "atk", level = 0 },
+            new UpgradeSaveData { statName = "Oxygen", level = 0 },
+            new UpgradeSaveData { statName = "critRate", level = 0 },
+            new UpgradeSaveData { statName = "goldGain", level = 0 },
+        };
+        
+        //저장
         GameManager.Instance.userDataManager.SaveUserData(initialData, enteredName);
     }
 
