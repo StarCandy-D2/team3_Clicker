@@ -271,7 +271,6 @@ else if (Input.touchCount == 0)
 
             iscritical = 1f;
         }
-        Debug.Log($"{iscritical}ddddd");
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
          
@@ -281,26 +280,21 @@ else if (Input.touchCount == 0)
                 case "Crust":
                     Crust_Particle.Play();
 
-                    Debug.Log("크러스트");
                     break;
 
                 case "InnerCore":
                     InnerCore_Particle.Play();
-                    Debug.Log("내핵");
                     break;
 
                 case "OuterCore":
                     OuterCore_Particle.Play();
-                    Debug.Log("외핵");
                     break;
 
                 case "UpperMantle":
                     UpperMantle_Particle.Play();
-                    Debug.Log("상부맨틀");
                     break;
                 case "LowerMantle":
                     LowerMantle_Particle.Play();
-                    Debug.Log("하부맨틀");
                     break;
 
             }
