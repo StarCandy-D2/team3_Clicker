@@ -7,7 +7,6 @@ public class UFOScene : MonoBehaviour
 {
     public GameObject basicbuttons;
     public GameObject settingPanel;
-    public GameObject skillPanel;
     public GameObject statPanel;
     public GameObject shopPanel;
 
@@ -18,7 +17,6 @@ public class UFOScene : MonoBehaviour
     }
     public void ShowSkillPanel()
     {
-        skillPanel.SetActive(true);
         basicbuttons.SetActive(false);
     }
     public void ShowStatPanel()
@@ -35,7 +33,6 @@ public class UFOScene : MonoBehaviour
     {
         basicbuttons.SetActive(true);
         settingPanel.SetActive(false);
-        skillPanel.SetActive(false);
         statPanel.SetActive(false);
         shopPanel.SetActive(false);
     }

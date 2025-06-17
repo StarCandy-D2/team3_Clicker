@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -84,6 +85,5 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false;
         
     }
-
-    
+    public void GoToTutorial() { FadeManager.Instance.FadeOutAndLoadScene("TutorialScene"); }
 }

@@ -14,44 +14,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Attack: 0
   Critical: 0
-  NeedGold: 1000
+  NeedGold: 5000
   Level: 0
   WeaponName: "\uC740\uC0BD"
   WeaponIcon: {fileID: 21300000, guid: e7940ac5cca5941c69d6e5ca1d751d07, type: 3}
   AutoAttackDuration: 1
-  Durability: 0
-  DurabilityRecovery: 10
+  CurrentDurability: 0
+  MaxDurability: 0
   Upgrade: 0
   UpgradeStats:
-  - UpgradeLevel: 0
-    Attack: 9
-    Critical: 10
-    cost: 0
-    Durability: 90
   - UpgradeLevel: 1
-    Attack: 10
-    Critical: 11
-    cost: 1000
-    Durability: 100
+    Attack: 0.5
+    Critical: 0.26
+    cost: 5500
+    Durability: 30
   - UpgradeLevel: 2
-    Attack: 11
-    Critical: 12
-    cost: 1100
-    Durability: 150
+    Attack: 0.55
+    Critical: 0.28
+    cost: 6000
+    Durability: 31
   - UpgradeLevel: 3
-    Attack: 12
-    Critical: 13
-    cost: 1200
-    Durability: 200
+    Attack: 0.6
+    Critical: 0.3
+    cost: 6500
+    Durability: 32
   - UpgradeLevel: 4
-    Attack: 13
-    Critical: 14
-    cost: 1300
-    Durability: 250
+    Attack: 0.65
+    Critical: 0.32
+    cost: 7000
+    Durability: 33
   - UpgradeLevel: 5
-    Attack: 14
-    Critical: 15
-    cost: 1400
-    Durability: 300
-  IsEquipped: 1
+    Attack: 0.7
+    Critical: 0.34
+    cost: 7500
+    Durability: 34
+  IsEquipped: 0
   IsUnlocked: 1

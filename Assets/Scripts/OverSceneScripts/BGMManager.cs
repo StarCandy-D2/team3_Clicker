@@ -60,9 +60,11 @@ public class BGMManager : MonoBehaviour
                 PlayMusic(musicA);
                 break;
             case "UFOScene":
+            case "IntroScene":
                 PlayMusic(musicB);
                 break;
             case "MainScene":
+            case "TutorialScene":
                 PlayMusic(musicC);
                 break;
         }

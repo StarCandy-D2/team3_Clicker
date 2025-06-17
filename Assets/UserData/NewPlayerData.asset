@@ -15,14 +15,12 @@ MonoBehaviour:
   userName: asdf
   statList:
   - statType: 0
-    value: 100
+    value: 0
   - statType: 1
     value: 10
   - statType: 2
-    value: 1
+    value: 10
   - statType: 3
+    value: 610
+  - statType: 4
     value: 0
-  - statType: 4
-    value: 140
-  - statType: 4
-    value: 140

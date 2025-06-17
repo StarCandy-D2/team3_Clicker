@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: "\uC2E0\uCC3D\uC12D_PlayerData"
   m_EditorClassIdentifier: 
   userName: "\uC2E0\uCC3D\uC12D"
-  Oxygen: 0
-  atk: 10
-  critRate: 11
-  gold: 58649
-  goldGain: 0
+  statList:
+  - statType: 0
+    value: 10
+  - statType: 1
+    value: 10
+  - statType: 2
+    value: 10
+  - statType: 3
+    value: 10000
+  - statType: 4
+    value: 100
