@@ -53,7 +53,7 @@ public class StartScene : MonoBehaviour
         playerData.SetStat(StatType.atk, 10f);
         playerData.SetStat(StatType.Gold, 100f);
         playerData.SetStat(StatType.critRate, 10f);
-        playerData.SetStat(StatType.goldGain, 0f);
+        playerData.SetStat(StatType.goldGain, 100f);
         // 누락 방지
         // 업그레이드 기본값 설정
         UserData initialData = PlayerDataConverter.ToUserData(playerData);

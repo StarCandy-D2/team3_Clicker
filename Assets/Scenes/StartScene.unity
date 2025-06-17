@@ -2129,6 +2129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 722597749}
   - component: {fileID: 722597748}
+  - component: {fileID: 722597750}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2165,6 +2166,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &722597750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722597747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f68153ede3a67e4494292129e13bd70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 4accf49d8f7451c4cafdf3240c110644, type: 2}
+  upgradeData:
+  - statType: 0
+    level: 0
+    baseStatValue: 10
+    valueIncrease: 5
+    baseCost: 100
+    costIncrease: 100
+  - statType: 2
+    level: 0
+    baseStatValue: 10
+    valueIncrease: 5
+    baseCost: 100
+    costIncrease: 100
+  - statType: 3
+    level: 0
+    baseStatValue: 10
+    valueIncrease: 5
+    baseCost: 100
+    costIncrease: 100
+  - statType: 5
+    level: 0
+    baseStatValue: 100
+    valueIncrease: 10
+    baseCost: 100
+    costIncrease: 100
 --- !u!1 &738452620
 GameObject:
   m_ObjectHideFlags: 0
