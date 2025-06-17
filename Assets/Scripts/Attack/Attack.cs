@@ -1,18 +1,17 @@
 ﻿using Cinemachine;
 using System.Collections;
 using System.Data.Common;
-using PlayerUpgrade;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public Attack Instance;
+    
     public PlayerData playerData;
     public WeaponData weaponData;
 
     public float IdleSpeed = 5f; //튀어오르는 기본 속도
     // public float gravity = -9.8f; IdleSpeed로 통함
-    public float attackPower =>  playerData.GetStat(StatType.atk) + weaponData.Attack; //임시 공격력
+    public float attackPower => playerData.atk + weaponData.Attack; //임시 공격력
     public float IdleAttackPower => attackPower * 0.1f; //Idle 공격력 (클릭 안했을때)
     private float velocity;
     private float currentHeight;
@@ -23,7 +22,7 @@ public class Attack : MonoBehaviour
     public bool OnAttack;
     public float AttackDelay = 0.3f; //어택딜레이
     public float AttackTimer = 0;
-
+    
     public float Maxdurability => weaponData.MaxDurability; // 내구도 테스트 임시 변수
     public float CurrentDurability
     {
@@ -33,7 +32,7 @@ public class Attack : MonoBehaviour
     public float durabilityTimer = 0; //내구도 테스트 임시 타이머
     public float recoveryDurabilityTime = 5f;
     //자동공격
-    public float autoAttackDuration = 5f; //자동공격 시간
+    public float autoAttackDuration => weaponData.AutoAttackDuration; //자동공격 시간
     public float autoAttackSpeed = 50f; //공격속도
     public bool OnAuto;
 
@@ -43,7 +42,11 @@ public class Attack : MonoBehaviour
     public CinemachineImpulseSource idleimpulseSource;
     public CinemachineImpulseSource attackimpulseSource;
     public CinemachineImpulseSource autoattackimpulseSource;
-    public ParticleSystem attackParticle;
+    public ParticleSystem Crust_Particle;
+    public ParticleSystem InnerCore_Particle;
+    public ParticleSystem LowerMantle_Particle;
+    public ParticleSystem OuterCore_Particle;
+    public ParticleSystem UpperMantle_Particle;
     public TrailRenderer trailRenderer;
 
     public void IdleTriggerImpulse()
@@ -94,7 +97,7 @@ public class Attack : MonoBehaviour
     public void PlayerAttack()
     {
         // 마우스 클릭 시 빠르게 낙하하도록 처리
-        if (Input.GetMouseButtonDown(0) && AttackTimer >= AttackDelay && OnAuto == false)
+        if (Input.GetMouseButtonDown(0) && AttackTimer >= AttackDelay && OnAuto == false && CurrentDurability != 0)
         {
             Debug.Log("클릭 인식확인");
             AttackTimer = 0f;
@@ -212,33 +215,81 @@ public class Attack : MonoBehaviour
     {
         Enemy dmg = other.gameObject.GetComponent<Enemy>();
         //DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
-        
+
+        float randomValue = Random.value;
+        float iscritical ;
+        if (playerData.critRate / 100 >= randomValue)
+        {
+            iscritical = 2f;
+
+        }
+        else
+        {
+
+            iscritical = 1f;
+        }
+        Debug.Log($"{iscritical}ddddd");
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Debug.Log("충돌함");
-            attackParticle.Play();
+         
 
+            switch (other.gameObject.tag)
+            {
+                case "Crust":
+                    Crust_Particle.Play();
+
+                    Debug.Log("크러스트");
+                    break;
+
+                case "InnerCore":
+                    InnerCore_Particle.Play();
+                    Debug.Log("내핵");
+                    break;
+
+                case "OuterCore":
+                    OuterCore_Particle.Play();
+                    Debug.Log("외핵");
+                    break;
+
+                case "UpperMantle":
+                    UpperMantle_Particle.Play();
+                    Debug.Log("상부맨틀");
+                    break;
+                case "LowerMantle":
+                    LowerMantle_Particle.Play();
+                    Debug.Log("하부맨틀");
+                    break;
+
+            }
+
+
+
+
+
+
+
+             
 
             if (OnAttack) // 클릭했을때 공격
             {
                 GetComponent<Attack>().AttackTriggerImpulse();
-                dmg.TakeDamage(attackPower); //클릭 공격 데미지
+                dmg.TakeDamage(attackPower * iscritical); //클릭 공격 데미지
                 OnAttack = false;
             }
-            else if(!OnAttack && !OnAuto) //가만히 있을때
+            else if (!OnAttack && !OnAuto) //가만히 있을때
             {
                 GetComponent<Attack>().IdleTriggerImpulse();
-                dmg.TakeDamage(IdleAttackPower); //기본 공격 데미지
+                dmg.TakeDamage(IdleAttackPower * iscritical); //기본 공격 데미지
             }
-            
+
 
             if (OnAuto) //자동공격
             {
                 GetComponent<Attack>().AutoAttackTriggerImpulse();
-                dmg.TakeDamage(attackPower*1.2f); // 자동 공격 데미지 클릭 공격 데미지 1.2배율
+                dmg.TakeDamage(attackPower * 1.2f * iscritical); // 자동 공격 데미지 클릭 공격 데미지 1.2배율
             }
 
-            
+
         }
     }
 
