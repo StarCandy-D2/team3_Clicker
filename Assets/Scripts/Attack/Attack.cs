@@ -1,6 +1,7 @@
 ﻿using Cinemachine;
 using System.Collections;
 using System.Data.Common;
+using PlayerUpgrade;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
@@ -11,7 +12,7 @@ public class Attack : MonoBehaviour
 
     public float IdleSpeed = 5f; //튀어오르는 기본 속도
     // public float gravity = -9.8f; IdleSpeed로 통함
-    public float attackPower => playerData.atk + weaponData.Attack; //임시 공격력
+    public float attackPower => playerData.GetStat(StatType.atk) + weaponData.Attack; //임시 공격력
     public float IdleAttackPower => attackPower * 0.1f; //Idle 공격력 (클릭 안했을때)
     private float velocity;
     private float currentHeight;
@@ -218,7 +219,7 @@ public class Attack : MonoBehaviour
 
         float randomValue = Random.value;
         float iscritical ;
-        if (playerData.critRate / 100 >= randomValue)
+        if (playerData.GetStat(StatType.critRate) / 100 >= randomValue)
         {
             iscritical = 2f;
 

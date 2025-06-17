@@ -50,8 +50,8 @@ public class StartScene : MonoBehaviour
         // 초기값 설정 등...
 
         // 저장도 가능하다면
-        UserData initialData = PlayerDataConverter.ToUserData(playerData);
-        UserDataManager.Instance.SaveUserData(initialData, enteredName);
+       // UserData initialData = PlayerDataConverter.ToUserData(playerData);
+       // UserDataManager.Instance.SaveUserData(initialData, enteredName);
         // 이후 GameManager 또는 다음 씬에서 playerData 사용 가능
         SceneManager.LoadScene("TutorialScene");
     }
