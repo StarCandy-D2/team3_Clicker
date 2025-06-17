@@ -6,6 +6,8 @@ using PlayerUpgrade;
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using DG.Tweening;
+using Unity.VisualScripting;
 
 public class Attack : MonoBehaviour
 {
@@ -26,7 +28,7 @@ public class Attack : MonoBehaviour
     public bool OnAttack;
     public float AttackDelay = 0.3f; //어택딜레이
     public float AttackTimer = 0;
-
+    private bool isCri = false;
     public float Maxdurability => weaponData.MaxDurability; // 내구도 테스트 임시 변수
     public float CurrentDurability
     {
@@ -312,12 +314,13 @@ else if (Input.touchCount == 0)
         if (playerData.GetStat(StatType.critRate) / 100 >= randomValue) //크리 떴을때 데미지 배율
         {
             iscritical = 2f;
-
+            isCri = true;
         }
         else
         {
 
             iscritical = 1f;
+            isCri = false;
         }
         Debug.Log($"{iscritical}");
 
@@ -359,12 +362,16 @@ else if (Input.touchCount == 0)
             {
                 impulse();
                 dmg.TakeDamage(attackPower * iscritical); //클릭 공격 데미지
+                Vector3 spawnPos = transform.position + new Vector3(0, -2f, 0);
+                ShowDamage(attackPower * iscritical,spawnPos);
                 OnAttack = false;
             }
             else if (!OnAttack && !OnAuto) //가만히 있을때
             {
                 impulse();
                 dmg.TakeDamage(IdleAttackPower * iscritical); //기본 공격 데미지
+                Vector3 spawnPos = transform.position + new Vector3(0, -2f, 0);
+                ShowDamage(attackPower * iscritical, spawnPos);
             }
 
 
@@ -372,23 +379,45 @@ else if (Input.touchCount == 0)
             {
                 impulse();
                 dmg.TakeDamage(attackPower * 1.2f * iscritical); // 자동 공격 데미지 클릭 공격 데미지 1.2배율
+                Vector3 spawnPos = transform.position + new Vector3(0, -2f, 0);
+                ShowDamage(attackPower * iscritical, spawnPos);
             }
         }
     }
 
 
 
-    public void ShowDamage(float amount)
+    public void ShowDamage(float damage, Vector3 position)
     {
-        GameObject damageText = Instantiate(damageTextPrefab, spawnPosition.position, Quaternion.identity, spawnPosition.parent);
-        TMP_Text tmp = damageText.GetComponent<TMP_Text>();
-        tmp.text = amount.ToString();
 
-        // 움직이고 사라지는 애니메이션
-        LeanTween.moveY(damageText, damageText.transform.position.y + 1f, 1f).setEaseOutCubic();
-        LeanTween.alphaText(damageText.GetComponent<RectTransform>(), 0, 1f).setOnComplete(() => {
-            Destroy(damageText);
-        });
+        GameObject obj = Instantiate(damageTextPrefab, spawnPosition);
+
+        RectTransform rectTransform = obj.GetComponent<RectTransform>();
+        Vector2 basePosition = Vector2.down * 195f;
+
+
+        Vector2 randomOffset = new Vector2(
+         Random.Range(-30f, 30f), 
+         Random.Range(-15f, 15f)  
+        );
+        rectTransform.anchoredPosition = basePosition + randomOffset;
+        TMP_Text text = obj.GetComponent<TMP_Text>();
+        text.text = damage.ToString();
+
+
+        rectTransform.DOAnchorPos(rectTransform.anchoredPosition + Vector2.up * 100f, 1f).SetEase(Ease.OutCubic);
+        text.DOFade(0f, 1f).OnComplete(() => Destroy(obj));
+
+        if (isCri)
+        {
+
+            text.color = Color.red;
+            text.fontSize += 10;
+
+        }
+
     }
+
+    
 }
 
