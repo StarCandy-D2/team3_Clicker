@@ -307,7 +307,7 @@ else if (Input.touchCount == 0)
     private void OnTriggerEnter2D(Collider2D other)
     {
         Enemy dmg = other.gameObject.GetComponent<Enemy>();
-        //DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
+        // DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
 
         float randomValue = Random.value;
         float iscritical;

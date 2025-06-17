@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     public UserDataManager userDataManager;
     public PlayerData playerData;
-
+    public int equippedWeaponIndex = -1;
     private void Awake()
     {
         if (Instance == null)
