@@ -11,6 +11,9 @@ public class SettingUI : MonoBehaviour
     public Slider sfxSlider;
     public TMP_InputField bgmInput;
     public TMP_InputField sfxInput;
+
+    public bool shakeonoff;
+    public bool particleonoff;
     private void Start()
     {
         StartCoroutine(InitializeUI());

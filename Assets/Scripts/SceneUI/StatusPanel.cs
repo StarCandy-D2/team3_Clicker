@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using PlayerUpgrade;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class StatusPanel : MonoBehaviour
 {
