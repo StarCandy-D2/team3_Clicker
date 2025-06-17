@@ -1,6 +1,5 @@
-using System.Collections;
+
 using System.Collections.Generic;
-using PlayerUpgrad;
 using PlayerUpgrade;
 using TMPro;
 using UnityEngine;
@@ -27,6 +26,7 @@ public class PlayerUpgradeUIManager : MonoBehaviour
     
     void Start()
     {
+        upgradeManager = FindObjectOfType<UpgradeManager>();
         Mapping();
         UpdateAllTexts();
     }
@@ -92,7 +92,7 @@ public class PlayerUpgradeUIManager : MonoBehaviour
     {
         foreach (var kvp in costTextMap)
         {
-            var upgrade = upgradeManager.upgradeData.Find(u => u.statName == kvp.Key.ToString());
+            var upgrade = upgradeManager.upgradeData.Find(u => u.statType == kvp.Key);
             if (upgrade != null)
             {
                 kvp.Value.text = upgrade.GetUpgradeCost().ToString();

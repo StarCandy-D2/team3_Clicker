@@ -394,7 +394,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 167271153}
-  - component: {fileID: 167271154}
   m_Layer: 5
   m_Name: goldgain
   m_TagString: Untagged
@@ -423,19 +422,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &167271154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 167271152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86a46a358f3d8e845aff85977e346ed4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statType: 4
 --- !u!1 &175807110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,6 +1772,7 @@ GameObject:
   - component: {fileID: 415775551}
   - component: {fileID: 415775550}
   - component: {fileID: 415775549}
+  - component: {fileID: 415775552}
   m_Layer: 5
   m_Name: UpgradeButton
   m_TagString: Untagged
@@ -1858,18 +1845,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 167271154}
-        m_TargetAssemblyTypeName: UpgradeButtonHandler, Assembly-CSharp
-        m_MethodName: OnPressDown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: goldGain
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1473803207}
         m_TargetAssemblyTypeName: PlayerUpgradeUIManager, Assembly-CSharp
         m_MethodName: UpdateAllTexts
@@ -1920,6 +1895,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415775547}
   m_CullTransparentMesh: 1
+--- !u!114 &415775552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415775547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a46a358f3d8e845aff85977e346ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statType: 4
+  minHoldTime: 0.3
 --- !u!1 &437132054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2159,7 +2148,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 474373905}
-  - component: {fileID: 474373906}
   m_Layer: 5
   m_Name: critRate
   m_TagString: Untagged
@@ -2188,19 +2176,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &474373906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474373904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86a46a358f3d8e845aff85977e346ed4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statType: 2
 --- !u!1 &506846641
 GameObject:
   m_ObjectHideFlags: 0
@@ -4471,7 +4446,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 882801049}
-  - component: {fileID: 882801050}
   m_Layer: 5
   m_Name: Oxygen
   m_TagString: Untagged
@@ -4500,19 +4474,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &882801050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882801048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86a46a358f3d8e845aff85977e346ed4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statType: 0
 --- !u!1 &885962111
 GameObject:
   m_ObjectHideFlags: 0
@@ -4731,6 +4692,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 955862478}
+  - component: {fileID: 955862479}
   m_Layer: 0
   m_Name: UserDataManager
   m_TagString: Untagged
@@ -4753,6 +4715,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &955862479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955862477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f7166f5ff3db24fa3f19d3c2d5db2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &969370922
 GameObject:
   m_ObjectHideFlags: 0
@@ -4765,6 +4739,7 @@ GameObject:
   - component: {fileID: 969370926}
   - component: {fileID: 969370925}
   - component: {fileID: 969370924}
+  - component: {fileID: 969370927}
   m_Layer: 5
   m_Name: UpgradeButton
   m_TagString: Untagged
@@ -4837,18 +4812,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1343983553}
-        m_TargetAssemblyTypeName: UpgradeButtonHandler, Assembly-CSharp
-        m_MethodName: OnPressDown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: atk
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1473803207}
         m_TargetAssemblyTypeName: PlayerUpgradeUIManager, Assembly-CSharp
         m_MethodName: UpdateAllTexts
@@ -4899,6 +4862,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969370922}
   m_CullTransparentMesh: 1
+--- !u!114 &969370927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969370922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a46a358f3d8e845aff85977e346ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statType: 1
+  minHoldTime: 0.3
 --- !u!1 &984539284
 GameObject:
   m_ObjectHideFlags: 0
@@ -4965,7 +4942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15df750c92b766441b460164d629736b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userDataManager: {fileID: 0}
+  userDataManager: {fileID: 955862479}
   playerData: {fileID: 11400000, guid: e42ea320c5e2f7c42b172c050d244067, type: 2}
 --- !u!4 &1003176173
 Transform:
@@ -6740,7 +6717,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1343983552}
-  - component: {fileID: 1343983553}
   m_Layer: 5
   m_Name: atk
   m_TagString: Untagged
@@ -6769,19 +6745,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1343983553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343983551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86a46a358f3d8e845aff85977e346ed4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statType: 1
 --- !u!1 &1353165625
 GameObject:
   m_ObjectHideFlags: 0
@@ -8044,6 +8007,7 @@ GameObject:
   - component: {fileID: 1700425286}
   - component: {fileID: 1700425285}
   - component: {fileID: 1700425284}
+  - component: {fileID: 1700425287}
   m_Layer: 5
   m_Name: UpgradeButton
   m_TagString: Untagged
@@ -8116,18 +8080,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1343983553}
-        m_TargetAssemblyTypeName: UpgradeButtonHandler, Assembly-CSharp
-        m_MethodName: OnPressDown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: critRate
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1473803207}
         m_TargetAssemblyTypeName: PlayerUpgradeUIManager, Assembly-CSharp
         m_MethodName: UpdateAllTexts
@@ -8178,6 +8130,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700425282}
   m_CullTransparentMesh: 1
+--- !u!114 &1700425287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700425282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a46a358f3d8e845aff85977e346ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statType: 2
+  minHoldTime: 0.3
 --- !u!1 &1747741629
 GameObject:
   m_ObjectHideFlags: 0
@@ -8953,6 +8919,7 @@ GameObject:
   - component: {fileID: 1960112366}
   - component: {fileID: 1960112365}
   - component: {fileID: 1960112364}
+  - component: {fileID: 1960112367}
   m_Layer: 5
   m_Name: UpgradeButton
   m_TagString: Untagged
@@ -9025,18 +8992,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1343983553}
-        m_TargetAssemblyTypeName: UpgradeButtonHandler, Assembly-CSharp
-        m_MethodName: OnPressDown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Oxygen
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1473803207}
         m_TargetAssemblyTypeName: PlayerUpgradeUIManager, Assembly-CSharp
         m_MethodName: UpdateAllTexts
@@ -9087,6 +9042,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960112362}
   m_CullTransparentMesh: 1
+--- !u!114 &1960112367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960112362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a46a358f3d8e845aff85977e346ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statType: 0
+  minHoldTime: 0.3
 --- !u!1 &1970968297
 GameObject:
   m_ObjectHideFlags: 0
