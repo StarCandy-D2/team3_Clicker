@@ -1,4 +1,4 @@
-﻿using PlayerUpgrade;
+using PlayerUpgrade;
 using TMPro;
 using UnityEngine;
 

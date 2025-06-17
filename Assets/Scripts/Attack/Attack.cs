@@ -2,6 +2,7 @@
 using PlayerUpgrade;
 using System.Collections;
 using System.Data.Common;
+using PlayerUpgrade;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
@@ -9,7 +10,7 @@ public class Attack : MonoBehaviour
     
     public PlayerData playerData;
     public WeaponData weaponData;
-
+    public SettingUI settingUI;
     public float IdleSpeed = 5f; //튀어오르는 기본 속도
     // public float gravity = -9.8f; IdleSpeed로 통함
     public float attackPower => playerData.GetStat(StatType.atk) + weaponData.Attack; //임시 공격력
@@ -67,6 +68,39 @@ public class Attack : MonoBehaviour
 
         autoattackimpulseSource.GenerateImpulse();
     }
+
+    public void impulse()
+    {
+
+        if (!settingUI.shakeonoff)
+        {
+
+            if (OnAttack)
+            {
+
+                GetComponent<Attack>().AttackTriggerImpulse();
+            }
+
+            else if (OnAuto)
+            {
+
+                GetComponent<Attack>().AutoAttackTriggerImpulse();
+            }
+
+            else if (!OnAttack && !OnAuto)
+            {
+
+                GetComponent<Attack>().IdleTriggerImpulse();
+
+            }
+
+        }
+
+
+
+
+
+    }
     void Start()
     {
         currentHeight = transform.position.y;
@@ -110,6 +144,8 @@ public class Attack : MonoBehaviour
                 OnAttack = true;
                 isJump = false;
                 velocity = -IdleSpeed * 2f; // 빠르게 낙하
+
+
                 CurrentDurability -= 2f; //내구도 2감소
                 if (CurrentDurability <= 0f)
                 {
@@ -271,7 +307,8 @@ else if (Input.touchCount == 0)
 
             iscritical = 1f;
         }
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && !settingUI.particleonoff)
         {
          
 
@@ -298,31 +335,31 @@ else if (Input.touchCount == 0)
                     break;
 
             }
+            //딕셔너리 고려
 
 
 
 
 
 
-
-             
+           
 
             if (OnAttack) // 클릭했을때 공격
             {
-                GetComponent<Attack>().AttackTriggerImpulse();
+                impulse();
                 dmg.TakeDamage(attackPower * iscritical); //클릭 공격 데미지
                 OnAttack = false;
             }
             else if (!OnAttack && !OnAuto) //가만히 있을때
             {
-                GetComponent<Attack>().IdleTriggerImpulse();
+                impulse();
                 dmg.TakeDamage(IdleAttackPower * iscritical); //기본 공격 데미지
             }
 
 
             if (OnAuto) //자동공격
             {
-                GetComponent<Attack>().AutoAttackTriggerImpulse();
+                impulse();
                 dmg.TakeDamage(attackPower * 1.2f * iscritical); // 자동 공격 데미지 클릭 공격 데미지 1.2배율
             }
 
