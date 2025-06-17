@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using OverSceneScripts;
+using PlayerUpgrad;
 using PlayerUpgrade;
 using UnityEngine;
 
@@ -28,8 +30,16 @@ public class GameManager : MonoBehaviour
             critRate = playerData.GetStat(StatType.critRate),
             gold = playerData.GetStat(StatType.Gold),
             goldGain = playerData.GetStat(StatType.goldGain),
+            upgradeLevels = new List<UpgradeSaveData>()
         };
-
+        foreach (var upgrade in UpgradeManager.instance.upgradeData)
+        {
+            saveData.upgradeLevels.Add(new UpgradeSaveData
+            {
+                statName = upgrade.statName,
+                level = upgrade.level
+            });
+        }
         userDataManager.SaveUserData(saveData, playerData.userName);
     }
 
@@ -44,6 +54,20 @@ public class GameManager : MonoBehaviour
             playerData.SetStat(StatType.critRate, loaded.critRate);
             playerData.SetStat(StatType.Gold, loaded.gold);
             playerData.SetStat(StatType.goldGain, loaded.goldGain);
+            
+            foreach (var upgradeSave in loaded.upgradeLevels)
+            {
+                var upgrade = UpgradeManager.instance.upgradeData.Find(u => u.statName == upgradeSave.statName);
+                if (upgrade != null)
+                {
+                    upgrade.level = upgradeSave.level;
+                    // 스탯 재계산 후 적용
+                    if (System.Enum.TryParse(upgrade.statName, out StatType stat))
+                    {
+                        playerData.SetStat(stat, upgrade.GetCurStatValue());
+                    }
+                }
+            }
         }
     }
 }

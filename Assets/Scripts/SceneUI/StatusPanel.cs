@@ -26,9 +26,6 @@ public class StatusPanel : MonoBehaviour
 
     public void ShowStat()
     {
-        name.text = playerData.userName;
-        atk.text = $"공격력 : {(playerData.atk + weaponData.Attack).ToString()}";
-        oxygen.text = $"산소 : {(playerData.Oxygen).ToString()}";
-        crit.text = $"치명타 : {playerData.critRate.ToString()}";
+      
     }
 }
