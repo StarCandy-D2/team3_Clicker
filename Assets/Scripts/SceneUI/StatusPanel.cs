@@ -64,7 +64,7 @@ public class StatusPanel : MonoBehaviour
         if (playerData.GetStat(StatType.Oxygen) <= 0f)
         {
             gameoverPanel.SetActive(true);
-            //Time.timeScale = 0.0f;
+            Time.timeScale = 0.0f;
         }
     }
 }

@@ -47,7 +47,8 @@ public class StartScene : MonoBehaviour
 
         // 값 저장
         playerData.userName = enteredName;
-        playerData.SetStat(StatType.Oxygen, 100f);
+        playerData.SetStat(StatType.MaxEnergy, 10f);
+        playerData.SetStat(StatType.Oxygen, 10f);
         playerData.SetStat(StatType.atk, 10f);
         playerData.SetStat(StatType.Gold, 100f);
         playerData.SetStat(StatType.critRate, 10f);

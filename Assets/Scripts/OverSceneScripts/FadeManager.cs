@@ -63,7 +63,7 @@ public class FadeManager : MonoBehaviour
     {
         if (fadeImage == null)
         {
-            Debug.LogError("[FadeManager] fadeImage가 null입니다. 페이드 중단.");
+            Debug.LogError("[FadeManager] fadeImage가 null입니다. 페이드 실패");
             yield break;
         }
 
@@ -73,7 +73,7 @@ public class FadeManager : MonoBehaviour
 
         while (time < duration)
         {
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             float t = time / duration;
             color.a = Mathf.Lerp(startAlpha, targetAlpha, t);
             fadeImage.color = color;
