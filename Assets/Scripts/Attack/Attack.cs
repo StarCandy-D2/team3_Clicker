@@ -2,6 +2,7 @@
 using PlayerUpgrade;
 using System.Collections;
 using System.Data.Common;
+using PlayerUpgrade;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
