@@ -9,7 +9,7 @@ public class Attack : MonoBehaviour
     
     public PlayerData playerData;
     public WeaponData weaponData;
-
+    public SettingUI settingUI;
     public float IdleSpeed = 5f; //튀어오르는 기본 속도
     // public float gravity = -9.8f; IdleSpeed로 통함
     public float attackPower => playerData.GetStat(StatType.atk) + weaponData.Attack; //임시 공격력
@@ -66,6 +66,39 @@ public class Attack : MonoBehaviour
     {
 
         autoattackimpulseSource.GenerateImpulse();
+    }
+
+    public void impulse()
+    {
+
+        if (!settingUI.shakeonoff)
+        {
+
+            if (OnAttack)
+            {
+
+                GetComponent<Attack>().AttackTriggerImpulse();
+            }
+
+            else if (OnAuto)
+            {
+
+                GetComponent<Attack>().AutoAttackTriggerImpulse();
+            }
+
+            else if (!OnAttack && !OnAuto)
+            {
+
+                GetComponent<Attack>().IdleTriggerImpulse();
+
+            }
+
+        }
+
+
+
+
+
     }
     void Start()
     {
@@ -274,7 +307,7 @@ else if (Input.touchCount == 0)
             iscritical = 1f;
         }
         Debug.Log($"{iscritical}ddddd");
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && !settingUI.particleonoff)
         {
          
 
@@ -313,24 +346,24 @@ else if (Input.touchCount == 0)
 
 
 
-             
+           
 
             if (OnAttack) // 클릭했을때 공격
             {
-                GetComponent<Attack>().AttackTriggerImpulse();
+                impulse();
                 dmg.TakeDamage(attackPower * iscritical); //클릭 공격 데미지
                 OnAttack = false;
             }
             else if (!OnAttack && !OnAuto) //가만히 있을때
             {
-                GetComponent<Attack>().IdleTriggerImpulse();
+                impulse();
                 dmg.TakeDamage(IdleAttackPower * iscritical); //기본 공격 데미지
             }
 
 
             if (OnAuto) //자동공격
             {
-                GetComponent<Attack>().AutoAttackTriggerImpulse();
+                impulse();
                 dmg.TakeDamage(attackPower * 1.2f * iscritical); // 자동 공격 데미지 클릭 공격 데미지 1.2배율
             }
 
