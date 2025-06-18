@@ -18,9 +18,9 @@ MonoBehaviour:
   Level: 0
   WeaponName: "\uB3D9\uC0BD"
   WeaponIcon: {fileID: 21300000, guid: 35822a21ffd494b86bee7b8b09c15b44, type: 3}
-  AutoAttackDuration: 1
-  CurrentDurability: 0
-  MaxDurability: 0
+  AutoAttackDuration: 30
+  CurrentDurability: 20
+  MaxDurability: 20
   Upgrade: 0
   UpgradeStats:
   - UpgradeLevel: 1

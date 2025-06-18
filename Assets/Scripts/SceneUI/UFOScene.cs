@@ -9,9 +9,14 @@ public class UFOScene : MonoBehaviour
     public GameObject settingPanel;
     public GameObject statPanel;
     public GameObject shopPanel;
+    public GameObject equipErrorText;
 
     public void ShowSettingPanel()
     {
+        if (equipErrorText != null)
+        {
+            equipErrorText.SetActive(false);
+        }
         settingPanel.SetActive(true);
         basicbuttons.SetActive(false);
     }
@@ -21,13 +26,23 @@ public class UFOScene : MonoBehaviour
     }
     public void ShowStatPanel()
     {
+        if (equipErrorText != null)
+        {
+            equipErrorText.SetActive(false);
+        }
         statPanel.SetActive(true);
         basicbuttons.SetActive(false);
     }
     public void ShowShopPanel()
     {
+        if (equipErrorText != null)
+        {
+            equipErrorText.SetActive(false);
+        }
+        
         shopPanel.SetActive(true);
         basicbuttons.SetActive(false);
+        
     }
     public void BackToBasic()
     {
@@ -38,7 +53,15 @@ public class UFOScene : MonoBehaviour
     }
     public void GotoMain()
     {
-        FadeManager.Instance.FadeOutAndLoadScene("MainScene");
+        if (GameManager.Instance.equippedWeaponIndex < 0)
+        {
+            equipErrorText.SetActive(true);
+        }
+        else
+        {
+            FadeManager.Instance.FadeOutAndLoadScene("MainScene");
+        }
+        
     }
     public void QuitGame()
     {

@@ -25374,7 +25374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 4accf49d8f7451c4cafdf3240c110644, type: 2}
-  weaponData: {fileID: 11400000, guid: c36a9d01918c84826ad2c9ba570fcd5f, type: 2}
+  weaponData: {fileID: 11400000, guid: d2a4b522e3bee314ea92cc69b35bcfdf, type: 2}
   settingUI: {fileID: 1567640587}
   IdleSpeed: 15
   isJump: 1
@@ -40583,7 +40583,7 @@ MonoBehaviour:
   currentLayer: 1
   maxLayersPerStage: 100
   sessionGold: 0
-  stageGoldRewards: 0a0000000f00000019000000280000003c000000
+  stageGoldRewards: []
   stageNames:
   - "\uC9C0\uAC01"
   - "\uC0C1\uBD80\uB9E8\uD2C0"
@@ -48811,6 +48811,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 15871ad6c344efd4391c053b67c83017, type: 2}
   - {fileID: 11400000, guid: ddde2c149b8b2dc438cd243a0d1d09f4, type: 2}
   - {fileID: 11400000, guid: 9a0eb3583f1f5b24a9ec8a39221d011b, type: 2}
+  totalLayerGenerated: 0
   preloadLayers: 10
   worldContainer: {fileID: 621487656}
   activeLayers: []

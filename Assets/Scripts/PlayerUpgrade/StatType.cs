@@ -10,5 +10,7 @@ namespace PlayerUpgrade
         critRate,
         Gold,
         goldGain,
+        totalAtk,
+        totalCritRate
     }
 }

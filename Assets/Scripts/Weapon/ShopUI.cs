@@ -35,6 +35,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private float errorDisplayDuration = 2.5f; // 표시 시간
     [SerializeField] private float typingSpeed = 0.05f; // 타이핑 속도
     private Coroutine _errorCoroutine;
+    [SerializeField] private WeaponData equippedWeaponData;
     
     
 
@@ -147,8 +148,8 @@ public class ShopUI : MonoBehaviour
                 baseCrit /= (1f + maxStat.Critical);
             }
             
-            _playerData.SetStat(StatType.atk, baseAtk);
-            _playerData.SetStat(StatType.critRate, baseCrit);
+            _playerData.SetStat(StatType.totalAtk, baseAtk);
+            _playerData.SetStat(StatType.totalCritRate, baseCrit);
             
             equippanel.SetActive(false);
             ShowSendError("장착을 해제하였습니다",Color.green);
@@ -163,6 +164,7 @@ public class ShopUI : MonoBehaviour
             }
             
             selectedWeapon.IsEquipped = true;
+            
             GameManager.Instance.equippedWeaponIndex = _weaponDataIndex;
             
             int upgradeLevel = selectedWeapon.Upgrade;
@@ -177,8 +179,8 @@ public class ShopUI : MonoBehaviour
                 float finalAtk = baseAtk * (1f + upgradedStat.Attack);
                 float finalCrit = baseCrit * (1f + upgradedStat.Critical);
                 
-                _playerData.SetStat(StatType.atk, finalAtk);
-                _playerData.SetStat(StatType.critRate, finalCrit);
+                _playerData.SetStat(StatType.totalAtk, finalAtk);
+                _playerData.SetStat(StatType.totalCritRate, finalCrit);
             }
             else if (selectedWeapon.UpgradeStats.Count > 0)
             {
@@ -187,13 +189,33 @@ public class ShopUI : MonoBehaviour
                 float finalAtk = baseAtk * (1f + maxStat.Attack);
                 float finalCrit = baseCrit * (1f + maxStat.Critical);
                 
-                _playerData.SetStat(StatType.atk, finalAtk);
-                _playerData.SetStat(StatType.critRate, finalCrit);
+                _playerData.SetStat(StatType.totalAtk, finalAtk);
+                _playerData.SetStat(StatType.totalCritRate, finalCrit);
             }
+            
+            equippedWeaponData.LoadFrom(selectedWeapon);
             ShowSendError("장착을 완료했습니다.",Color.green);
         }
         
         UpdateWeaponUI();
+    }
+
+    public void AvilityCount()
+    {
+        WeaponData selectedWeapon = _weaponDatas[_weaponDataIndex];
+         
+        int upgradeLevel = selectedWeapon.Upgrade;
+            
+        float baseAtk = _playerData.GetStat(StatType.atk);
+        float baseCrit = _playerData.GetStat(StatType.critRate);
+        
+        WeaponData.UpgradeData upgradedStat = selectedWeapon.UpgradeStats[upgradeLevel];
+                
+        float finalAtk = baseAtk * upgradedStat.Attack;
+        float finalCrit = baseCrit * upgradedStat.Critical;
+                
+        _playerData.SetStat(StatType.totalAtk, finalAtk);
+        _playerData.SetStat(StatType.totalCritRate, finalCrit);
     }
 
     public void HideEquipMarker()
@@ -241,8 +263,8 @@ public class ShopUI : MonoBehaviour
                 float finalCrit = baseCrit * (1f + stat.cost);
                 
                 
-                _playerData.SetStat(StatType.atk, finalAtk);
-                _playerData.SetStat(StatType.critRate, finalCrit);
+                _playerData.SetStat(StatType.totalAtk, finalAtk);
+                _playerData.SetStat(StatType.totalCritRate, finalCrit);
             }
             
             ShowSendError("업그레이드를 완료하였습니다", Color.green);

@@ -34,6 +34,7 @@ namespace PlayerUpgrade
                 upgrade.level++;
 
                 playerData.SetStat(stat, upgrade.GetCurStatValue());
+                GameManager.Instance.shopUI.AvilityCount();
             }
             else
             {

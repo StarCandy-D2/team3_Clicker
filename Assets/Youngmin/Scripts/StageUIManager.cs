@@ -15,10 +15,10 @@ public class StageUIManager : MonoBehaviour
     [Header("스테이지")] public int currentStage = 1;
     public int currentLayer = 1;
     public int maxLayersPerStage = 100;
-    public int sessionGold;
+    public float sessionGold;
 
     [Header("스테이지별 골드")] 
-    public int[] stageGoldRewards = { 10, 15, 25, 40, 60, 1500 };
+    public float[] stageGoldRewards = { 10, 15, 25, 40, 60, 1500 };
     
 
     public string[] stageNames = { "지각", "상부맨틀", "하부맨틀", "외핵", "내핵","지구의 핵" };
@@ -56,7 +56,7 @@ public class StageUIManager : MonoBehaviour
 
     }
 
-    public void AddSessionGold(int amount)
+    public void AddSessionGold(float amount)
     {
         sessionGold += amount;
         UpdateUI();
@@ -71,7 +71,7 @@ public class StageUIManager : MonoBehaviour
         Debug.Log($"스테이지 {currentStage} 진입");
     }
 
-
+    
     void UpdateUI()
     {
 
@@ -85,7 +85,9 @@ public class StageUIManager : MonoBehaviour
 
         if (layerText != null)
         {
-            if (currentStage == 5 && currentLayer == 100)
+
+            if (currentStage >= 6)
+
             {
                 stageText.text = "지구의 핵";
                 layerText.text = "";
@@ -96,7 +98,7 @@ public class StageUIManager : MonoBehaviour
         }
     }
 
-    public int GetCurrentStageGoldReward()
+    public float GetCurrentStageGoldReward()
     {
         if (stageGoldRewards.Length >= currentStage)
         {
