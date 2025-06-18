@@ -40583,7 +40583,7 @@ MonoBehaviour:
   currentLayer: 1
   maxLayersPerStage: 100
   sessionGold: 0
-  stageGoldRewards: 0a0000000f00000019000000280000003c000000
+  stageGoldRewards: []
   stageNames:
   - "\uC9C0\uAC01"
   - "\uC0C1\uBD80\uB9E8\uD2C0"
