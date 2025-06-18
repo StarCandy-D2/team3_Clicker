@@ -31795,7 +31795,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1781001079}
         m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
-        m_MethodName: OnClickNext
+        m_MethodName: OnClickNextButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33555,11 +33555,11 @@ Transform:
   - {fileID: 330021747}
   - {fileID: 713115189}
   - {fileID: 769990793}
+  - {fileID: 84139759}
   - {fileID: 423897715}
   - {fileID: 27917278}
   - {fileID: 440842959}
   - {fileID: 1250794946}
-  - {fileID: 84139759}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2046047056
