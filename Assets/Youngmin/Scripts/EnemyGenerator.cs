@@ -150,7 +150,7 @@ public class EnemyGenerator : MonoBehaviour
             
             var bossLayer = Instantiate(bossStage.bossPrefab, worldContainer);
             var newLayerY = -(activeLayers.Count * bossStage.layerHeight);
-            bossLayer.transform.position = new Vector3(0, newLayerY - 4.85f, 0);
+            bossLayer.transform.position = new Vector3(0, newLayerY - 4.75f, 0);
             
             var bossEnemy = bossLayer.GetComponent<Enemy>();
             if (bossEnemy != null)
