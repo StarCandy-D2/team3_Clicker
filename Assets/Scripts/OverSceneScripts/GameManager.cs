@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public ShopUI shopUI;
+    private ShopUI shopUI;
     public UserDataManager userDataManager;
     public PlayerData playerData;
     public int equippedWeaponIndex = -1;
