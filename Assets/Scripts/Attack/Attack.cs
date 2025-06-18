@@ -61,6 +61,7 @@ public class Attack : MonoBehaviour
     public ParticleSystem LowerMantle_Particle;
     public ParticleSystem OuterCore_Particle;
     public ParticleSystem UpperMantle_Particle;
+    public ParticleSystem Boss_Particle;
     public TrailRenderer trailRenderer;
 
     //데미지 텍스트 박스
@@ -128,7 +129,8 @@ public class Attack : MonoBehaviour
         { "InnerCore", InnerCore_Particle },
         { "OuterCore", OuterCore_Particle },
         { "UpperMantle", UpperMantle_Particle },
-        { "LowerMantle", LowerMantle_Particle }
+        { "LowerMantle", LowerMantle_Particle },
+        { "Boss", Boss_Particle }
     };
 
 
