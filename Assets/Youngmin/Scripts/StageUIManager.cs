@@ -85,7 +85,7 @@ public class StageUIManager : MonoBehaviour
 
         if (layerText != null)
         {
-            if (currentStage == 5 && currentLayer == 100)
+            if (currentStage >= 6)
             {
                 stageText.text = "지구의 핵";
                 layerText.text = "";
