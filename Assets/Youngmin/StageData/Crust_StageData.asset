@@ -15,8 +15,11 @@ MonoBehaviour:
   stageName: Crust_StageData
   stageLevel: 1
   totalLayers: 100
-  baseLayerHP: 3
+  baseLayerHP: 13
   hpMultiplier: 1
   layerHeight: 0.6
+  O2reduceLv: 0
   layerPrefab: {fileID: 40838679031997793, guid: 3efc87d73f6f2e845972bae1c5744da3, type: 3}
   bossPrefab: {fileID: 0}
+  bossHP: 100
+  bossName: "\uC9C0\uAD6C\uC758 \uD575"
