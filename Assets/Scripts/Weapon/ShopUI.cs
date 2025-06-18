@@ -35,6 +35,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private float errorDisplayDuration = 2.5f; // 표시 시간
     [SerializeField] private float typingSpeed = 0.05f; // 타이핑 속도
     private Coroutine _errorCoroutine;
+    [SerializeField] private WeaponData equippedWeaponData;
     
     
 
@@ -163,6 +164,7 @@ public class ShopUI : MonoBehaviour
             }
             
             selectedWeapon.IsEquipped = true;
+            
             GameManager.Instance.equippedWeaponIndex = _weaponDataIndex;
             
             int upgradeLevel = selectedWeapon.Upgrade;
@@ -190,6 +192,8 @@ public class ShopUI : MonoBehaviour
                 _playerData.SetStat(StatType.atk, finalAtk);
                 _playerData.SetStat(StatType.critRate, finalCrit);
             }
+            
+            equippedWeaponData.LoadFrom(selectedWeapon);
             ShowSendError("장착을 완료했습니다.",Color.green);
         }
         

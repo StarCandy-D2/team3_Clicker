@@ -12746,6 +12746,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 446d775a68c834c2d86ea72869fd41ff, type: 2}
   errorDisplayDuration: 2.5
   typingSpeed: 0.05
+  equippedWeaponData: {fileID: 11400000, guid: d2a4b522e3bee314ea92cc69b35bcfdf, type: 2}
 --- !u!114 &901626849
 MonoBehaviour:
   m_ObjectHideFlags: 0
