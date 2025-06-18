@@ -254,8 +254,8 @@ public class Attack : MonoBehaviour
             transform.position = new Vector3(transform.position.x, minHeight, transform.position.z);
         }
         // 자동 공격 조건 (모바일 탭 1초 이상 유지 시 발동)
-#if UNITY_EDITOR
-        // 에디터 테스트용 마우스 클릭 유지
+#if UNITY_EDITOR || UNITY_STANDALONE
+        // 에디터 및 윈도우 빌드용 마우스 클릭 유지 감지
         if (!OnAuto)
         {
             if (Input.GetMouseButton(0))
@@ -264,7 +264,7 @@ public class Attack : MonoBehaviour
                 if (touchDuration >= requiredHoldTime && AutoAttackTimer >= AutoAttackDuration)
                 {
                     OnAuto = true;
-                    Debug.Log("자동공격 실행 (에디터)");
+                    Debug.Log("자동공격 실행 (마우스 클릭)");
                     StartCoroutine(AutoAttack());
                 }
             }
