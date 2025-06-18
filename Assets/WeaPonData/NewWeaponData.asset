@@ -18,8 +18,8 @@ MonoBehaviour:
   Level: 0
   WeaponName: 
   WeaponIcon: {fileID: 0}
-  AutoAttackDuration: 1
-  CurrentDurability: 10
+  AutoAttackDuration: 20
+  CurrentDurability: 6
   MaxDurability: 10
   Upgrade: 0
   UpgradeStats: []
