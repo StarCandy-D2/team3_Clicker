@@ -21,8 +21,9 @@ public class StatusPanel : MonoBehaviour
     public TextMeshProUGUI gameoverlayer;
     public Slider slider;
     public GameObject settingPanel;
-    public GameObject gameoverPanel; 
-
+    public GameObject gameoverPanel;
+    public TextMeshProUGUI CurrentLayer;
+    public TextMeshProUGUI StageName;
     public PlayerData playerData;
     public WeaponData weaponData;
     private void Start()
@@ -53,7 +54,10 @@ public class StatusPanel : MonoBehaviour
         gameoversessiongold.text = $"획득 골드 : {stageUIManager.sessionGold.ToString()}";
         gameoverstage.text = $"현재 스테이지 : {stageName}";
         gameoverlayer.text = $"현재 위치 = {stageUIManager.currentLayer}m";
-        slider.value = stageUIManager.currentLayer / 500f;
+        slider.value = stageUIManager.currentLayer / 100f;
+
+        CurrentLayer.text = stageUIManager.currentLayer.ToString() +'m';
+        StageName.text  = stageName;
     }
 
     public void Showsetting()
