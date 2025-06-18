@@ -42,7 +42,7 @@ public class StatusPanel : MonoBehaviour
 
     public void ShowStat()
     {
-        string stageName = stageUIManager.stageNames[stageUIManager.currentStage - 1];
+        string stageName = stageUIManager.stageText.text;
         name.text = playerData.userName;
         atk.text = $"공격력 : {playerData.GetStat(StatType.atk).ToString("F1")}";
         oxygen.text = $"에너지 : {(playerData.GetStat(StatType.CurEnergy)).ToString("F1")}";
