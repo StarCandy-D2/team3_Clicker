@@ -49,4 +49,4 @@ MonoBehaviour:
     cost: 7500
     Durability: 34
   IsEquipped: 0
-  IsUnlocked: 1
+  IsUnlocked: 0
