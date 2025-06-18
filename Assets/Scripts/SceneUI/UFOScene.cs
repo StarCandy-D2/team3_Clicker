@@ -38,6 +38,6 @@ public class UFOScene : MonoBehaviour
     }
     public void GotoMain()
     {
-        SceneManager.LoadScene("MainScene");
+        FadeManager.Instance.FadeOutAndLoadScene("MainScene");
     }
 }

@@ -1865,7 +1865,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 999
   m_TargetDisplay: 0
 --- !u!1 &678056812
 GameObject:
@@ -2151,6 +2151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userDataManager: {fileID: 415601082}
   playerData: {fileID: 11400000, guid: 4accf49d8f7451c4cafdf3240c110644, type: 2}
+  equippedWeaponIndex: -1
 --- !u!4 &722597749
 Transform:
   m_ObjectHideFlags: 0
