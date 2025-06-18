@@ -13,6 +13,10 @@ public class UFOScene : MonoBehaviour
 
     public void ShowSettingPanel()
     {
+        if (equipErrorText != null)
+        {
+            equipErrorText.SetActive(false);
+        }
         settingPanel.SetActive(true);
         basicbuttons.SetActive(false);
     }
@@ -22,6 +26,10 @@ public class UFOScene : MonoBehaviour
     }
     public void ShowStatPanel()
     {
+        if (equipErrorText != null)
+        {
+            equipErrorText.SetActive(false);
+        }
         statPanel.SetActive(true);
         basicbuttons.SetActive(false);
     }
@@ -30,15 +38,10 @@ public class UFOScene : MonoBehaviour
         if (equipErrorText != null)
         {
             equipErrorText.SetActive(false);
-            shopPanel.SetActive(true);
-            basicbuttons.SetActive(false);
-        }
-        else
-        {
-            shopPanel.SetActive(true);
-            basicbuttons.SetActive(false);
         }
         
+        shopPanel.SetActive(true);
+        basicbuttons.SetActive(false);
         
     }
     public void BackToBasic()
@@ -53,7 +56,6 @@ public class UFOScene : MonoBehaviour
         if (GameManager.Instance.equippedWeaponIndex < 0)
         {
             equipErrorText.SetActive(true);
-            Debug.Log("여기에다실행하면될듯");
         }
         else
         {
