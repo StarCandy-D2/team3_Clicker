@@ -128,11 +128,11 @@ public class Enemy : MonoBehaviour
     
     //
     // // 테스트용 클릭 함수
-    // void OnMouseDown()
-    // {
-    //     Debug.Log("층 클릭됨!");
-    //     TakeDamage(maxHP); // 한 번에 파괴
-    // }
+    void OnMouseDown()
+    {
+        Debug.Log("층 클릭됨!");
+        TakeDamage(maxHP); // 한 번에 파괴
+    }
 
 
 }
