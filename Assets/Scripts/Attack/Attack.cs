@@ -115,6 +115,7 @@ public class Attack : MonoBehaviour
             }
 
         }
+   
     }
     void Start()
     {
@@ -166,17 +167,24 @@ public class Attack : MonoBehaviour
             }
         }
 
-        if(AutoAttackTimer >= autoAttackDuration)
+        if (!OnAuto)
         {
-
-            autoAttackIcon.color = Color.white;
+            autoAttackIcon.fillAmount += Time.deltaTime / autoAttackDuration;
+            autoAttackIcon.fillAmount = Mathf.Clamp01(autoAttackIcon.fillAmount);
 
         }
-        else
-        {
-            autoAttackIcon.color = new Color(164f / 255f, 164f / 255f, 164f / 255f);
 
-        }
+        //if(AutoAttackTimer >= autoAttackDuration)
+        //{
+
+        //    autoAttackIcon.color = Color.white;
+
+        //}
+        //else
+        //{
+        //    autoAttackIcon.color = new Color(164f / 255f, 164f / 255f, 164f / 255f);
+
+        //}
     }
 
     private void PlayHitParticle(string tag)
@@ -305,6 +313,7 @@ else if (Input.touchCount == 0)
             int minutes = Mathf.FloorToInt(remainingTime / 60f);
             int seconds = Mathf.FloorToInt(remainingTime % 60f);
             Autotimetext.text = $"{minutes:00}:{seconds:00}";
+            autoAttackIcon.fillAmount = 1 - (timer / autoAttackDuration);
            
             if (isJump)
             {
