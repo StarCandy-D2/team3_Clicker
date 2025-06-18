@@ -8,7 +8,7 @@ public class EnemyGenerator : MonoBehaviour
     [Header("스테이지별 데이터")] 
     [SerializeField] private StageData[] stageDataArray;
 
-    private int totalLayerGenerated = 0;
+    public int totalLayerGenerated = 0;
     // [Header("현재 스테이지")] 
     // [SerializeField] private StageData currentStageData;
 

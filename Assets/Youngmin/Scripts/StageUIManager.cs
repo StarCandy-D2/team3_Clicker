@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class StageUIManager : MonoBehaviour
 {
     public static StageUIManager Instance;
-
+    private EnemyGenerator enemyGenerator;
+    
     [Header("UI")] public TextMeshProUGUI stageText;
     public TextMeshProUGUI layerText;
 
@@ -84,8 +85,9 @@ public class StageUIManager : MonoBehaviour
 
         if (layerText != null)
         {
-            if (currentStage == 6)
+            if (currentStage == 5 && currentLayer == 100)
             {
+                stageText.text = "지구의 핵";
                 layerText.text = "";
             }
 
