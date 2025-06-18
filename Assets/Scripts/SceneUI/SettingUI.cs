@@ -79,6 +79,7 @@ public class SettingUI : MonoBehaviour
         {
             shakeonoff = false;
         }
+        Debug.Log($"쉐이크{shakeonoff}");
     }
     public void OnOffParticle()
     {
@@ -87,6 +88,8 @@ public class SettingUI : MonoBehaviour
             particleonoff = true;
         }
         else { particleonoff = false; }
+
+        Debug.Log($"파티클{particleonoff}");
     }
 
 }

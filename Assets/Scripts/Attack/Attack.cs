@@ -325,9 +325,16 @@ else if (Input.touchCount == 0)
         Debug.Log($"{iscritical}");
 
         //레이어가 Enemy이고 파티클on일때만 파티클 재생
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && !settingUI.particleonoff)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+            Debug.Log(settingUI.particleonoff);
+
+            if (!settingUI.particleonoff)
+            {
+
             PlayHitParticle(other.gameObject.tag);
+
+            }
 
             //switch (other.gameObject.tag)
             //{
