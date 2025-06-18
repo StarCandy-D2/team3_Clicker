@@ -1102,7 +1102,7 @@ MonoBehaviour:
   currentLayer: 1
   maxLayersPerStage: 100
   sessionGold: 0
-  stageGoldRewards: 0a0000000f00000019000000280000003c000000
+  stageGoldRewards: []
   stageNames:
   - "\uC9C0\uAC01"
   - "\uC0C1\uBD80\uB9E8\uD2C0"
@@ -17630,10 +17630,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -28499,6 +28499,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7cd75bc43da9b6d4eb767f79c14aef97, type: 2}
   - {fileID: 11400000, guid: 15871ad6c344efd4391c053b67c83017, type: 2}
   - {fileID: 11400000, guid: ddde2c149b8b2dc438cd243a0d1d09f4, type: 2}
+  totalLayerGenerated: 0
   preloadLayers: 10
   worldContainer: {fileID: 1871968068}
   activeLayers: []
