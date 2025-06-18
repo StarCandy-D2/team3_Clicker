@@ -48,9 +48,10 @@ public class Enemy : MonoBehaviour
     
     public void TakeDamage(float damage)
     {
+        Debug.Log($"체력{currentHP}/{damage}데미지 \n {currentHP -= damage}");
         currentHP -= damage;
-        
-        
+
+
         if (currentHP <= 0)
         {
 

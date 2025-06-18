@@ -19,7 +19,7 @@ public class Attack : MonoBehaviour
     public float IdleSpeed = 5f; //튀어오르는 기본 속도
     // public float gravity = -9.8f; IdleSpeed로 통함
     public float attackPower => playerData.GetStat(StatType.totalAtk); //임시 공격력
-    public float IdleAttackPower => attackPower * 0.1f; //Idle 공격력 (클릭 안했을때)
+    public float IdleAttackPower => playerData.GetStat(StatType.totalAtk) * 0.1f; //Idle 공격력 (클릭 안했을때)
     private float velocity;
     private float currentHeight;
     private float maxHeight = 0.5f;
@@ -425,7 +425,7 @@ else if (Input.touchCount == 0)
                 playerData.SetStat(StatType.CurEnergy, playerData.GetStat(StatType.CurEnergy) - 0.1f);
                 dmg.TakeDamage(IdleAttackPower * iscritical); //기본 공격 데미지
                 Vector3 spawnPos = transform.position + new Vector3(0, -2f, 0);
-                ShowDamage(attackPower * iscritical, spawnPos);
+                ShowDamage(IdleAttackPower * iscritical, spawnPos);
             }
 
 
