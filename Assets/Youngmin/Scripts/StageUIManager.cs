@@ -71,7 +71,7 @@ public class StageUIManager : MonoBehaviour
         Debug.Log($"스테이지 {currentStage} 진입");
     }
 
-
+    
     void UpdateUI()
     {
 
@@ -85,7 +85,9 @@ public class StageUIManager : MonoBehaviour
 
         if (layerText != null)
         {
-            if (currentStage == 5 && currentLayer == 100)
+
+            if (currentStage >= 6)
+
             {
                 stageText.text = "지구의 핵";
                 layerText.text = "";

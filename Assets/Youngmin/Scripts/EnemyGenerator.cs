@@ -150,7 +150,7 @@ public class EnemyGenerator : MonoBehaviour
             
             var bossLayer = Instantiate(bossStage.bossPrefab, worldContainer);
             var newLayerY = -(activeLayers.Count * bossStage.layerHeight);
-            bossLayer.transform.position = new Vector3(0, newLayerY - 4.85f, 0);
+            bossLayer.transform.position = new Vector3(0, newLayerY - 4.75f, 0);
             
             var bossEnemy = bossLayer.GetComponent<Enemy>();
             if (bossEnemy != null)
@@ -217,7 +217,7 @@ public class EnemyGenerator : MonoBehaviour
         Vector3 startPos = worldContainer.position; // 시작
         Vector3 targetPos = new Vector3(0, currentWorldY, 0); // 타겟
 
-        float duration = 0.1f; // 이동 시간
+        float duration = 0.2f; // 이동 시간
 
         float elapsed = 0f;
 
