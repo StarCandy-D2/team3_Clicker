@@ -25,7 +25,7 @@ public class EnemyGenerator : MonoBehaviour
 
     private int currentLayerIndex = 0;
     private float currentWorldY = 0f;
-
+    private bool bossGenerated = false;
 
     void Start()
     {
@@ -39,8 +39,24 @@ public class EnemyGenerator : MonoBehaviour
     {
         // CheckLayerDestruction();
         ProcessDestroyQueue();
+    
+        // 테스트용 치트
+        // if (Input.GetKeyDown(KeyCode.B))
+        // {
+        //     // B키: 바로 보스 직전(495층)으로 점프
+        //     totalLayerGenerated = 495;
+        //     Debug.Log($"totalLayerGenerated를 {totalLayerGenerated}로 설정");
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.G))
+        // {
+        //     // G키: 바로 보스 생성
+        //     Debug.Log("보스 생성");
+        //     GenerateBossLayer();
+        // }
     }
 
+    // 레이어사용시
     // private void CheckLayerDestruction()
     // {
     //     if (activeLayers.Count > 0)
@@ -76,37 +92,78 @@ public class EnemyGenerator : MonoBehaviour
 
     public void GenerateLayer()
     {
-
-        int generationStage = (totalLayerGenerated / 100) + 1;
-        StageData stageData = GetStageData(generationStage);
-        
-        
-        if (stageData == null) return;
-
-        StageData baseStage = stageDataArray[0];
-        float standardHeight = stageData.layerHeight;
-
-        // 층 생성 - 항상 맨 아래(가장 낮은 위치)에 생성
-        GameObject layerObject = Instantiate(stageData.layerPrefab, worldContainer);
-        
-        // 현재 활성 층들의 개수를 기준으로 위치 계산
-        float newLayerY = -((activeLayers.Count) * standardHeight);
-        layerObject.transform.position = new Vector3(0, newLayerY-1.3f, 0); //최초 생성 위치 y값에서 조정가능
         
 
-        // Enemy 컴포넌트 가져오기
-        Enemy layerEnemy = layerObject.GetComponent<Enemy>();
-        if (layerEnemy != null)
-        {
-            layerEnemy.layerIndex = currentLayerIndex; // 층 번호 설정
-            layerEnemy.enemyGenerator = this; // 자기 참조 설정
-            activeLayers.Add(layerEnemy);
-        }
+      
+            int generationStage = (totalLayerGenerated / 100) + 1;
+            StageData stageData = GetStageData(generationStage);
+
+            if (generationStage > 5 && !bossGenerated)
+            {
+                Debug.Log("6스테이지 도달 보스 생성");
+                GenerateBossLayer();
+                bossGenerated = true;
+                return;
+            }
+
+            if (generationStage > 5 && bossGenerated)
+            {
+                Debug.Log("보스 이미 생성됨. 더 이상 층 생성 안 함");
+                return;
+            }
+
+
+            if (stageData == null) return;
+
+            StageData baseStage = stageDataArray[0];
+            float standardHeight = stageData.layerHeight;
+
+            // 층 생성 - 항상 맨 아래(가장 낮은 위치)에 생성
+            GameObject layerObject = Instantiate(stageData.layerPrefab, worldContainer);
+
+            // 현재 활성 층들의 개수를 기준으로 위치 계산
+            float newLayerY = -((activeLayers.Count) * standardHeight);
+            layerObject.transform.position = new Vector3(0, newLayerY - 1.3f, 0); //최초 생성 위치 y값에서 조정가능
+
+
+            // Enemy 컴포넌트 가져오기
+            Enemy layerEnemy = layerObject.GetComponent<Enemy>();
+            if (layerEnemy != null)
+            {
+                layerEnemy.layerIndex = currentLayerIndex; // 층 번호 설정
+                layerEnemy.enemyGenerator = this; // 자기 참조 설정
+                activeLayers.Add(layerEnemy);
+            }
+
+
+            currentLayerIndex++;
+            totalLayerGenerated++;
         
-        currentLayerIndex++;
-        totalLayerGenerated++;
     }
 
+    private void GenerateBossLayer()
+    {
+       
+        var bossStage = GetStageData(6);
+        if (bossStage.bossPrefab != null)
+        {
+            
+            var bossLayer = Instantiate(bossStage.bossPrefab, worldContainer);
+            var newLayerY = -(activeLayers.Count * bossStage.layerHeight);
+            bossLayer.transform.position = new Vector3(0, newLayerY - 4.85f, 0);
+            
+            var bossEnemy = bossLayer.GetComponent<Enemy>();
+            if (bossEnemy != null)
+            {
+                
+                bossEnemy.Initialized(bossStage.bossHP, this, true);
+                activeLayers.Add(bossEnemy);
+                
+            }
+
+            
+        }
+    }
     private StageData GetStageData(int stage)
     {
         int index = Mathf.Clamp(stage -1, 0, stageDataArray.Length - 1);
@@ -132,8 +189,10 @@ public class EnemyGenerator : MonoBehaviour
         
         currentWorldY += stageData.layerHeight;
         yield return StartCoroutine(SmoothMoveWorld());
+        
+            GenerateLayer();
+        
 
-        GenerateLayer();
         isProcessingQueue = false;
     }
 
