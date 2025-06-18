@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class StageUIManager : MonoBehaviour
 {
     public static StageUIManager Instance;
-
+    private EnemyGenerator enemyGenerator;
+    
     [Header("UI")] public TextMeshProUGUI stageText;
     public TextMeshProUGUI layerText;
 
@@ -20,7 +21,7 @@ public class StageUIManager : MonoBehaviour
     public int[] stageGoldRewards = { 10, 15, 25, 40, 60, 1500 };
     
 
-    private string[] stageNames = { "지각", "상부맨틀", "하부맨틀", "외핵", "내핵","지구의 핵" };
+    public string[] stageNames = { "지각", "상부맨틀", "하부맨틀", "외핵", "내핵","지구의 핵" };
 
 
     void Awake()
@@ -84,8 +85,9 @@ public class StageUIManager : MonoBehaviour
 
         if (layerText != null)
         {
-            if (currentStage == 6)
+            if (currentStage == 5 && currentLayer == 100)
             {
+                stageText.text = "지구의 핵";
                 layerText.text = "";
             }
 
