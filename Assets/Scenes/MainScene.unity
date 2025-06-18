@@ -20692,9 +20692,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1594965955}
-        m_TargetAssemblyTypeName: StageUIManager, Assembly-CSharp
-        m_MethodName: OnClickNextButton
+      - m_Target: {fileID: 406004352}
+        m_TargetAssemblyTypeName: StatusPanel, Assembly-CSharp
+        m_MethodName: OnClickNext
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

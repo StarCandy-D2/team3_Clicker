@@ -94,11 +94,5 @@ public class TutorialManager : MonoBehaviour
         // 예: 특정 조건에서만 표시
         // return stepIndex == 1 || stepIndex == 3;
     }
-
-    public void OnClickNextButton()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("UFOScene");
-    }
 }
 
