@@ -217,7 +217,7 @@ public class EnemyGenerator : MonoBehaviour
         Vector3 startPos = worldContainer.position; // 시작
         Vector3 targetPos = new Vector3(0, currentWorldY, 0); // 타겟
 
-        float duration = 0.1f; // 이동 시간
+        float duration = 0.2f; // 이동 시간
 
         float elapsed = 0f;
 

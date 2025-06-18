@@ -71,7 +71,7 @@ public class StageUIManager : MonoBehaviour
         Debug.Log($"스테이지 {currentStage} 진입");
     }
 
-
+    
     void UpdateUI()
     {
 

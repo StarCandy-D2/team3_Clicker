@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using PlayerUpgrade;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -25,6 +27,11 @@ public class Enemy : MonoBehaviour
         currentHP = maxHP;
 
     }
+
+
+
+
+
 
     public void Initialized(float hp, EnemyGenerator generator, bool boss = false)
     {
@@ -60,7 +67,10 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log($"게임 승리!");
             // 게임 승리씬 호출?
+            
             Destroy(gameObject);
+            FadeManager.Instance.FadeOutAndLoadScene("EndingScene");
+
             return;
         }
         
