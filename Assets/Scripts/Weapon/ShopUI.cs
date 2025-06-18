@@ -46,6 +46,27 @@ public class ShopUI : MonoBehaviour
         OpenPanelCost();
         
     }
+
+    private void Start()
+    {
+        RefreshWeaponPanels();
+    }
+
+    private void RefreshWeaponPanels()
+    {
+        int minLength = Mathf.Min(_weaponDatas.Length, _closePanels.Length, _openPanels.Length);
+
+        for (int i = 1; i < minLength; i++)
+        {
+            bool isUnlocked = _weaponDatas[i].IsUnlocked;
+
+            if (i < _closePanels.Length && _closePanels[i] != null)
+                _closePanels[i].SetActive(!isUnlocked);
+
+            if (i < _openPanels.Length && _openPanels[i] != null)
+                _openPanels[i].SetActive(isUnlocked);
+        }
+    }
     public void UpdateWeaponUI()
     {
         //현재 인덱스 번호.
@@ -328,6 +349,7 @@ public class ShopUI : MonoBehaviour
 
     public void OnClickBuyButton()
     {
+        
         if (_playerData.GetStat(StatType.Gold) >= _closeItemData[_currentIndex-1].NeedGold)
         {
             //골드 차감

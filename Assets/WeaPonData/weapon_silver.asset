@@ -15,7 +15,7 @@ MonoBehaviour:
   Attack: 0.45
   Critical: 0.25
   NeedGold: 5000
-  Level: 0
+  Level: 1
   WeaponName: "\uC740\uC0BD"
   WeaponIcon: {fileID: 21300000, guid: e7940ac5cca5941c69d6e5ca1d751d07, type: 3}
   AutoAttackDuration: 40
