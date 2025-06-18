@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using TMPro;
 using DG.Tweening;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class Attack : MonoBehaviour
 {
@@ -64,7 +65,8 @@ public class Attack : MonoBehaviour
     public GameObject damageTextPrefab;
     public Transform spawnPosition; //데미지 위치
 
-
+    public Image Autotime;
+    public Image Durabilitytime;
     private Dictionary<string, ParticleSystem> tagToParticle;
 
 
@@ -145,10 +147,16 @@ public class Attack : MonoBehaviour
         if (CurrentDurability == 0)
         {
             durabilityTimer += Time.deltaTime;
+            Durabilitytime.fillAmount = 1f;
+            Durabilitytime.fillAmount = 1f - (durabilityTimer / recoveryDurabilityTime);
             if (durabilityTimer >= recoveryDurabilityTime)
             {
                 CurrentDurability = Maxdurability;
+
+
                 durabilityTimer = 0;
+
+
             }
         }
     }
@@ -269,9 +277,11 @@ else if (Input.touchCount == 0)
     private IEnumerator AutoAttack()
     {
         float timer = 0f;
+        Autotime.fillAmount = 1f;
 
         while (timer < autoAttackDuration)
         {
+            Autotime.fillAmount = 1f - (timer / autoAttackDuration);
             if (isJump)
             {
                 velocity += 30 * IdleSpeed * Time.deltaTime;
@@ -299,6 +309,7 @@ else if (Input.touchCount == 0)
             }
             yield return null;
             timer += Time.deltaTime;
+            Autotime.fillAmount = 0f;
         }
         OnAuto = false;
         Debug.Log("자동공격 종료");
