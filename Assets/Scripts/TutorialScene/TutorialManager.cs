@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using PlayerUpgrade;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -20,10 +22,11 @@ public class TutorialManager : MonoBehaviour
     public List<TutorialStep> steps;
     private int currentStep = 0;
     private bool isWaitingForTap = false;
-
+    public Button nextButton;
     void Start()
     {
         StartTutorial();
+        //nextButton.onClick.AddListener(OnClickNext);
     }
 
     void Update()

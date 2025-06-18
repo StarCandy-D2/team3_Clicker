@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageUIManager : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class StageUIManager : MonoBehaviour
     [Header("스테이지별 골드")] 
     public int[] stageGoldRewards = { 10, 15, 25, 40, 60, 1500 };
     
+
     private string[] stageNames = { "지각", "상부맨틀", "하부맨틀", "외핵", "내핵","지구의 핵" };
+
 
     void Awake()
     {
@@ -105,8 +108,13 @@ public class StageUIManager : MonoBehaviour
         currentStage = stage;
         currentLayer = layer;
         UpdateUI();
-    } 
-    
+    }
+
+    public void OnClickNextButton()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("UFOScene");
+    }
 }
 
 

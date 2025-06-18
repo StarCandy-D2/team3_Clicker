@@ -83,7 +83,11 @@ public class DialogueManager : MonoBehaviour
 
         skip.SetTrigger("Show");
         isDialogueActive = false;
+        Invoke("GoToTutorial", 3f);
+
+
+        
         
     }
-    public void GoToTutorial() { SceneManager.LoadScene("TutorialScene"); }
+    public void GoToTutorial() { FadeManager.Instance.FadeOutAndLoadScene("TutorialScene"); }
 }

@@ -1,23 +1,23 @@
-using System.Collections;
+
 using System.Collections.Generic;
-using PlayerUpgrad;
 using PlayerUpgrade;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerUpgradeUIManager : MonoBehaviour
 {
     public UpgradeManager upgradeManager;
     
     [Header("costText")]
-    public TMP_Text oxygencostText;
+    public TMP_Text MaxenergycostText;
     public TMP_Text atkcostText;
     public TMP_Text criratecostText;
     public TMP_Text goldgaincostText;
     public TMP_Text goldgaintestText;
     public TMP_Text goldText;
-    [Header("statText")]
-    public TMP_Text oxygenText;
+    [FormerlySerializedAs("energyText")] [Header("statText")]
+    public TMP_Text MaxenergyText;
     public TMP_Text atkText;
     public TMP_Text crirateText;
     public TMP_Text goldgainText;
@@ -27,6 +27,7 @@ public class PlayerUpgradeUIManager : MonoBehaviour
     
     void Start()
     {
+        upgradeManager = FindObjectOfType<UpgradeManager>();
         Mapping();
         UpdateAllTexts();
     }
@@ -37,7 +38,7 @@ public class PlayerUpgradeUIManager : MonoBehaviour
 
         statTextMap = new()
         {
-            { StatType.Oxygen, oxygenText },
+            { StatType.MaxEnergy, MaxenergyText },
             { StatType.atk, atkText },
             { StatType.critRate, crirateText },
             { StatType.goldGain, goldgainText },
@@ -45,7 +46,7 @@ public class PlayerUpgradeUIManager : MonoBehaviour
 
         costTextMap = new()
         {
-            { StatType.Oxygen, oxygencostText },
+            { StatType.MaxEnergy, MaxenergycostText },
             { StatType.atk, atkcostText },
             { StatType.critRate, criratecostText },
             { StatType.goldGain, goldgaincostText },
@@ -92,7 +93,7 @@ public class PlayerUpgradeUIManager : MonoBehaviour
     {
         foreach (var kvp in costTextMap)
         {
-            var upgrade = upgradeManager.upgradeData.Find(u => u.statName == kvp.Key.ToString());
+            var upgrade = upgradeManager.upgradeData.Find(u => u.statType == kvp.Key);
             if (upgrade != null)
             {
                 kvp.Value.text = upgrade.GetUpgradeCost().ToString();
@@ -100,4 +101,10 @@ public class PlayerUpgradeUIManager : MonoBehaviour
             }
         }
     }
+
+    public void testGetgold()
+    {
+        UpgradeManager.instance.GetGold();
+    }
 }
+

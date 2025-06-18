@@ -126,6 +126,7 @@ public class ShopUI : MonoBehaviour
         if (selectedWeapon.IsEquipped)
         {
             selectedWeapon.IsEquipped = false;
+            GameManager.Instance.equippedWeaponIndex = -1;
 
             //해제 . 스텟 원복
             float baseAtk = _playerData.GetStat(StatType.atk);
@@ -162,6 +163,7 @@ public class ShopUI : MonoBehaviour
             }
             
             selectedWeapon.IsEquipped = true;
+            GameManager.Instance.equippedWeaponIndex = _weaponDataIndex;
             
             int upgradeLevel = selectedWeapon.Upgrade;
             

@@ -1,13 +1,14 @@
-
+﻿
 
 namespace PlayerUpgrade
 {
     public enum StatType
     {
-        Oxygen,
+        MaxEnergy,
+        CurEnergy,
         atk,
         critRate,
         Gold,
-        goldGain
+        goldGain,
     }
 }
