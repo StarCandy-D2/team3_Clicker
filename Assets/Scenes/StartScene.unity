@@ -2191,25 +2191,25 @@ MonoBehaviour:
     baseStatValue: 10
     valueIncrease: 5
     baseCost: 100
-    costIncrease: 100
+    costIncrease: 10
   - statType: 2
     level: 0
     baseStatValue: 10
     valueIncrease: 5
     baseCost: 100
-    costIncrease: 100
+    costIncrease: 10
   - statType: 3
     level: 0
     baseStatValue: 10
-    valueIncrease: 5
+    valueIncrease: 1
     baseCost: 100
-    costIncrease: 100
+    costIncrease: 10
   - statType: 5
     level: 0
     baseStatValue: 100
     valueIncrease: 10
     baseCost: 100
-    costIncrease: 100
+    costIncrease: 10
 --- !u!1 &738452620
 GameObject:
   m_ObjectHideFlags: 0
