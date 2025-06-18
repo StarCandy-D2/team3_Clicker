@@ -41,19 +41,19 @@ public class EnemyGenerator : MonoBehaviour
         ProcessDestroyQueue();
     
         // 테스트용 
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            // B키: 바로 보스 직전(495층)으로 점프
-            totalLayerGenerated = 495;
-            Debug.Log($"totalLayerGenerated를 {totalLayerGenerated}로 설정");
-        }
-        
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            // G키: 바로 보스 생성
-            Debug.Log("보스 생성");
-            GenerateBossLayer();
-        }
+        // if (Input.GetKeyDown(KeyCode.B))
+        // {
+        //     // B키: 바로 보스 직전(495층)으로 점프
+        //     totalLayerGenerated = 495;
+        //     Debug.Log($"totalLayerGenerated를 {totalLayerGenerated}로 설정");
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.G))
+        // {
+        //     // G키: 바로 보스 생성
+        //     Debug.Log("보스 생성");
+        //     GenerateBossLayer();
+        // }
     }
 
     // 레이어사용시
