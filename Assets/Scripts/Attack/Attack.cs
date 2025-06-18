@@ -409,7 +409,7 @@ else if (Input.touchCount == 0)
         );
         rectTransform.anchoredPosition = basePosition + randomOffset;
         TMP_Text text = obj.GetComponent<TMP_Text>();
-        text.text = damage.ToString("F2");
+        text.text = damage.ToString("F1");
 
 
         rectTransform.DOAnchorPos(rectTransform.anchoredPosition + Vector2.up * 100f, 1f).SetEase(Ease.OutCubic);
