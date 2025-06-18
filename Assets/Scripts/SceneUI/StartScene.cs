@@ -16,6 +16,7 @@ public class StartScene : MonoBehaviour
     public GameObject title;
 
     public PlayerData playerData;
+    [SerializeField] private WeaponData[] weaponDatas;
 
     public void CallStartGamePanel()
     {
@@ -56,7 +57,7 @@ public class StartScene : MonoBehaviour
         playerData.SetStat(StatType.goldGain, 100f);
         // 누락 방지
         // 업그레이드 기본값 설정
-        UserData initialData = PlayerDataConverter.ToUserData(playerData);
+        UserData initialData = PlayerDataConverter.ToUserData(playerData,weaponDatas);
 
         // 초기화할 업그레이드 리스트 추가
         initialData.upgradeLevels = new List<UpgradeSaveData>
