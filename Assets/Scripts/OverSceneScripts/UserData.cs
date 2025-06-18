@@ -19,7 +19,9 @@ public class UserData
     public float critRate;
     public float gold;
     public float goldGain;
-    
+
+    //무기 해금저장
+    public bool[] weaponUnlocked;
     //내구도
     public float atkRate;
     public float autoAtktime;
