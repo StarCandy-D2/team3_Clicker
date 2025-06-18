@@ -15,7 +15,7 @@ MonoBehaviour:
   stageName: 
   stageLevel: 5
   totalLayers: 100
-  baseLayerHP: 1
+  baseLayerHP: 80
   hpMultiplier: 1
   layerHeight: 0.6
   O2reduceLv: 0

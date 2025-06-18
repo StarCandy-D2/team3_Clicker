@@ -19,7 +19,7 @@ MonoBehaviour:
   WeaponName: "\uCCA0\uC0BD"
   WeaponIcon: {fileID: 21300000, guid: 24add5b4c2e6d4bddb46051a957da111, type: 3}
   AutoAttackDuration: 20
-  CurrentDurability: 10
+  CurrentDurability: 20
   MaxDurability: 10
   Upgrade: 0
   UpgradeStats:
