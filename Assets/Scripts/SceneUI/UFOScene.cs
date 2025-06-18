@@ -27,8 +27,19 @@ public class UFOScene : MonoBehaviour
     }
     public void ShowShopPanel()
     {
-        shopPanel.SetActive(true);
-        basicbuttons.SetActive(false);
+        if (equipErrorText != null)
+        {
+            equipErrorText.SetActive(false);
+            shopPanel.SetActive(true);
+            basicbuttons.SetActive(false);
+        }
+        else
+        {
+            shopPanel.SetActive(true);
+            basicbuttons.SetActive(false);
+        }
+        
+        
     }
     public void BackToBasic()
     {
