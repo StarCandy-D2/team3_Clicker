@@ -130,6 +130,8 @@ public class EnemyGenerator : MonoBehaviour
             Enemy layerEnemy = layerObject.GetComponent<Enemy>();
             if (layerEnemy != null)
             {
+                float layerHp = stageData.GetLayerHP();
+                layerEnemy.Initialized(layerHp,this,false);
                 layerEnemy.layerIndex = currentLayerIndex; // 층 번호 설정
                 layerEnemy.enemyGenerator = this; // 자기 참조 설정
                 activeLayers.Add(layerEnemy);
