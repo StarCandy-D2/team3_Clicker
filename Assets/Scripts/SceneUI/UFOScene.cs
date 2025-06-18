@@ -9,6 +9,7 @@ public class UFOScene : MonoBehaviour
     public GameObject settingPanel;
     public GameObject statPanel;
     public GameObject shopPanel;
+    public GameObject equipErrorText;
 
     public void ShowSettingPanel()
     {
@@ -38,7 +39,16 @@ public class UFOScene : MonoBehaviour
     }
     public void GotoMain()
     {
-        FadeManager.Instance.FadeOutAndLoadScene("MainScene");
+        if (GameManager.Instance.equippedWeaponIndex < 0)
+        {
+            equipErrorText.SetActive(true);
+            Debug.Log("여기에다실행하면될듯");
+        }
+        else
+        {
+            FadeManager.Instance.FadeOutAndLoadScene("MainScene");
+        }
+        
     }
     public void QuitGame()
     {
