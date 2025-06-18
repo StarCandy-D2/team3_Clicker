@@ -5676,6 +5676,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154418169}
   m_CullTransparentMesh: 1
+--- !u!1 &165364291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 165364292}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &165364292
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165364291}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 498658989}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &169500781
 GameObject:
   m_ObjectHideFlags: 0
@@ -17481,10 +17516,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1080, y: 1920}
+  m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -17527,6 +17562,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 165364292}
   - {fileID: 299528391}
   - {fileID: 1500948063}
   - {fileID: 1120829967}
@@ -19541,7 +19577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 4accf49d8f7451c4cafdf3240c110644, type: 2}
   weaponData: {fileID: 11400000, guid: d2a4b522e3bee314ea92cc69b35bcfdf, type: 2}
-  settingUI: {fileID: 0}
+  settingUI: {fileID: 1500948062}
   IdleSpeed: 15
   isJump: 1
   isAttack: 1
@@ -19565,7 +19601,7 @@ MonoBehaviour:
   Boss_Particle: {fileID: 1150912702}
   trailRenderer: {fileID: 1551656676}
   damageTextPrefab: {fileID: 1640343451540910621, guid: 9027e47f81d9bc043ae099c3949b72a8, type: 3}
-  spawnPosition: {fileID: 498658989}
+  spawnPosition: {fileID: 165364292}
   Autotimetext: {fileID: 464668496}
   Durabilitytime: {fileID: 1081067110}
   autoAttackIcon: {fileID: 1175923129}
@@ -33412,7 +33448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShowDebugText: 0
   m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
+  m_IgnoreTimeScale: 1
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
   m_BlendUpdateMethod: 1

@@ -17676,6 +17676,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2015363533}
   - {fileID: 1621486343}
   - {fileID: 2078353927}
   - {fileID: 344253363}
@@ -38893,7 +38894,7 @@ MonoBehaviour:
   Boss_Particle: {fileID: 1378015197}
   trailRenderer: {fileID: 84139758}
   damageTextPrefab: {fileID: 1640343451540910621, guid: 9027e47f81d9bc043ae099c3949b72a8, type: 3}
-  spawnPosition: {fileID: 683681312}
+  spawnPosition: {fileID: 2015363533}
   Autotimetext: {fileID: 855353983}
   Durabilitytime: {fileID: 333423606}
   autoAttackIcon: {fileID: 242063185}
@@ -38925,6 +38926,41 @@ Transform:
   - {fileID: 1637912492}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2015363532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2015363533}
+  m_Layer: 5
+  m_Name: text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2015363533
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015363532}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 683681312}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2046047056
 GameObject:
   m_ObjectHideFlags: 0

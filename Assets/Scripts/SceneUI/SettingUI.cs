@@ -71,23 +71,23 @@ public class SettingUI : MonoBehaviour
     }
     public void OnOffShake()
     {
-        if (shaketoggle == true)
+        if (shakeonoff == true)
         {
-            shakeonoff = true;
+            shakeonoff = false;
         }
         else
         {
-            shakeonoff = false;
+            shakeonoff = true;
         }
         Debug.Log($"쉐이크{shakeonoff}");
     }
     public void OnOffParticle()
     {
-        if (particletoggle == true)
+        if (particleonoff == true)
         {
-            particleonoff = true;
+            particleonoff = false;
         }
-        else { particleonoff = false; }
+        else { particleonoff = true; }
 
         Debug.Log($"파티클{particleonoff}");
     }
