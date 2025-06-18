@@ -5,6 +5,10 @@ using System.Data.Common;
 using PlayerUpgrade;
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
+using DG.Tweening;
+using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class Attack : MonoBehaviour
 {
@@ -14,7 +18,7 @@ public class Attack : MonoBehaviour
     public SettingUI settingUI;
     public float IdleSpeed = 5f; //튀어오르는 기본 속도
     // public float gravity = -9.8f; IdleSpeed로 통함
-    public float attackPower => playerData.GetStat(StatType.atk) + weaponData.Attack; //임시 공격력
+    public float attackPower => playerData.GetStat(StatType.atk); //임시 공격력
     public float IdleAttackPower => attackPower * 0.1f; //Idle 공격력 (클릭 안했을때)
     private float velocity;
     private float currentHeight;
@@ -25,7 +29,7 @@ public class Attack : MonoBehaviour
     public bool OnAttack;
     public float AttackDelay = 0.3f; //어택딜레이
     public float AttackTimer = 0;
-
+    private bool isCri = false;
     public float Maxdurability => weaponData.MaxDurability; // 내구도 테스트 임시 변수
     public float CurrentDurability
     {
@@ -43,11 +47,13 @@ public class Attack : MonoBehaviour
     private float requiredHoldTime = 1f;//꾹 누르기를 위한 변수
 
     //0.5 -0.5
-    
 
-    public CinemachineImpulseSource idleimpulseSource;
-    public CinemachineImpulseSource attackimpulseSource;
-    public CinemachineImpulseSource autoattackimpulseSource;
+
+    public CinemachineImpulseSource idleimpulseSource; //idle 카메라 shake
+    public CinemachineImpulseSource attackimpulseSource; // attack 카메라 shake
+    public CinemachineImpulseSource autoattackimpulseSource; //autoattack 카메라 shake
+
+    //파티클 넣으면 됩니다
     public ParticleSystem Crust_Particle;
     public ParticleSystem InnerCore_Particle;
     public ParticleSystem LowerMantle_Particle;
@@ -55,10 +61,15 @@ public class Attack : MonoBehaviour
     public ParticleSystem UpperMantle_Particle;
     public TrailRenderer trailRenderer;
 
+    //데미지 텍스트 박스
+    public GameObject damageTextPrefab;
+    public Transform spawnPosition; //데미지 위치
 
+    public Image Autotime;
+    public Image Durabilitytime;
     private Dictionary<string, ParticleSystem> tagToParticle;
 
-    
+
 
     public void IdleTriggerImpulse()
     {
@@ -136,10 +147,16 @@ public class Attack : MonoBehaviour
         if (CurrentDurability == 0)
         {
             durabilityTimer += Time.deltaTime;
+            Durabilitytime.fillAmount = 1f;
+            Durabilitytime.fillAmount = 1f - (durabilityTimer / recoveryDurabilityTime);
             if (durabilityTimer >= recoveryDurabilityTime)
             {
                 CurrentDurability = Maxdurability;
+
+
                 durabilityTimer = 0;
+
+
             }
         }
     }
@@ -165,7 +182,7 @@ public class Attack : MonoBehaviour
                 isJump = false;
                 velocity = -IdleSpeed * 2f; // 빠르게 낙하
 
-                playerData.SetStat(StatType.Oxygen, playerData.GetStat(StatType.Oxygen) - 2f);
+                playerData.SetStat(StatType.CurEnergy, playerData.GetStat(StatType.CurEnergy) - 2f);
                 CurrentDurability -= 2f; //내구도 2감소
                 if (CurrentDurability <= 0f)
                 {
@@ -260,9 +277,11 @@ else if (Input.touchCount == 0)
     private IEnumerator AutoAttack()
     {
         float timer = 0f;
+        Autotime.fillAmount = 1f;
 
         while (timer < autoAttackDuration)
         {
+            Autotime.fillAmount = 1f - (timer / autoAttackDuration);
             if (isJump)
             {
                 velocity += 30 * IdleSpeed * Time.deltaTime;
@@ -290,6 +309,7 @@ else if (Input.touchCount == 0)
             }
             yield return null;
             timer += Time.deltaTime;
+            Autotime.fillAmount = 0f;
         }
         OnAuto = false;
         Debug.Log("자동공격 종료");
@@ -298,24 +318,34 @@ else if (Input.touchCount == 0)
     private void OnTriggerEnter2D(Collider2D other)
     {
         Enemy dmg = other.gameObject.GetComponent<Enemy>();
-        //DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
+        // DamageTile dmg = other.gameObject.GetComponent<DamageTile>();
 
         float randomValue = Random.value;
         float iscritical;
-        if (playerData.GetStat(StatType.critRate) / 100 >= randomValue)
+        if (playerData.GetStat(StatType.critRate) / 100 >= randomValue) //크리 떴을때 데미지 배율
         {
             iscritical = 2f;
-
+            isCri = true;
         }
         else
         {
 
             iscritical = 1f;
+            isCri = false;
         }
-        Debug.Log($"{iscritical}ddddd");
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && !settingUI.particleonoff)
+        Debug.Log($"{iscritical}");
+
+        //레이어가 Enemy이고 파티클on일때만 파티클 재생
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+            Debug.Log(settingUI.particleonoff);
+
+            if (!settingUI.particleonoff)
+            {
+
             PlayHitParticle(other.gameObject.tag);
+
+            }
 
             //switch (other.gameObject.tag)
             //{
@@ -345,17 +375,21 @@ else if (Input.touchCount == 0)
             //        break;
 
             //}
-            //딕셔너리 고려
+            //딕셔너리로 수정
             if (OnAttack) // 클릭했을때 공격
             {
                 impulse();
                 dmg.TakeDamage(attackPower * iscritical); //클릭 공격 데미지
+                Vector3 spawnPos = transform.position + new Vector3(0, -2f, 0);
+                ShowDamage(attackPower * iscritical, spawnPos);
                 OnAttack = false;
             }
             else if (!OnAttack && !OnAuto) //가만히 있을때
             {
                 impulse();
                 dmg.TakeDamage(IdleAttackPower * iscritical); //기본 공격 데미지
+                Vector3 spawnPos = transform.position + new Vector3(0, -2f, 0);
+                ShowDamage(attackPower * iscritical, spawnPos);
             }
 
 
@@ -363,8 +397,45 @@ else if (Input.touchCount == 0)
             {
                 impulse();
                 dmg.TakeDamage(attackPower * 1.2f * iscritical); // 자동 공격 데미지 클릭 공격 데미지 1.2배율
+                Vector3 spawnPos = transform.position + new Vector3(0, -2f, 0);
+                ShowDamage(attackPower * iscritical, spawnPos);
             }
         }
     }
+
+
+
+    public void ShowDamage(float damage, Vector3 position)
+    {
+
+        GameObject obj = Instantiate(damageTextPrefab, spawnPosition);
+
+        RectTransform rectTransform = obj.GetComponent<RectTransform>();
+        Vector2 basePosition = Vector2.down * 195f;
+
+
+        Vector2 randomOffset = new Vector2(
+         Random.Range(-30f, 30f),
+         Random.Range(-15f, 15f)
+        );
+        rectTransform.anchoredPosition = basePosition + randomOffset;
+        TMP_Text text = obj.GetComponent<TMP_Text>();
+        text.text = damage.ToString("F1");
+
+
+        rectTransform.DOAnchorPos(rectTransform.anchoredPosition + Vector2.up * 100f, 1f).SetEase(Ease.OutCubic);
+        text.DOFade(0f, 1f).OnComplete(() => Destroy(obj));
+
+        if (isCri)
+        {
+
+            text.color = Color.red;
+            text.fontSize += 10;
+
+        }
+
+    }
+
+
 }
 

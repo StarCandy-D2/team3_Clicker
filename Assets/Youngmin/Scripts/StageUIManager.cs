@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageUIManager : MonoBehaviour
 {
@@ -98,8 +99,13 @@ public class StageUIManager : MonoBehaviour
         currentStage = stage;
         currentLayer = layer;
         UpdateUI();
-    } 
-    
+    }
+
+    public void OnClickNextButton()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("UFOScene");
+    }
 }
 
 
