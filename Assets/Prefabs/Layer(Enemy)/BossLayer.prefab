@@ -1050,7 +1050,7 @@ GameObject:
   - component: {fileID: 8728823422944291430}
   m_Layer: 6
   m_Name: BossLayer
-  m_TagString: InnerCore
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
