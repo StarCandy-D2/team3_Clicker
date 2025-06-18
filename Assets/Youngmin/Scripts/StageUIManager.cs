@@ -17,9 +17,11 @@ public class StageUIManager : MonoBehaviour
     public int sessionGold;
 
     [Header("스테이지별 골드")] 
-    public int[] stageGoldRewards = { 10, 15, 25, 40, 60 };
+    public int[] stageGoldRewards = { 10, 15, 25, 40, 60, 1500 };
     
-    public string[] stageNames = { "지각", "상부맨틀", "하부맨틀", "외핵", "내핵" };
+
+    private string[] stageNames = { "지각", "상부맨틀", "하부맨틀", "외핵", "내핵","지구의 핵" };
+
 
     void Awake()
     {
@@ -74,13 +76,20 @@ public class StageUIManager : MonoBehaviour
 
         if (stageText != null)
         {
-            string stageName = stageNames[currentStage - 1];
+            int stageIndex = Mathf.Clamp(currentStage -1,0,stageNames.Length-1);
+            string stageName = stageNames[stageIndex];
             stageText.text = $"{stageName}";
 
         }
 
         if (layerText != null)
         {
+            if (currentStage == 6)
+            {
+                layerText.text = "";
+            }
+
+            else
             layerText.text = $"{currentLayer}m";
         }
     }
