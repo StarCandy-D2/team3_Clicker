@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using OverSceneScripts;
 using PlayerUpgrade;
 using UnityEngine;
 using TMPro;
@@ -45,6 +46,25 @@ public class ShopUI : MonoBehaviour
         UpdateGoldUI();
         OpenPanelCost();
         
+    }
+
+    private void Start()
+    {
+        RefreshWeaponPanels();
+    }
+
+    private void RefreshWeaponPanels()
+    {
+        for (int i = 0; i < _weaponDatas.Length; i++)
+        {
+            bool isUnlocked = _weaponDatas[i].IsUnlocked;
+
+            if (i<_closePanels.Length && _closePanels[i] != null)
+                _closePanels[i].SetActive(!isUnlocked);
+
+            if (i<_openPanels.Length && _openPanels[i] != null)
+                _openPanels[i].SetActive(isUnlocked);
+        }
     }
     public void UpdateWeaponUI()
     {
@@ -103,7 +123,16 @@ public class ShopUI : MonoBehaviour
         _weaponDataIndex++;
         //다음 UI활성화
         _uiPanels[_currentIndex].SetActive(true);
+        SetOnlyCurrentPanelActive();
         UpdateWeaponUI();
+    }
+
+    private void SetOnlyCurrentPanelActive()
+    {
+        for (int i = 0; i < _uiPanels.Length; i++)
+        {
+            _uiPanels[i].SetActive(i == _currentIndex);
+        }
     }
     
     public void OnClickUndoButton()
@@ -116,6 +145,7 @@ public class ShopUI : MonoBehaviour
         _weaponDataIndex--;
         //표출
         _uiPanels[_currentIndex].SetActive(true);
+        SetOnlyCurrentPanelActive();
         UpdateWeaponUI();
     }
 
@@ -346,16 +376,23 @@ public class ShopUI : MonoBehaviour
 
     public void OnClickBuyButton()
     {
+        
         if (_playerData.GetStat(StatType.Gold) >= _closeItemData[_currentIndex-1].NeedGold)
         {
             //골드 차감
             _playerData.SetStat(StatType.Gold, _playerData.GetStat(StatType.Gold)- _closeItemData[_currentIndex-1].NeedGold);
             
             //구매처리
-            _weaponDatas[_currentIndex-1].IsUnlocked = true;
+            _weaponDatas[_currentIndex].IsUnlocked = true;
+            Debug.Log($"{_currentIndex}번 무기인덱스");
+            RefreshWeaponPanels();
             
-            _closePanels[_currentIndex-1].SetActive(false);
-            _openPanels[_currentIndex-1].SetActive(true);
+            _openPanels[0].SetActive(false);
+            
+            UserData data = PlayerDataConverter.ToUserData(_playerData, _weaponDatas);
+            UserDataManager.Instance.SaveUserData(data, _playerData.userName);
+            _closePanels[_currentIndex].SetActive(false);
+            _openPanels[_currentIndex].SetActive(true);
             
             ShowSendError("새로운 삽이 등장합니다", Color.white);
             

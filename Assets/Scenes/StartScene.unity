@@ -2153,7 +2153,10 @@ MonoBehaviour:
   userDataManager: {fileID: 415601082}
   playerData: {fileID: 11400000, guid: 4accf49d8f7451c4cafdf3240c110644, type: 2}
   equippedWeaponIndex: -1
-  weaponDatas: []
+  weaponDatas:
+  - {fileID: 11400000, guid: 623c10b89163a4fbf9f27ad4a15349eb, type: 2}
+  - {fileID: 11400000, guid: 2d1fbbb77772d45dfa4a2d60860b6533, type: 2}
+  - {fileID: 11400000, guid: 446d775a68c834c2d86ea72869fd41ff, type: 2}
 --- !u!4 &722597749
 Transform:
   m_ObjectHideFlags: 0
@@ -2188,25 +2191,25 @@ MonoBehaviour:
     baseStatValue: 10
     valueIncrease: 5
     baseCost: 100
-    costIncrease: 10
+    costIncrease: 100
   - statType: 2
     level: 0
     baseStatValue: 10
     valueIncrease: 5
     baseCost: 100
-    costIncrease: 50
+    costIncrease: 100
   - statType: 3
     level: 0
     baseStatValue: 10
-    valueIncrease: 1
+    valueIncrease: 5
     baseCost: 100
-    costIncrease: 10
+    costIncrease: 100
   - statType: 5
     level: 0
-    baseStatValue: 0
+    baseStatValue: 100
     valueIncrease: 10
     baseCost: 100
-    costIncrease: 10
+    costIncrease: 100
 --- !u!1 &738452620
 GameObject:
   m_ObjectHideFlags: 0
