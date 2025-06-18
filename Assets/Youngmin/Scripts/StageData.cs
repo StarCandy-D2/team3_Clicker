@@ -20,7 +20,9 @@ public class StageData : ScriptableObject
     
    [Header("보스")]
    public GameObject bossPrefab;
-    
+   public float bossHP = 100f;
+   public string bossName = "지구의 핵";
+   
    // 실제 층 체력 계산
    public float GetLayerHP()
    {

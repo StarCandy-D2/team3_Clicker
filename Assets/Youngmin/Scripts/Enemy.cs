@@ -15,12 +15,28 @@ public class Enemy : MonoBehaviour
     public int layerIndex; // 층 번호
     public EnemyGenerator enemyGenerator; // EnemyGenerator 참조
 
+    [Header("보스 설정")] 
+    public bool isBoss = false;
+    
     [Header("파편 프리팹")]
     [SerializeField] GameObject RubblePrefab;
     void Start()
     {
         currentHP = maxHP;
 
+    }
+
+    public void Initialized(float hp, EnemyGenerator generator, bool boss = false)
+    {
+        maxHP = hp;
+        currentHP = hp;
+        enemyGenerator = generator;
+        isBoss = boss;
+
+        if (isBoss)
+        {
+            Debug.Log($"보스 등장! 체력: {maxHP}");
+        }
     }
     
     public void TakeDamage(float damage)
@@ -40,10 +56,26 @@ public class Enemy : MonoBehaviour
     void Die()
 
     {
-        var data = GameManager.Instance.playerData;
+        if (isBoss)
+        {
+            Debug.Log($"게임 승리!");
+            // 게임 승리씬 호출?
+            Destroy(gameObject);
+            return;
+        }
+        
+      
+      if (enemyGenerator != null)
+        {
+            enemyGenerator.OnLayerDestroyed();
+
+        }  
+        
         
         if (GameManager.Instance != null && GameManager.Instance.playerData != null)
         {
+            var data = GameManager.Instance.playerData;
+            
             int goldReward = 10;
             if (StageUIManager.Instance != null)
             {
@@ -62,11 +94,7 @@ public class Enemy : MonoBehaviour
             StageUIManager.Instance.OnLayerCleared();
         }
 
-        if (enemyGenerator != null)
-        {
-            enemyGenerator.OnLayerDestroyed();
-
-        }
+        
         
         // 파괴 이펙트 실행
         StartCoroutine(DestroyEffect());
@@ -96,13 +124,13 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
     
-
-   // 테스트용 클릭 함수
-    //void OnMouseDown()
-    //{
-    //    Debug.Log("층 클릭됨!");
-    //    TakeDamage(maxHP); // 한 번에 파괴
-    //}
+    //
+    // // 테스트용 클릭 함수
+    // void OnMouseDown()
+    // {
+    //     Debug.Log("층 클릭됨!");
+    //     TakeDamage(maxHP); // 한 번에 파괴
+    // }
 
 
 }
