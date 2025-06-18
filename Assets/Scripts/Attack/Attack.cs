@@ -29,6 +29,8 @@ public class Attack : MonoBehaviour
     public bool OnAttack;
     public float AttackDelay = 0.3f; //어택딜레이
     public float AttackTimer = 0;
+    public float AutoAttackTimer = 0;
+    public float AutoAttackDuration = 20f; //자동 공격 회복 시간
     private bool isCri = false;
     public float Maxdurability => weaponData.MaxDurability; // 내구도 테스트 임시 변수
     public float CurrentDurability
@@ -37,7 +39,7 @@ public class Attack : MonoBehaviour
         set => weaponData.CurrentDurability = value;
     }
     public float durabilityTimer = 0; //내구도 테스트 임시 타이머
-    public float recoveryDurabilityTime = 5f;
+    public float recoveryDurabilityTime = 5f; //내구도 회복 시간
     //자동공격
     public float autoAttackDuration => weaponData.AutoAttackDuration; //자동공격 시간
     public float autoAttackSpeed = 50f; //공격속도
@@ -65,10 +67,12 @@ public class Attack : MonoBehaviour
     public GameObject damageTextPrefab;
     public Transform spawnPosition; //데미지 위치
 
-    public Image Autotime;
+    public TextMeshProUGUI Autotimetext;
+    //public Image Autotime;
     public Image Durabilitytime;
     private Dictionary<string, ParticleSystem> tagToParticle;
 
+    public Image autoAttackIcon;
 
 
     public void IdleTriggerImpulse()
@@ -159,6 +163,18 @@ public class Attack : MonoBehaviour
 
             }
         }
+
+        if(AutoAttackTimer >= autoAttackDuration)
+        {
+
+            autoAttackIcon.color = Color.white;
+
+        }
+        else
+        {
+            autoAttackIcon.color = new Color(164f / 255f, 164f / 255f, 164f / 255f);
+
+        }
     }
 
     private void PlayHitParticle(string tag)
@@ -171,6 +187,7 @@ public class Attack : MonoBehaviour
     }
     public void PlayerAttack()
     {
+        AutoAttackTimer += Time.deltaTime;
         // 마우스 클릭 시 빠르게 낙하하도록 처리
         if (Input.GetMouseButtonDown(0) && AttackTimer >= AttackDelay && OnAuto == false && CurrentDurability != 0)
         {
@@ -234,7 +251,7 @@ public class Attack : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 touchDuration += Time.deltaTime;
-                if (touchDuration >= requiredHoldTime)
+                if (touchDuration >= requiredHoldTime && AutoAttackTimer >= AutoAttackDuration)
                 {
                     OnAuto = true;
                     Debug.Log("자동공격 실행 (에디터)");
@@ -277,11 +294,16 @@ else if (Input.touchCount == 0)
     private IEnumerator AutoAttack()
     {
         float timer = 0f;
-        Autotime.fillAmount = 1f;
+
+
 
         while (timer < autoAttackDuration)
         {
-            Autotime.fillAmount = 1f - (timer / autoAttackDuration);
+            float remainingTime = Mathf.Max(0f, autoAttackDuration - timer);
+            int minutes = Mathf.FloorToInt(remainingTime / 60f);
+            int seconds = Mathf.FloorToInt(remainingTime % 60f);
+            Autotimetext.text = $"{minutes:00}:{seconds:00}";
+           
             if (isJump)
             {
                 velocity += 30 * IdleSpeed * Time.deltaTime;
@@ -309,9 +331,11 @@ else if (Input.touchCount == 0)
             }
             yield return null;
             timer += Time.deltaTime;
-            Autotime.fillAmount = 0f;
+
         }
         OnAuto = false;
+        Autotimetext.text = "00:00";
+        AutoAttackTimer = 0f;
         Debug.Log("자동공격 종료");
     }
     //타일과 충돌 했을때 공격 로직
@@ -387,6 +411,7 @@ else if (Input.touchCount == 0)
             else if (!OnAttack && !OnAuto) //가만히 있을때
             {
                 impulse();
+                playerData.SetStat(StatType.CurEnergy, playerData.GetStat(StatType.CurEnergy) - 0.1f);
                 dmg.TakeDamage(IdleAttackPower * iscritical); //기본 공격 데미지
                 Vector3 spawnPos = transform.position + new Vector3(0, -2f, 0);
                 ShowDamage(attackPower * iscritical, spawnPos);
@@ -430,7 +455,7 @@ else if (Input.touchCount == 0)
         {
 
             text.color = Color.red;
-            text.fontSize += 10;
+            text.fontSize += 8;
 
         }
 

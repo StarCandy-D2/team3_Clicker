@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15aaf4ab3765f1c43a1cc7a25893fe65, type: 3}
-  m_Name: InnerCore_StageData
+  m_Name: BossCore_StageData
   m_EditorClassIdentifier: 
-  stageName: 
-  stageLevel: 5
-  totalLayers: 100
-  baseLayerHP: 1
+  stageName: "\uC9C0\uAD6C\uC758 \uD575"
+  stageLevel: 6
+  totalLayers: 1
+  baseLayerHP: 1000
   hpMultiplier: 1
   layerHeight: 0.6
   O2reduceLv: 0
-  layerPrefab: {fileID: 1068504377347183833, guid: 93291657572fffb4fb8ff2698efcd137, type: 3}
+  layerPrefab: {fileID: 0}
   bossPrefab: {fileID: 1066901596998039032, guid: cbf37b58e1ceba34e8fc10e01b290373, type: 3}
-  bossHP: 100
+  bossHP: 1000
   bossName: "\uC9C0\uAD6C\uC758 \uD575"
