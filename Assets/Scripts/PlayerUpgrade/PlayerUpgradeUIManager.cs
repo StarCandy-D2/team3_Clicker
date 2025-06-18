@@ -16,7 +16,7 @@ public class PlayerUpgradeUIManager : MonoBehaviour
     public TMP_Text goldgaincostText;
     public TMP_Text goldgaintestText;
     public TMP_Text goldText;
-    [FormerlySerializedAs("energyText")] [Header("statText")]
+    [Header("statText")]
     public TMP_Text MaxenergyText;
     public TMP_Text atkText;
     public TMP_Text crirateText;

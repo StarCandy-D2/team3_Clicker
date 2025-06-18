@@ -44,9 +44,9 @@ public class StatusPanel : MonoBehaviour
     {
         string stageName = stageUIManager.stageText.text;
         name.text = playerData.userName;
-        atk.text = $"공격력 : {playerData.GetStat(StatType.atk).ToString("F1")}";
+        atk.text = $"공격력 : {playerData.GetStat(StatType.totalAtk).ToString("F1")}";
         oxygen.text = $"에너지 : {(playerData.GetStat(StatType.CurEnergy)).ToString("F1")}";
-        crit.text = $"치명타 : {playerData.GetStat(StatType.critRate).ToString("F1")}";
+        crit.text = $"치명타 : {playerData.GetStat(StatType.totalCritRate).ToString("F1")}";
         gold.text = $"보유 골드 : {playerData.GetStat(StatType.Gold).ToString()}";
         goldgain.text = $"골드 획득량 증가 : {playerData.GetStat(StatType.goldGain).ToString()}";
         sessiongold.text = $"획득 골드 : {stageUIManager.sessionGold.ToString()}";
