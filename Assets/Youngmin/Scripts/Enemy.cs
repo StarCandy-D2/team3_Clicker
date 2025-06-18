@@ -76,10 +76,12 @@ public class Enemy : MonoBehaviour
         {
             var data = GameManager.Instance.playerData;
             
-            int goldReward = 10;
+            float goldReward = 10;
             if (StageUIManager.Instance != null)
             {
-                goldReward = StageUIManager.Instance.GetCurrentStageGoldReward();
+                goldReward = StageUIManager.Instance.GetCurrentStageGoldReward()
+                    * data.GetStat(StatType.goldGain);
+                
             }
             data.SetStat(StatType.Gold, data.GetStat(StatType.Gold) + goldReward);
 
