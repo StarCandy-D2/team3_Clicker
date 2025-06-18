@@ -325,9 +325,16 @@ else if (Input.touchCount == 0)
         Debug.Log($"{iscritical}");
 
         //레이어가 Enemy이고 파티클on일때만 파티클 재생
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && !settingUI.particleonoff)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+            Debug.Log(settingUI.particleonoff);
+
+            if (!settingUI.particleonoff)
+            {
+
             PlayHitParticle(other.gameObject.tag);
+
+            }
 
             //switch (other.gameObject.tag)
             //{
@@ -402,7 +409,7 @@ else if (Input.touchCount == 0)
         );
         rectTransform.anchoredPosition = basePosition + randomOffset;
         TMP_Text text = obj.GetComponent<TMP_Text>();
-        text.text = damage.ToString();
+        text.text = damage.ToString("F2");
 
 
         rectTransform.DOAnchorPos(rectTransform.anchoredPosition + Vector2.up * 100f, 1f).SetEase(Ease.OutCubic);

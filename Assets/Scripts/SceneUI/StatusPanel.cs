@@ -25,7 +25,10 @@ public class StatusPanel : MonoBehaviour
 
     public PlayerData playerData;
     public WeaponData weaponData;
-
+    private void Start()
+    {
+        playerData.SetStat(StatType.CurEnergy,playerData.GetStat(StatType.MaxEnergy));
+    }
 
     private void Update()
     {
