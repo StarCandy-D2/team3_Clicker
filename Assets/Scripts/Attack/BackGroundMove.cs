@@ -24,20 +24,8 @@ public class BackGroundMove : MonoBehaviour
         if (destroyedCount > 0)
         {
             // 배경 위치 및 텍스처 이동
-         //   transform.position += Vector3.up * 0.5f * destroyedCount;
             material.mainTextureOffset = new Vector2(0, material.mainTextureOffset.y - 0.03f * destroyedCount);
 
-            //// 자식들의 Y 위치 보정
-            //for (int i = 0; i < transform.childCount; i++)
-            //{
-            //    Transform child = transform.GetChild(i);
-            //    Vector3 childPos = child.position;
-            //    if (childPos.y >= -1.3f)
-            //    {
-            //        childPos.y = -1.3f;
-            //        child.position = childPos;
-            //    }
-            //}
         }
 
         preChildCount = currentChildCount;
