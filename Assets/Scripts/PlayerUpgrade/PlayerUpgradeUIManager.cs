@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 public class PlayerUpgradeUIManager : MonoBehaviour
 {
     public UpgradeManager upgradeManager;
+    public ShopUI shopUI;
     
     [Header("costText")]
     public TMP_Text MaxenergycostText;
@@ -86,6 +87,7 @@ public class PlayerUpgradeUIManager : MonoBehaviour
         goldText.text = data.GetStat(StatType.Gold).ToString();
         goldgaintestText.text = data.GetStat(StatType.goldGain).ToString();
         UpdateCostColors(data.GetStat(StatType.Gold));
+        shopUI.AvilityCount();
     }
 
     //gold 부족시 빨간색 표시
