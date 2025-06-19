@@ -105,4 +105,7 @@ Unity 기반 플랫포머 액션 게임, Mission: In Buu Sible은 파괴 본능�
 7. 튜토리얼을 통해 조작방법을 익힙니다.
 
 
+## 다운로드 링크
+https://drive.google.com/file/d/1FwMqClTwj8xgO6LF2PHIoZiabBPNHIl8/view?usp=sharing
+
 
