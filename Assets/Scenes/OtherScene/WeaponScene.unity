@@ -4362,14 +4362,6 @@ MonoBehaviour:
   - {fileID: 684503236}
   - {fileID: 2111781925}
   - {fileID: 2061809591}
-  _closePanels:
-  - {fileID: 5511552}
-  - {fileID: 1660027982}
-  - {fileID: 343874122}
-  _openPanels:
-  - {fileID: 625455172}
-  - {fileID: 867075255}
-  - {fileID: 1827064749}
   _attackText:
   - {fileID: 1744940090}
   - {fileID: 844109688}
@@ -4412,6 +4404,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 623c10b89163a4fbf9f27ad4a15349eb, type: 2}
   - {fileID: 11400000, guid: 2d1fbbb77772d45dfa4a2d60860b6533, type: 2}
   - {fileID: 11400000, guid: 446d775a68c834c2d86ea72869fd41ff, type: 2}
+  errorDisplayDuration: 2.5
+  typingSpeed: 0.05
+  equippedWeaponData: {fileID: 0}
+  _panels:
+  - closePanel: {fileID: 5511552}
+    openPanel: {fileID: 625455172}
+  - closePanel: {fileID: 1660027982}
+    openPanel: {fileID: 867075255}
+  - closePanel: {fileID: 343874122}
+    openPanel: {fileID: 1827064749}
 --- !u!1 &595861581
 GameObject:
   m_ObjectHideFlags: 0

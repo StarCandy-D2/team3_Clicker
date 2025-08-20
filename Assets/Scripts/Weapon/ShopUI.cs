@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using OverSceneScripts;
 using PlayerUpgrade;
 using UnityEngine;
@@ -9,8 +10,8 @@ public class ShopUI : MonoBehaviour
     [Header("무기선택 창")] 
     [SerializeField] private GameObject[] _uiPanels;
     private int _currentIndex = 0;
-    [SerializeField] private GameObject[] _closePanels;
-    [SerializeField] private GameObject[] _openPanels;
+    // [SerializeField] private GameObject[] _closePanels;
+    // [SerializeField] private GameObject[] _openPanels;
 
     [Header("스텟창 & cost")] 
     [SerializeField] private TMP_Text[] _attackText;
@@ -37,11 +38,24 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private float typingSpeed = 0.05f; // 타이핑 속도
     private Coroutine _errorCoroutine;
     [SerializeField] private WeaponData equippedWeaponData;
+
+    [System.Serializable]
+    public class PanelPair
+    {
+        public GameObject closePanel;
+        public GameObject openPanel;
+    }
     
-    
+    [SerializeField] private List<PanelPair> _panels;
+    private Dictionary<int, PanelPair> _panelDic = new Dictionary<int, PanelPair>();
 
     private void Awake()
     {
+        for (int i = 0; i < _panels.Count; i++)
+        {
+            _panelDic[i] = _panels[i];
+        }
+        
         UpdateWeaponUI();
         UpdateGoldUI();
         OpenPanelCost();
@@ -59,11 +73,18 @@ public class ShopUI : MonoBehaviour
         {
             bool isUnlocked = _weaponDatas[i].IsUnlocked;
 
-            if (i<_closePanels.Length && _closePanels[i] != null)
-                _closePanels[i].SetActive(!isUnlocked);
-
-            if (i<_openPanels.Length && _openPanels[i] != null)
-                _openPanels[i].SetActive(isUnlocked);
+            if (_panelDic.TryGetValue(i, out PanelPair panelPair))
+            {
+                if(panelPair.closePanel != null)
+                    panelPair.closePanel.SetActive(!isUnlocked);
+                if(panelPair.openPanel != null)
+                    panelPair.openPanel.SetActive(isUnlocked);
+            }
+            // if (i<_closePanels.Length && _closePanels[i] != null)
+            //     _closePanels[i].SetActive(!isUnlocked);
+            //
+            // if (i<_openPanels.Length && _openPanels[i] != null)
+            //     _openPanels[i].SetActive(isUnlocked);
         }
     }
     public void UpdateWeaponUI()
@@ -386,16 +407,21 @@ public class ShopUI : MonoBehaviour
             _weaponDatas[_currentIndex].IsUnlocked = true;
             Debug.Log($"{_currentIndex}번 무기인덱스");
             RefreshWeaponPanels();
-            
-            _openPanels[0].SetActive(false);
-            
-            UserData data = PlayerDataConverter.ToUserData(_playerData, _weaponDatas);
-            UserDataManager.Instance.SaveUserData(data, _playerData.userName);
-            _closePanels[_currentIndex].SetActive(false);
-            _openPanels[_currentIndex].SetActive(true);
+
+            if (_panelDic.TryGetValue(_currentIndex-1, out PanelPair pair))
+            {
+                pair.closePanel.SetActive(false);
+                pair.openPanel.SetActive(true);
+            }
+            // _openPanels[0].SetActive(false);
+            //
+            // _closePanels[_currentIndex].SetActive(false);
+            // _openPanels[_currentIndex].SetActive(true);
             
             ShowSendError("새로운 삽이 등장합니다", Color.white);
             
+            UserData data = PlayerDataConverter.ToUserData(_playerData, _weaponDatas);
+            UserDataManager.Instance.SaveUserData(data, _playerData.userName);
             UpdateGoldUI();
         }
         else
