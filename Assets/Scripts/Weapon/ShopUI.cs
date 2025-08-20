@@ -10,8 +10,6 @@ public class ShopUI : MonoBehaviour
     [Header("무기선택 창")] 
     [SerializeField] private GameObject[] _uiPanels;
     private int _currentIndex = 0;
-    // [SerializeField] private GameObject[] _closePanels;
-    // [SerializeField] private GameObject[] _openPanels;
 
     [Header("스텟창 & cost")] 
     [SerializeField] private TMP_Text[] _attackText;
